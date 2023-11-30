@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Test_1"
 include(":app")
+include(":MyFramework")
