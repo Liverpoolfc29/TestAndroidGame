@@ -3,9 +3,13 @@ package com.example.myframework;
 import android.accounts.AccountManager;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class GraphicsFW {
 
@@ -62,6 +66,29 @@ public class GraphicsFW {
     // высоты фреймбуфера
     public int getHeightFrameBuffer() {
         return frameBufferGame.getHeight();
+    }
+
+    public Bitmap newTexture(String fileName) {
+        InputStream inputStream = null;
+
+        try {
+            inputStream = assetManagerGame.open(fileName);
+            // в текстуру передаем поток с файла
+            textureGame = BitmapFactory.decodeStream(inputStream);
+            if (textureGame == null) {
+                throw new RuntimeException("Невозможно загрузить файл " + fileName);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("проблема с загрузкой файла" + e);
+        }
+        if (inputStream != null) {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return textureGame;
     }
 
 
