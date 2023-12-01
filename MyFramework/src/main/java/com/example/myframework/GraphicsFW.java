@@ -1,6 +1,5 @@
 package com.example.myframework;
 
-import android.accounts.AccountManager;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
