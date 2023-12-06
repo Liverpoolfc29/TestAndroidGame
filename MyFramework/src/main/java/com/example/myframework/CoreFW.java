@@ -91,7 +91,21 @@ public class CoreFW extends AppCompatActivity {
         if (sceneFW == null) {
             throw new IllegalArgumentException("Невозможно загрузить сцену");
         }
+        // перед тем как загрузить новую сцену текущую ставим на паузу
         this.sceneFW.pause();
+        // уничтожаем
+        this.sceneFW.dispose();
+        sceneFW.resume();
+        sceneFW.upDate();
+        this.sceneFW = sceneFW;
     }
 
+    public SceneFW getCurrentScene() {
+        return sceneFW;
+    }
+
+    public SceneFW getStartScene() {
+        // новая сцена
+        return sceneFW;
+    }
 }
