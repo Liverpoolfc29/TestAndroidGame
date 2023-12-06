@@ -24,6 +24,9 @@ public class CoreFW extends AppCompatActivity {
     private float sceneWidth;
     private float sceneHeight;
 
+    private boolean stateOnPause;
+    private boolean stateOnResume;
+
     // Так как мы наследуемся от основоного класса AppCompatActivity нам надо создать (должен быть) класс onCreate.
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,10 +52,46 @@ public class CoreFW extends AppCompatActivity {
         sceneWidth = FRAME_BUFFER_WIDTH / sizeDisplay.x;
         sceneHeight = FRAME_BUFFER_HEIGHT / sizeDisplay.y;
 
+        loopFW = new LoopFW(this, frameBuffer);
+        // конструктор графики принимает АссертМенеджер (тот менеджер который мы передали с основного класса аппКомпактАктивити и фреймБуферГейм)
+        graphicsFW = new GraphicsFW(getAssets(), frameBuffer);
+
+        stateOnPause = false;
+        stateOnResume = false;
+
+        setContentView(loopFW);
     }
 
     public CoreFW() {
 
+    }
+
+    public void onResume() {
+        super.onResume();
+        sceneFW.resume();
+        loopFW.startGame();
+    }
+
+    public void onPause() {
+        super.onPause();
+        sceneFW.pause();
+        loopFW.stopGame();
+        stateOnPause = true;
+
+        if (isFinishing()) {
+            sceneFW.dispose();
+        }
+    }
+
+    public GraphicsFW getGraphicsFW() {
+        return graphicsFW;
+    }
+
+    public void setSceneFW(SceneFW sceneFW) {
+        if (sceneFW == null) {
+            throw new IllegalArgumentException("Невозможно загрузить сцену");
+        }
+        this.sceneFW.pause();
     }
 
 }
