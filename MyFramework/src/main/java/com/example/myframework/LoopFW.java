@@ -34,6 +34,10 @@ public class LoopFW extends SurfaceView implements Runnable {
     public LoopFW(CoreFW coreFW, Bitmap frameBuffer) {
         super(coreFW);
         this.frameBuffer = frameBuffer;
+        this.coreFW = coreFW;
+        this.surfaceHolder = getHolder();
+        rect = new Rect();
+        canvas = new Canvas();
     }
 
     @Override
@@ -67,11 +71,23 @@ public class LoopFW extends SurfaceView implements Runnable {
     }
 
     private void updateGame() {
+        // этот метод повторяется 60  раз в секунду
         updates++;
+        coreFW.getCurrentScene().upDate();
     }
 
     private void drawingGame() {
+        // этот метод повторяется 60  раз в секунду
         drawing++;
+        if (surfaceHolder.getSurface().isValid()) {
+            canvas = surfaceHolder.lockCanvas();
+            // получаем границы канваса
+            canvas.getClipBounds(rect);
+            canvas.drawBitmap(frameBuffer, null, rect, null); // передаем фреймбуфер что бы растянуть на весь экран. Что бы описать границы канваса передаем рект.
+            // на канвасе нарисовали фреймбуфер и перед тем как вывести его делаем :
+            coreFW.getCurrentScene().drawing();
+            surfaceHolder.unlockCanvasAndPost(canvas); // передаем канвас на экран смартфона
+        }
     }
 
     public void startGame() {
@@ -96,7 +112,6 @@ public class LoopFW extends SurfaceView implements Runnable {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
     }
 
 

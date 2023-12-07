@@ -109,4 +109,5 @@ public class CoreFW extends AppCompatActivity {
         // новая сцена
         return sceneFW;
     }
+
 }
