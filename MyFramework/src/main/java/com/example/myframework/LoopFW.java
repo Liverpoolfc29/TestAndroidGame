@@ -1,8 +1,14 @@
 package com.example.myframework;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+
 import java.util.Date;
 
-public class LoopFW implements Runnable {
+public class LoopFW extends SurfaceView implements Runnable {
 
     private final float FPS = 60;
     private final float SECOND = 1000000000;
@@ -12,10 +18,23 @@ public class LoopFW implements Runnable {
 
     Thread gameThread = null;
 
+    CoreFW coreFW;
+    Bitmap frameBuffer;
+    SurfaceHolder surfaceHolder;
+    // то на чем будем рисовать
+    Canvas canvas;
+    // покажет граници нашего конваса
+    Rect rect;
+
     // temp
     float updates = 0;
     float drawing = 0;
     long timer = 0;
+
+    public LoopFW(CoreFW coreFW, Bitmap frameBuffer) {
+        super(coreFW);
+        this.frameBuffer = frameBuffer;
+    }
 
     @Override
     public void run() {

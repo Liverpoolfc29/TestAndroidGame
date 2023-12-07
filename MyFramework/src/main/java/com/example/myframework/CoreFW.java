@@ -9,7 +9,7 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-// 31 minute
+// класс ядро который все собирает и передает данные всем
 public class CoreFW extends AppCompatActivity {
 
     private final float FRAME_BUFFER_WIDTH = 800;
@@ -56,6 +56,7 @@ public class CoreFW extends AppCompatActivity {
         // конструктор графики принимает АссертМенеджер (тот менеджер который мы передали с основного класса аппКомпактАктивити и фреймБуферГейм)
         graphicsFW = new GraphicsFW(getAssets(), frameBuffer);
 
+        sceneFW = getStartScene();
         stateOnPause = false;
         stateOnResume = false;
 
