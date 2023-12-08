@@ -4,6 +4,7 @@ import android.graphics.Color;
 
 import com.example.myframework.CoreFW;
 import com.example.myframework.SceneFW;
+import com.example.test_1.R;
 
 public class MainManuScene extends SceneFW {
 
@@ -18,7 +19,13 @@ public class MainManuScene extends SceneFW {
 
     @Override
     public void drawing() {
-        graphicsFW.clearScene(Color.GREEN);
+        graphicsFW.clearScene(Color.BLACK);
+        // обращаемся к нашему файлу strings.xml. Каждая сцена работает с ядром и общараясь к ядру должны видеть их.
+        graphicsFW.drawText(coreFW.getString(R.string.txt_mainManu_nameGame), 100, 100, Color.BLUE, 60, null);
+        graphicsFW.drawText(coreFW.getString(R.string.txt_mainManu_newGame), 20, 300, Color.BLUE, 40, null);
+        graphicsFW.drawText(coreFW.getString(R.string.txt_mainManu_settings), 20, 350, Color.BLUE, 40, null);
+        graphicsFW.drawText(coreFW.getString(R.string.txt_mainManu_results), 20, 400, Color.BLUE, 40, null);
+        graphicsFW.drawText(coreFW.getString(R.string.txt_mainManu_exitGame), 20, 450, Color.BLUE, 40, null);
     }
 
     @Override
