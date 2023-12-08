@@ -1,8 +1,14 @@
 package com.example.myframework;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+
 import java.util.Date;
 
-public class LoopFW implements Runnable {
+public class LoopFW extends SurfaceView implements Runnable {
 
     private final float FPS = 60;
     private final float SECOND = 1000000000;
@@ -12,10 +18,27 @@ public class LoopFW implements Runnable {
 
     Thread gameThread = null;
 
+    CoreFW coreFW;
+    Bitmap frameBuffer;
+    SurfaceHolder surfaceHolder;
+    // то на чем будем рисовать
+    Canvas canvas;
+    // покажет граници нашего конваса
+    Rect rect;
+
     // temp
     float updates = 0;
     float drawing = 0;
     long timer = 0;
+
+    public LoopFW(CoreFW coreFW, Bitmap frameBuffer) {
+        super(coreFW);
+        this.frameBuffer = frameBuffer;
+        this.coreFW = coreFW;
+        this.surfaceHolder = getHolder();
+        rect = new Rect();
+        canvas = new Canvas();
+    }
 
     @Override
     public void run() {
@@ -48,11 +71,23 @@ public class LoopFW implements Runnable {
     }
 
     private void updateGame() {
+        // этот метод повторяется 60  раз в секунду
         updates++;
+        coreFW.getCurrentScene().upDate();
     }
 
     private void drawingGame() {
+        // этот метод повторяется 60  раз в секунду
         drawing++;
+        if (surfaceHolder.getSurface().isValid()) {
+            canvas = surfaceHolder.lockCanvas();
+            // получаем границы канваса
+            canvas.getClipBounds(rect);
+            canvas.drawBitmap(frameBuffer, null, rect, null); // передаем фреймбуфер что бы растянуть на весь экран. Что бы описать границы канваса передаем рект.
+            // на канвасе нарисовали фреймбуфер и перед тем как вывести его делаем :
+            coreFW.getCurrentScene().drawing();
+            surfaceHolder.unlockCanvasAndPost(canvas); // передаем канвас на экран смартфона
+        }
     }
 
     public void startGame() {
@@ -77,7 +112,6 @@ public class LoopFW implements Runnable {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
     }
 
 

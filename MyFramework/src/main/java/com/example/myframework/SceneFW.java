@@ -2,16 +2,19 @@ package com.example.myframework;
 
 public abstract class SceneFW {
 
-    private CoreFW coreFW;
+    protected CoreFW coreFW;
     // ширина сцены
-    public int sceneWight;
+    protected int sceneWight;
     //высота сцены
-    public int sceneHeight;
+    protected int sceneHeight;
     // прием графики
-    private GraphicsFW graphicsFW;
+    protected GraphicsFW graphicsFW;
 
     public SceneFW(CoreFW coreFW) {
         this.coreFW = coreFW;
+        sceneWight = coreFW.getGraphicsFW().getWightFrameBuffer();
+        sceneHeight = coreFW.getGraphicsFW().getHeightFrameBuffer();
+        graphicsFW = coreFW.getGraphicsFW();
     }
 
     public abstract void upDate();
