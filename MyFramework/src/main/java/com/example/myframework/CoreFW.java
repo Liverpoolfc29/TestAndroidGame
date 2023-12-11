@@ -17,6 +17,7 @@ public class CoreFW extends AppCompatActivity {
 
     private LoopFW loopFW;
     private GraphicsFW graphicsFW;
+    private TouchListeneerFW touchListeneerFW;
     private Display display;
     private Point sizeDisplay;
     private Bitmap frameBuffer;
@@ -55,6 +56,7 @@ public class CoreFW extends AppCompatActivity {
         loopFW = new LoopFW(this, frameBuffer);
         // конструктор графики принимает АссертМенеджер (тот менеджер который мы передали с основного класса аппКомпактАктивити и фреймБуферГейм)
         graphicsFW = new GraphicsFW(getAssets(), frameBuffer);
+        touchListeneerFW = new TouchListeneerFW(loopFW, sceneWidth, sceneHeight);
 
         sceneFW = getStartScene();
         stateOnPause = false;
@@ -86,6 +88,10 @@ public class CoreFW extends AppCompatActivity {
 
     public GraphicsFW getGraphicsFW() {
         return graphicsFW;
+    }
+
+    public TouchListeneerFW getTouchListeneerFW() {
+        return touchListeneerFW;
     }
 
     public void setSceneFW(SceneFW sceneFW) {
