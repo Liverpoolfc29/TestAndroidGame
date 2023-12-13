@@ -10,12 +10,12 @@ public class Star extends ObjectFW {
         this.maxScreenY = sceneHeight;
         this.minScreenX = 0;
         this.minScreenY = 0;
-        this.speed = 4;
+        this.speed = 2;
         /*
-         Mесто для появления на экране генерируем случайным образом(по высоте),
-         что бы все не появлялось в одном месте, в правой стороне экрана.
+         Mесто для появления на экране генерируем случайным образом(по высоте и ширине),
+         что бы все не появлялось в одном месте.
         */
-        this.x = maxScreenX;
+        this.x = UtilRandomFW.getRandomNumber(maxScreenX);
         this.y = UtilRandomFW.getRandomNumber(maxScreenY);
     }
 
