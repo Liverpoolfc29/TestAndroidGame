@@ -15,7 +15,33 @@ public class Star extends ObjectFW {
          Mесто для появления на экране генерируем случайным образом(по высоте),
          что бы все не появлялось в одном месте, в правой стороне экрана.
         */
-        this.x = UtilRandomFW.getRandomNumber(maxScreenX);
-        this.y = maxScreenY;
+        this.x = maxScreenX;
+        this.y = UtilRandomFW.getRandomNumber(maxScreenY);
     }
+
+    public void updateStar() {
+        /*
+         как только по Х появилась звездочка она должна двигаться в левую часть экрана, поэтому мы
+         должны уменьшать ее координату на скорость ее движения
+        */
+        x -= speed;
+        /*
+         если звездочка прошла весь экран до края мы должн вернуть ее назад.
+         и снова устанавливаем ее положение заново.
+        */
+        if (x < 0) {
+            x = maxScreenX;
+            y = UtilRandomFW.getRandomNumber(maxScreenY);
+        }
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+
 }
