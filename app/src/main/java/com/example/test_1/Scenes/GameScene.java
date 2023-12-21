@@ -4,6 +4,7 @@ import android.graphics.Color;
 
 import com.example.myframework.CoreFW;
 import com.example.myframework.SceneFW;
+import com.example.test_1.Classes.GameManager;
 import com.example.test_1.Generators.GeneratorBackground;
 import com.example.test_1.R;
 
@@ -18,6 +19,7 @@ public class GameScene extends SceneFW {
 
     GameState gameState;
     GeneratorBackground generatorBackground;
+    GameManager gameManager;
 
     public GameScene(CoreFW coreFW) {
         super(coreFW);
@@ -26,6 +28,7 @@ public class GameScene extends SceneFW {
         */
         gameState = GameState.READY;
         generatorBackground = new GeneratorBackground(sceneWight, sceneHeight);
+        gameManager = new GameManager(coreFW, sceneWight, sceneHeight);
     }
 
     @Override
@@ -103,12 +106,14 @@ public class GameScene extends SceneFW {
 
     private void drawingStateRunning() {
         graphicsFW.clearScene(Color.BLACK);
-        graphicsFW.drawText("Сцена игры", 250, 300, Color.WHITE, 60, null);
+        //graphicsFW.drawText("Сцена игры", 250, 300, Color.WHITE, 60, null);
         generatorBackground.drawingStar(graphicsFW);
+        gameManager.drawing(coreFW, graphicsFW);
     }
 
     private void updateStateRunning() {
         generatorBackground.updateStar();
+        gameManager.update();
     }
 
     private void drawingStateReady() {
