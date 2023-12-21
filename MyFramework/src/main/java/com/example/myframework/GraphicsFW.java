@@ -90,4 +90,12 @@ public class GraphicsFW {
         return textureGame;
     }
 
+    public Bitmap newSprite(Bitmap textureAtlas, int x, int y, int widthSprite, int heightSprite) {
+        /*
+        принимаем атлас текстур, координаты, и по этим координатам мы получаем определенную картинку и возвращаем ее.
+         */
+        Bitmap newSprite = Bitmap.createBitmap(textureAtlas, x, y, widthSprite, heightSprite);
+        return newSprite;
+    }
+
 }
