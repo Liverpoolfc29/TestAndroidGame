@@ -4,6 +4,8 @@ import com.example.myframework.CoreFW;
 import com.example.myframework.GraphicsFW;
 import com.example.myframework.Utilits.UtilResource;
 
+import java.util.ArrayList;
+
 /*
     Как только игра запустится, запустится лоадер и подгрузить все необходимые ресурсы заранее оперативную память.
     Класс загрузчик картинок итд. (подгружает все нужно заранее как только запустилась игра)
@@ -29,6 +31,7 @@ public class LoaderAssets {
         Нужно передавать координаты картинок из картинки(как бь вырезать их по размерам, размерами будут количество пикселей), начинаем с верхнего ула картинки координати 0.0
          и идем вправо на 64 пиксела, такого размера рисуночек первый, и так далее. Таким образом вырезаем и добавляем в масив нужные нам картиночки из общей файла картинки.
          */
+        UtilResource.spritePlayer = new ArrayList<>();
         UtilResource.spritePlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 0, 0, 64, 64));
         UtilResource.spritePlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 64, 0, 64, 64));
         UtilResource.spritePlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 128, 0, 64, 64));
