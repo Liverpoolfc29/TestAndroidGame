@@ -21,7 +21,7 @@ public class GameManager {
         this.maxScreenY = sceneHeight;
         minScreenX = 0;
         minScreenY = 0;
-        mainPlayer = new MainPlayer(maxScreenX, maxScreenY, minScreenY);
+        mainPlayer = new MainPlayer(coreFW, maxScreenX, maxScreenY, minScreenY);
     }
 
     public void update() {
