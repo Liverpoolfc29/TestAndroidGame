@@ -9,10 +9,11 @@ import com.example.test_1.Objects.MainPlayer;
  */
 public class GameManager {
 
-    private int maxScreenX;
     private int maxScreenY;
-    private int minScreenX;
+    private int maxScreenX;
+
     private int minScreenY;
+    private int minScreenX;
 
     MainPlayer mainPlayer;
 

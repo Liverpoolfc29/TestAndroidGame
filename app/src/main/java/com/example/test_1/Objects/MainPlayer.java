@@ -18,13 +18,13 @@ public class MainPlayer extends ObjectFW {
     CoreFW coreFW;
 
     /*
-    для анимации игрока в обычном состоянии
+        для анимации игрока в обычном состоянии
      */
-    AnimationFW animationSpriteMainPlayer;
+    AnimationFW animMainPlayer;
     /*
-    для анимации игрока в режиме ускорения
+        для анимации игрока в режиме ускорения
      */
-    AnimationFW animationSpriteMainPlayerBoost;
+    AnimationFW animMainPlayerBoost;
 
     boolean boosting;
 
@@ -39,20 +39,20 @@ public class MainPlayer extends ObjectFW {
         this.coreFW = coreFW;
         this.maxScreenX = maxScreenX;
         /*
-        у картинки левый верхний угол точка отсчета поэтому нужно подрезать ораничение на размер картинкии (-64)
+            у картинки левый верхний угол точка отсчета поэтому нужно подрезать ораничение на размер картинкии (-64)
          */
         this.maxScreenY = maxScreenY - UtilResource.spritePlayer.get(0).getHeight();
         /*
-        загрузили 4 спрайта из нашего масива  картинок с анимацией игрока
+            загрузили 4 спрайта из нашего масива  картинок с анимацией игрока
          */
-        animationSpriteMainPlayer = new AnimationFW(1, UtilResource.spritePlayer.get(0),
+        animMainPlayer = new AnimationFW(1, UtilResource.spritePlayer.get(0),
                 UtilResource.spritePlayer.get(1),
                 UtilResource.spritePlayer.get(2),
                 UtilResource.spritePlayer.get(3));
         /*
-        создаем новую анимацию для игрока в режиме ускорения (подгружаем другие картинки для этого)
+            создаем новую анимацию для игрока в режиме ускорения (подгружаем другие картинки для этого)
         */
-        animationSpriteMainPlayerBoost = new AnimationFW(1, UtilResource.spritePlayerBoost.get(0),
+        animMainPlayerBoost = new AnimationFW(1, UtilResource.spritePlayerBoost.get(0),
                 UtilResource.spritePlayerBoost.get(1),
                 UtilResource.spritePlayerBoost.get(2),
                 UtilResource.spritePlayerBoost.get(3));
@@ -70,7 +70,7 @@ public class MainPlayer extends ObjectFW {
         }
 
         if (boosting) {
-            speed += 0.1;
+            speed += 1;
         } else {
             speed -= 3;
         }
@@ -83,8 +83,7 @@ public class MainPlayer extends ObjectFW {
         }
 
         y -= speed + GRAVITY;
-
-        /*\
+        /*
         проверка вылетов за экран
          */
         if (y < minScreenY) {
@@ -95,9 +94,9 @@ public class MainPlayer extends ObjectFW {
         }
 
         if (boosting) {
-            animationSpriteMainPlayerBoost.runAnimation();
+            animMainPlayerBoost.runAnimation();
         } else {
-            animationSpriteMainPlayer.runAnimation();
+            animMainPlayer.runAnimation();
         }
     }
 
@@ -114,9 +113,9 @@ public class MainPlayer extends ObjectFW {
             делаем переключение анимации и обычного игрока на игрока в ускорее с помощью бул переменной
          */
         if (boosting) {
-            animationSpriteMainPlayerBoost.graphicAnimation(graphicsFW, x, y);
+            animMainPlayerBoost.drawingAnimation(graphicsFW, x, y);
         } else {
-            animationSpriteMainPlayer.graphicAnimation(graphicsFW, x, y);
+            animMainPlayer.drawingAnimation(graphicsFW, x, y);
         }
     }
 

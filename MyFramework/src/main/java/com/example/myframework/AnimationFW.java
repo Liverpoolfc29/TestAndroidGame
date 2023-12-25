@@ -41,7 +41,7 @@ public class AnimationFW {
         if (countFrames == 2) {
             sprite = sprite3;
         }
-        if (countFrames == 3) {
+        if (countFrames == 4) {
             sprite = sprite4;
         }
         countFrames++;
@@ -50,7 +50,7 @@ public class AnimationFW {
         }
     }
 
-    public void graphicAnimation(GraphicsFW graphicsFW, int x, int y) {
+    public void drawingAnimation(GraphicsFW graphicsFW, int x, int y) {
         graphicsFW.drawTexture(sprite, x, y);
     }
 

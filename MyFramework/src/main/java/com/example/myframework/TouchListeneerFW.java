@@ -15,7 +15,10 @@ public class TouchListeneerFW implements View.OnTouchListener {
     float sceneHeight;
 
     public TouchListeneerFW(View view, float sceneWidth, float sceneHeight) {
-        view.setOnTouchListener(this); // подключаем слушатель события у нашему view.
+        /*
+        подключаем слушатель события у нашему view.
+         */
+        view.setOnTouchListener(this);
         this.sceneWidth = sceneWidth;
         this.sceneHeight = sceneHeight;
     }
@@ -52,10 +55,14 @@ public class TouchListeneerFW implements View.OnTouchListener {
     }
 
     public boolean getTouchUp(int x, int y, int touchWidth, int touchHeight) {
-        // данный метод проверяет было ли нажатие нажатие в данной области. Принимает координату по иксу игрику и величину нашей области.
+        /*
+         данный метод проверяет было ли нажатие в данной области. Принимает координату по иксу игрику и величину нашей области.
+         */
         if (isTouchUp) {
             if (touchX >= x && touchX <= x + touchWidth - 1 && touchY <= y && touchY >= y - (touchHeight - 1)) {
-                // если данное условие соблюдено, это значит что пользователь нажал именно на ту область которую мы переали как параметр в этот метод.
+                /*
+                 если данное условие соблюдено, это значит что пользователь нажал именно на ту область которую мы переали как параметр в этот метод.
+                 */
                 isTouchUp = false;
                 return true;
             }
@@ -64,10 +71,11 @@ public class TouchListeneerFW implements View.OnTouchListener {
     }
 
     public boolean getTouchDown(int x, int y, int touchWidth, int touchHeight) {
-        // такой же метод для нажатия
+        /*
+         такой же метод для нажатия
+         */
         if (isTouchDown) {
             if (touchX >= x && touchX <= x + touchWidth - 1 && touchY <= y && touchY >= y - (touchHeight - 1)) {
-                //
                 isTouchDown = false;
                 return true;
             }
