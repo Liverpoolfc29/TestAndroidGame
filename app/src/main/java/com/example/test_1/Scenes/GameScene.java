@@ -5,7 +5,6 @@ import android.graphics.Color;
 import com.example.myframework.CoreFW;
 import com.example.myframework.SceneFW;
 import com.example.test_1.Classes.GameManager;
-import com.example.test_1.Generators.GeneratorBackground;
 import com.example.test_1.R;
 
 public class GameScene extends SceneFW {
@@ -18,7 +17,6 @@ public class GameScene extends SceneFW {
     }
 
     GameState gameState;
-    GeneratorBackground generatorBackground;
     GameManager gameManager;
 
     public GameScene(CoreFW coreFW) {
@@ -27,8 +25,7 @@ public class GameScene extends SceneFW {
         при запуске игровой сцены будет запускаться режим подготовки с вопросом к игроку готов ли он начать игру.
         */
         gameState = GameState.READY;
-        generatorBackground = new GeneratorBackground(sceneWight, sceneHeight);
-        gameManager = new GameManager(coreFW, sceneWight, sceneHeight);
+        gameManager = new GameManager(coreFW, sceneWidth, sceneHeight);
     }
 
     @Override
@@ -107,12 +104,10 @@ public class GameScene extends SceneFW {
     private void drawingStateRunning() {
         graphicsFW.clearScene(Color.BLACK);
         //graphicsFW.drawText("Сцена игры", 250, 300, Color.WHITE, 60, null);
-        generatorBackground.drawingStar(graphicsFW);
         gameManager.drawing(coreFW, graphicsFW);
     }
 
     private void updateStateRunning() {
-        generatorBackground.updateStar();
         gameManager.update();
     }
 
@@ -127,7 +122,7 @@ public class GameScene extends SceneFW {
          этого и указываем в границах слушателя нажатий весь экран а не конкретную область.
          и если подтверждение было переводим игру в следущее состояние.
         */
-        if (coreFW.getTouchListeneerFW().getTouchUp(0, sceneHeight, sceneWight, sceneHeight)) {
+        if (coreFW.getTouchListeneerFW().getTouchUp(0, sceneHeight, sceneWidth, sceneHeight)) {
             gameState = GameState.RUNNING;
         }
     }

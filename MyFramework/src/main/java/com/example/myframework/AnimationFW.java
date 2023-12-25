@@ -1,14 +1,14 @@
-package com.example.test_1.Classes;
+package com.example.myframework;
 
 import android.graphics.Bitmap;
 
-import com.example.myframework.GraphicsFW;
-
 /*
+                    _Фреймворк никак не зависит с игрой он просто принимает какие то параметры и выдает_
+          Класс принимает в конструктор скорость и 4 картинки и выдает анимацию этого.
     Изначально вся анимация будет начинаться с первого спрайта.
     frames = 4; - кол кадров.
  */
-public class AnimationGame {
+public class AnimationFW {
     double speedAnimation;
     int delayIndex;
     int countFrames;
@@ -20,7 +20,7 @@ public class AnimationGame {
     Bitmap sprite3;
     Bitmap sprite4;
 
-    public AnimationGame(double speedAnimation, Bitmap sprite1, Bitmap sprite2, Bitmap sprite3, Bitmap sprite4) {
+    public AnimationFW(double speedAnimation, Bitmap sprite1, Bitmap sprite2, Bitmap sprite3, Bitmap sprite4) {
         sprite = sprite1;
         this.sprite1 = sprite1;
         this.sprite2 = sprite2;
@@ -50,7 +50,7 @@ public class AnimationGame {
         }
     }
 
-    public void graphicAnimation(GraphicsFW graphicsFW, int x, int y) {
+    public void drawingAnimation(GraphicsFW graphicsFW, int x, int y) {
         graphicsFW.drawTexture(sprite, x, y);
     }
 

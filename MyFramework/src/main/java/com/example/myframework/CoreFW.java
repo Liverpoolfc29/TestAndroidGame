@@ -9,7 +9,9 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-// класс ядро который все собирает и передает данные всем
+/*
+ класс ядро который все собирает и передает данные всем
+ */
 public class CoreFW extends AppCompatActivity {
 
     private final float FRAME_BUFFER_WIDTH = 800;
@@ -28,14 +30,20 @@ public class CoreFW extends AppCompatActivity {
     private boolean stateOnPause;
     private boolean stateOnResume;
 
-    // Так как мы наследуемся от основоного класса AppCompatActivity нам надо создать (должен быть) класс onCreate.
+    /*
+    Так как мы наследуемся от основоного класса AppCompatActivity нам надо создать (должен быть) класс onCreate.
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // запрещаем андроиду переодить в спящий режим пока запущено приложене
+        /*
+         запрещаем андроиду переодить в спящий режим пока запущено приложене
+         */
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        // как только приложение запустилось нужно получить размер экрана
+        /*
+         как только приложение запустилось нужно получить размер экрана
+         */
         sizeDisplay = new Point();
         display = getWindowManager().getDefaultDisplay();
         display.getSize(sizeDisplay);
@@ -54,7 +62,9 @@ public class CoreFW extends AppCompatActivity {
         sceneHeight = FRAME_BUFFER_HEIGHT / sizeDisplay.y;
 
         loopFW = new LoopFW(this, frameBuffer);
-        // конструктор графики принимает АссертМенеджер (тот менеджер который мы передали с основного класса аппКомпактАктивити и фреймБуферГейм)
+        /*
+         конструктор графики принимает АссертМенеджер (тот менеджер который мы передали с основного класса аппКомпактАктивити и фреймБуферГейм)
+         */
         graphicsFW = new GraphicsFW(getAssets(), frameBuffer);
         touchListeneerFW = new TouchListeneerFW(loopFW, sceneWidth, sceneHeight);
 
@@ -98,9 +108,13 @@ public class CoreFW extends AppCompatActivity {
         if (sceneFW == null) {
             throw new IllegalArgumentException("Невозможно загрузить сцену");
         }
-        // перед тем как загрузить новую сцену текущую ставим на паузу
+        /*
+        перед тем как загрузить новую сцену текущую ставим на паузу
+         */
         this.sceneFW.pause();
-        // уничтожаем
+        /*
+         уничтожаем
+         */
         this.sceneFW.dispose();
         sceneFW.resume();
         sceneFW.upDate();
@@ -112,7 +126,9 @@ public class CoreFW extends AppCompatActivity {
     }
 
     public SceneFW getStartScene() {
-        // новая сцена
+        /*
+         новая сцена
+         */
         return sceneFW;
     }
 

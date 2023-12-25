@@ -2,7 +2,7 @@ package com.example.test_1.Classes;
 
 import com.example.myframework.CoreFW;
 import com.example.myframework.GraphicsFW;
-import com.example.myframework.Utilits.UtilResource;
+import com.example.test_1.Utillits.UtilResource;
 
 import java.util.ArrayList;
 
@@ -32,10 +32,17 @@ public class LoaderAssets {
          и идем вправо на 64 пиксела, такого размера рисуночек первый, и так далее. Таким образом вырезаем и добавляем в масив нужные нам картиночки из общей файла картинки.
          */
         UtilResource.spritePlayer = new ArrayList<>();
+        UtilResource.spritePlayerBoost = new ArrayList<>();
+
         UtilResource.spritePlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 0, 0, 64, 64));
         UtilResource.spritePlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 64, 0, 64, 64));
         UtilResource.spritePlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 128, 0, 64, 64));
         UtilResource.spritePlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 192, 0, 64, 64));
+
+        UtilResource.spritePlayerBoost.add(graphicsFW.newSprite(UtilResource.textureAtlas, 0, 64, 64, 64));
+        UtilResource.spritePlayerBoost.add(graphicsFW.newSprite(UtilResource.textureAtlas, 64, 64, 64, 64));
+        UtilResource.spritePlayerBoost.add(graphicsFW.newSprite(UtilResource.textureAtlas, 128, 64, 64, 64));
+        UtilResource.spritePlayerBoost.add(graphicsFW.newSprite(UtilResource.textureAtlas, 192, 64, 64, 64));
     }
 
 }

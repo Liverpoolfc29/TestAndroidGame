@@ -2,6 +2,7 @@ package com.example.test_1.Classes;
 
 import com.example.myframework.CoreFW;
 import com.example.myframework.GraphicsFW;
+import com.example.test_1.Generators.GeneratorBackground;
 import com.example.test_1.Objects.MainPlayer;
 
 /*
@@ -9,10 +10,12 @@ import com.example.test_1.Objects.MainPlayer;
  */
 public class GameManager {
 
-    private int maxScreenX;
     private int maxScreenY;
-    private int minScreenX;
+    private int maxScreenX;
+
     private int minScreenY;
+    private int minScreenX;
+    GeneratorBackground generatorBackground;
 
     MainPlayer mainPlayer;
 
@@ -21,15 +24,18 @@ public class GameManager {
         this.maxScreenY = sceneHeight;
         minScreenX = 0;
         minScreenY = 0;
-        mainPlayer = new MainPlayer(maxScreenX, maxScreenY, minScreenY);
+        mainPlayer = new MainPlayer(coreFW, maxScreenX, maxScreenY, minScreenY);
+        generatorBackground = new GeneratorBackground(sceneWidth, sceneHeight);
     }
 
     public void update() {
+        generatorBackground.updateStar(mainPlayer.getSpeedPlayer());
         mainPlayer.update();
     }
 
     public void drawing(CoreFW coreFW, GraphicsFW graphicsFW) {
         mainPlayer.drawing(graphicsFW);
+        generatorBackground.drawingStar(graphicsFW);
     }
 
 }

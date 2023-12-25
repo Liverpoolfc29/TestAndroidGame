@@ -4,7 +4,7 @@ public abstract class SceneFW {
 
     protected CoreFW coreFW;
     // ширина сцены
-    protected int sceneWight;
+    protected int sceneWidth;
     //высота сцены
     protected int sceneHeight;
     // прием графики
@@ -12,7 +12,7 @@ public abstract class SceneFW {
 
     public SceneFW(CoreFW coreFW) {
         this.coreFW = coreFW;
-        sceneWight = coreFW.getGraphicsFW().getWightFrameBuffer();
+        sceneWidth = coreFW.getGraphicsFW().getWightFrameBuffer();
         sceneHeight = coreFW.getGraphicsFW().getHeightFrameBuffer();
         graphicsFW = coreFW.getGraphicsFW();
     }

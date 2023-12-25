@@ -23,9 +23,9 @@ public class GeneratorBackground {
         }
     }
 
-    public void updateStar() {
+    public void updateStar(double speedPlayer) {
         for (int i = 0; i < starArrayList.size(); i++) {
-            starArrayList.get(i).updateStar();
+            starArrayList.get(i).updateStar(speedPlayer);
         }
     }
 
