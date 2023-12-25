@@ -19,12 +19,13 @@ public class Star extends ObjectFW {
         this.y = UtilRandomFW.getRandomNumber(maxScreenY);
     }
 
-    public void updateStar() {
+    public void updateStar(double speedPlayer) {
         /*
          как только по Х появилась звездочка она должна двигаться в левую часть экрана, поэтому мы
          должны уменьшать ее координату на скорость ее движения
         */
         x -= speed;
+        x -= speedPlayer;
         /*
          если звездочка прошла весь экран до края мы должн вернуть ее назад.
          и снова устанавливаем ее положение заново.

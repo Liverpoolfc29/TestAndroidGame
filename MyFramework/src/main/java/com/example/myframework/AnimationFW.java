@@ -41,7 +41,7 @@ public class AnimationFW {
         if (countFrames == 2) {
             sprite = sprite3;
         }
-        if (countFrames == 4) {
+        if (countFrames == 3) {
             sprite = sprite4;
         }
         countFrames++;

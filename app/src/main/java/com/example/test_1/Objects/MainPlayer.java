@@ -119,4 +119,8 @@ public class MainPlayer extends ObjectFW {
         }
     }
 
+    public double getSpeedPlayer() {
+        return speed;
+    }
+
 }
