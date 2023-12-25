@@ -1,4 +1,4 @@
-package com.example.myframework.Utilits;
+package com.example.test_1.Utillits;
 
 import android.graphics.Bitmap;
 
@@ -9,5 +9,6 @@ public class UtilResource {
     public static Bitmap textureAtlas;
     public static ArrayList<Bitmap> spritePlayer;
 
+    public static ArrayList<Bitmap> spritePlayerBoost;
 
 }
