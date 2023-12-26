@@ -16,8 +16,8 @@ public class Enemy extends ObjectFW {
         максимальное значение минус высота,что бы астероиды не летели ниже экрана.
          */
         this.maxScreenY = maxScreenY - UtilResource.spriteEnemy.get(0).getHeight();
-        this.maxScreenY = maxScreenY;
-        this.maxScreenX = 0;
+        this.minScreenY = maxScreenY;
+        this.minScreenX = 0;
         /*
         Устанавливаем первоначальное положение астероидам на экране
          */
