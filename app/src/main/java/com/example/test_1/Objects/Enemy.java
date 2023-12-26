@@ -44,7 +44,7 @@ public class Enemy extends ObjectFW {
         x -= speedPlayer;
         if (x < minScreenX) {
             x = maxScreenX;
-            y = UtilRandomFW.getGap(minScreenX, minScreenY);
+            y = UtilRandomFW.getGap(minScreenY, maxScreenY);
         }
         animEnemy.runAnimation();
     }
