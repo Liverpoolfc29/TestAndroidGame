@@ -34,7 +34,7 @@ public class MainPlayer extends ObjectFW {
          */
         x = 20;
         y = 200;
-        speed = 1;
+        speed = 3;
         boosting = false;
         this.coreFW = coreFW;
         this.maxScreenX = maxScreenX;
@@ -45,14 +45,14 @@ public class MainPlayer extends ObjectFW {
         /*
             загрузили 4 спрайта из нашего масива  картинок с анимацией игрока
          */
-        animMainPlayer = new AnimationFW(1, UtilResource.spritePlayer.get(0),
+        animMainPlayer = new AnimationFW(speed, UtilResource.spritePlayer.get(0),
                 UtilResource.spritePlayer.get(1),
                 UtilResource.spritePlayer.get(2),
                 UtilResource.spritePlayer.get(3));
         /*
             создаем новую анимацию для игрока в режиме ускорения (подгружаем другие картинки для этого)
         */
-        animMainPlayerBoost = new AnimationFW(1, UtilResource.spritePlayerBoost.get(0),
+        animMainPlayerBoost = new AnimationFW(speed, UtilResource.spritePlayerBoost.get(0),
                 UtilResource.spritePlayerBoost.get(1),
                 UtilResource.spritePlayerBoost.get(2),
                 UtilResource.spritePlayerBoost.get(3));

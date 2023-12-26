@@ -14,4 +14,12 @@ public class UtilRandomFW {
         return randomNumber;
     }
 
+    public static int getGap(int minNumber, int maxNumber) {
+        /*
+        берем два числа и между ними получаем рандомное
+         */
+        int gap = 0;
+        gap = (int) ((Math.random() * ++maxNumber) + minNumber);
+        return gap;
+    }
 }

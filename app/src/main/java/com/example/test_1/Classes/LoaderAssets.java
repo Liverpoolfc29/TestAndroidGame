@@ -15,8 +15,19 @@ public class LoaderAssets {
     public LoaderAssets(CoreFW coreFW, GraphicsFW graphicsFW) {
         loadTexture(graphicsFW);
         loadSpritePlayer(graphicsFW);
+        loadSpriteEnemy(graphicsFW);
+    }
 
+    private void loadSpriteEnemy(GraphicsFW graphicsFW) {
+        /*
+        Загружаем картинки для противника
+         */
+        UtilResource.spriteEnemy = new ArrayList<>();
 
+        UtilResource.spriteEnemy.add(graphicsFW.newSprite(UtilResource.textureAtlas, 256, 0, 64, 64));
+        UtilResource.spriteEnemy.add(graphicsFW.newSprite(UtilResource.textureAtlas, 320, 0, 64, 64));
+        UtilResource.spriteEnemy.add(graphicsFW.newSprite(UtilResource.textureAtlas, 384, 0, 64, 64));
+        UtilResource.spriteEnemy.add(graphicsFW.newSprite(UtilResource.textureAtlas, 448, 0, 64, 64));
     }
 
     private void loadTexture(GraphicsFW graphicsFW) {

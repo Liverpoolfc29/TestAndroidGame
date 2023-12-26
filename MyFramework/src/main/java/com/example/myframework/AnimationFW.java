@@ -32,6 +32,16 @@ public class AnimationFW {
 
     public void runAnimation() {
         delayIndex++;
+        /*
+
+         */
+        if (delayIndex > speedAnimation) {
+            delayIndex = 0;
+            nextFrame();
+        }
+    }
+
+    private void nextFrame() {
         if (countFrames == 0) {
             sprite = sprite1;
         }
