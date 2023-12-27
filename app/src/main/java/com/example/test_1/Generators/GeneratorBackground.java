@@ -12,13 +12,13 @@ public class GeneratorBackground {
     int starsPeak = 50;
     public ArrayList<Star> starArrayList = new ArrayList<>(starsPeak);
 
-    public GeneratorBackground(int sceneWidth, int sceneHeight) {
+    public GeneratorBackground(int sceneWidth, int sceneHeight, int minScreenY) {
         /*
          кол. вездочек.
          На каждой итерации пока 50 штук не появятся мы создаем звездочеки.
         */
         for (int i = 0; i < starsPeak; i++) {
-            Star star = new Star(sceneWidth, sceneHeight);
+            Star star = new Star(sceneWidth, sceneHeight, minScreenY);
             starArrayList.add(star);
         }
     }
