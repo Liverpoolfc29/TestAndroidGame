@@ -26,7 +26,7 @@ public class GeneratorEnemy {
             addEnemy(speedPlayer, 3);
         }
         for (int i = 0; i < enemyArrayList.size(); i++) {
-            enemyArrayList.get(i).Update(speedPlayer);
+            enemyArrayList.get(i).update(speedPlayer);
         }
     }
 
@@ -41,6 +41,5 @@ public class GeneratorEnemy {
             enemyArrayList.get(i).drawing(graphicsFW);
         }
     }
-
 
 }

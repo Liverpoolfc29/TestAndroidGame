@@ -16,7 +16,7 @@ public class Enemy extends ObjectFW {
         максимальное значение минус высота,что бы астероиды не летели ниже экрана.
          */
         this.maxScreenY = maxScreenY - UtilResource.spriteEnemy.get(0).getHeight();
-        this.minScreenY = maxScreenY;
+        this.minScreenY = minScreenY;
         this.minScreenX = 0;
         /*
         Устанавливаем первоначальное положение астероидам на экране
@@ -26,7 +26,7 @@ public class Enemy extends ObjectFW {
 
         switch (enemyType) {
             case 1:
-                speed = UtilRandomFW.getGap(1, 5);
+                speed = UtilRandomFW.getGap(1, 6);
                 animEnemy = new AnimationFW(3,
                         UtilResource.spriteEnemy.get(0),
                         UtilResource.spriteEnemy.get(1),
@@ -39,7 +39,7 @@ public class Enemy extends ObjectFW {
         }
     }
 
-    public void Update(double speedPlayer) {
+    public void update(double speedPlayer) {
         x -= speed;
         x -= speedPlayer;
         if (x < minScreenX) {
