@@ -4,6 +4,7 @@ import com.example.myframework.CoreFW;
 import com.example.myframework.GraphicsFW;
 import com.example.test_1.Generators.GeneratorBackground;
 import com.example.test_1.Generators.GeneratorEnemy;
+import com.example.test_1.Objects.HUD;
 import com.example.test_1.Objects.MainPlayer;
 
 /*
@@ -15,17 +16,22 @@ public class GameManager {
     private int maxScreenX;
     private int minScreenY;
     private int minScreenX;
+    private int passedDistance;
+    private int currentSpeedPlayer;
+    private int currentShieldsPlayer;
     GeneratorBackground generatorBackground;
     GeneratorEnemy generatorEnemy;
     MainPlayer mainPlayer;
+    HUD hud;
 
     public GameManager(CoreFW coreFW, int sceneWidth, int sceneHeight) {
+        hud = new HUD(coreFW);
         this.maxScreenX = sceneWidth;
         this.maxScreenY = sceneHeight;
         minScreenX = 0;
-        minScreenY = 0;
+        minScreenY = hud.getHEIGHT_HUD();
         mainPlayer = new MainPlayer(coreFW, maxScreenX, maxScreenY, minScreenY);
-        generatorBackground = new GeneratorBackground(sceneWidth, sceneHeight);
+        generatorBackground = new GeneratorBackground(sceneWidth, sceneHeight, minScreenY);
         generatorEnemy = new GeneratorEnemy(sceneWidth, sceneHeight, minScreenY);
     }
 
@@ -33,12 +39,21 @@ public class GameManager {
         generatorBackground.updateStar(mainPlayer.getSpeedPlayer());
         mainPlayer.update();
         generatorEnemy.update(mainPlayer.getSpeedPlayer());
+        /*
+            пройденную дитстанция считаем от скорости движения героя (умножаем на 60 для красивого отображения не 1.2.3 а 10 20 30)
+            другие данные береж похожим образом
+         */
+        passedDistance += mainPlayer.getSpeedPlayer();
+        currentSpeedPlayer = (int) mainPlayer.getSpeedPlayer() * 60;
+        currentShieldsPlayer = mainPlayer.getShieldPlayer();
+        hud.update(passedDistance, currentSpeedPlayer, currentShieldsPlayer);
     }
 
     public void drawing(CoreFW coreFW, GraphicsFW graphicsFW) {
         mainPlayer.drawing(graphicsFW);
         generatorBackground.drawingStar(graphicsFW);
         generatorEnemy.drawing(graphicsFW);
+        hud.drawing(graphicsFW);
     }
 
 }

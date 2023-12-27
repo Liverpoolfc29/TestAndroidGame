@@ -10,13 +10,10 @@ import com.example.myframework.AnimationFW;
     Каждый обьект и наш игрок должен знать габариты экрана (максимальную высоту и ширину) что бы не вылетать за его пределы.
  */
 public class MainPlayer extends ObjectFW {
-
     final int GRAVITY = -3;
     final int MAX_SPEED = 15;
     final int MIN_SPEED = 1;
-
     CoreFW coreFW;
-
     /*
         для анимации игрока в обычном состоянии
      */
@@ -25,8 +22,8 @@ public class MainPlayer extends ObjectFW {
         для анимации игрока в режиме ускорения
      */
     AnimationFW animMainPlayerBoost;
-
     boolean boosting;
+    private int shieldsPlayer;
 
     public MainPlayer(CoreFW coreFW, int maxScreenX, int maxScreenY, int minScreenY) {
         /*
@@ -35,6 +32,7 @@ public class MainPlayer extends ObjectFW {
         x = 20;
         y = 200;
         speed = 3;
+        shieldsPlayer = 3;
         boosting = false;
         this.coreFW = coreFW;
         this.maxScreenX = maxScreenX;
@@ -42,6 +40,7 @@ public class MainPlayer extends ObjectFW {
             у картинки левый верхний угол точка отсчета поэтому нужно подрезать ораничение на размер картинкии (-64)
          */
         this.maxScreenY = maxScreenY - UtilResource.spritePlayer.get(0).getHeight();
+        this.minScreenY = minScreenY;
         /*
             загрузили 4 спрайта из нашего масива  картинок с анимацией игрока
          */
@@ -121,6 +120,10 @@ public class MainPlayer extends ObjectFW {
 
     public double getSpeedPlayer() {
         return speed;
+    }
+
+    public int getShieldPlayer() {
+        return shieldsPlayer;
     }
 
 }

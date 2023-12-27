@@ -5,18 +5,19 @@ import com.example.myframework.Utilits.UtilRandomFW;
 
 public class Star extends ObjectFW {
 
-    public Star(int sceneWidth, int sceneHeight) {
+    public Star(int sceneWidth, int sceneHeight, int minScreenY) {
         this.maxScreenX = sceneWidth;
         this.maxScreenY = sceneHeight;
         this.minScreenX = 0;
-        this.minScreenY = 0;
+        this.minScreenY = minScreenY;
         this.speed = 2;
         /*
          Mесто для появления на экране генерируем случайным образом(по высоте и ширине),
          что бы все не появлялось в одном месте.
+         по У генерируем звезды до верхнего предела екрана, до HUD, используем метод для рандома между двумя числами
         */
         this.x = UtilRandomFW.getRandomNumber(maxScreenX);
-        this.y = UtilRandomFW.getRandomNumber(maxScreenY);
+        this.y = UtilRandomFW.getGap(minScreenY, maxScreenY);
     }
 
     public void updateStar(double speedPlayer) {
@@ -32,7 +33,7 @@ public class Star extends ObjectFW {
         */
         if (x < 0) {
             x = maxScreenX;
-            y = UtilRandomFW.getRandomNumber(maxScreenY);
+            y = UtilRandomFW.getGap(minScreenY, maxScreenY);
         }
     }
 
