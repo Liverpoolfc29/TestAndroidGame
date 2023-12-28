@@ -11,7 +11,7 @@ public class GeneratorEnemy {
     private int minScreenY;
     private int minScreenX;
 
-    ArrayList<Enemy> enemyArrayList;
+    public ArrayList<Enemy> enemyArrayList;
 
     public GeneratorEnemy(int sceneWidth, int sceneHeight, int minScreenY) {
         this.maxScreenX = sceneWidth;
@@ -39,6 +39,15 @@ public class GeneratorEnemy {
     public void drawing(GraphicsFW graphicsFW) {
         for (int i = 0; i < enemyArrayList.size(); i++) {
             enemyArrayList.get(i).drawing(graphicsFW);
+        }
+    }
+
+    public void hitPlayer(Enemy enemy) {
+        /*
+           удаляем столкнувшийся обьект.
+         */
+        for (int i = 0; i < enemyArrayList.size(); i++) {
+            enemyArrayList.remove(enemy);
         }
     }
 

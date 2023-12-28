@@ -1,5 +1,6 @@
 package com.example.test_1.Classes;
 
+import com.example.myframework.CollisionDetect;
 import com.example.myframework.CoreFW;
 import com.example.myframework.GraphicsFW;
 import com.example.test_1.Generators.GeneratorBackground;
@@ -47,6 +48,17 @@ public class GameManager {
         currentSpeedPlayer = (int) mainPlayer.getSpeedPlayer() * 60;
         currentShieldsPlayer = mainPlayer.getShieldPlayer();
         hud.update(passedDistance, currentSpeedPlayer, currentShieldsPlayer);
+        checkHit();
+
+    }
+
+    private void checkHit() {
+        for (int i = 0; i < generatorEnemy.enemyArrayList.size(); i++) {
+            if (CollisionDetect.collisionDetect(mainPlayer, generatorEnemy.enemyArrayList.get(i))) {
+                mainPlayer.hitEnemy();
+                generatorEnemy.hitPlayer(generatorEnemy.enemyArrayList.get(i));
+            }
+        }
     }
 
     public void drawing(CoreFW coreFW, GraphicsFW graphicsFW) {

@@ -1,5 +1,7 @@
 package com.example.test_1.Objects;
 
+import android.graphics.Rect;
+
 import com.example.myframework.CoreFW;
 import com.example.myframework.GraphicsFW;
 import com.example.myframework.ObjectFW;
@@ -34,6 +36,11 @@ public class MainPlayer extends ObjectFW {
         speed = 3;
         shieldsPlayer = 3;
         boosting = false;
+        /*
+            вычисляем радиус фигурки, размер фигурки 64 на 64 пикселя, радиус нужен от ее центра координат в середине фигурки, значит берем половину ее
+            размера 64\2 и получаем радиус от центра 32
+        */
+        radius = (double) UtilResource.spritePlayer.get(0).getHeight() / 4;
         this.coreFW = coreFW;
         this.maxScreenX = maxScreenX;
         /*
@@ -97,6 +104,10 @@ public class MainPlayer extends ObjectFW {
         } else {
             animMainPlayer.runAnimation();
         }
+
+        hitBox = new Rect(x, y,
+                UtilResource.spritePlayer.get(0).getWidth(),
+                UtilResource.spritePlayer.get(0).getHeight());
     }
 
     private void stopBoosting() {
@@ -126,4 +137,7 @@ public class MainPlayer extends ObjectFW {
         return shieldsPlayer;
     }
 
+    public void hitEnemy() {
+        shieldsPlayer--;
+    }
 }
