@@ -5,6 +5,7 @@ import android.graphics.Rect;
 import com.example.myframework.CoreFW;
 import com.example.myframework.GraphicsFW;
 import com.example.myframework.ObjectFW;
+import com.example.myframework.Utilits.UtilTimerDelay;
 import com.example.test_1.Utillits.UtilResource;
 import com.example.myframework.AnimationFW;
 
@@ -24,8 +25,10 @@ public class MainPlayer extends ObjectFW {
         для анимации игрока в режиме ускорения
      */
     AnimationFW animMainPlayerBoost;
+    UtilTimerDelay onShieldHit;
     boolean boosting;
     private int shieldsPlayer;
+    boolean hitEnemy;
 
     public MainPlayer(CoreFW coreFW, int maxScreenX, int maxScreenY, int minScreenY) {
         /*
@@ -36,11 +39,13 @@ public class MainPlayer extends ObjectFW {
         speed = 3;
         shieldsPlayer = 3;
         boosting = false;
+        hitEnemy = false;
         /*
             вычисляем радиус фигурки, размер фигурки 64 на 64 пикселя, радиус нужен от ее центра координат в середине фигурки, значит берем половину ее
             размера 64\2 и получаем радиус от центра 32
         */
         radius = (double) UtilResource.spritePlayer.get(0).getHeight() / 4;
+        onShieldHit = new UtilTimerDelay();
         this.coreFW = coreFW;
         this.maxScreenX = maxScreenX;
         /*
@@ -122,10 +127,19 @@ public class MainPlayer extends ObjectFW {
         /*
             делаем переключение анимации и обычного игрока на игрока в ускорее с помощью бул переменной
          */
-        if (boosting) {
-            animMainPlayerBoost.drawingAnimation(graphicsFW, x, y);
+        if (!hitEnemy) {
+            if (boosting) {
+                animMainPlayerBoost.drawingAnimation(graphicsFW, x, y);
+            } else {
+                animMainPlayer.drawingAnimation(graphicsFW, x, y);
+            }
         } else {
-            animMainPlayer.drawingAnimation(graphicsFW, x, y);
+            graphicsFW.drawTexture(UtilResource.shieldHitEnemy, x, y);
+            if (onShieldHit.timerDelay(0.2)) {
+                hitEnemy = false;
+            } else {
+                hitEnemy = true;
+            }
         }
     }
 
@@ -139,5 +153,7 @@ public class MainPlayer extends ObjectFW {
 
     public void hitEnemy() {
         shieldsPlayer--;
+        hitEnemy = true;
+        onShieldHit.startTimer();
     }
 }

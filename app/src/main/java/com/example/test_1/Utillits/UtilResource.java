@@ -10,6 +10,6 @@ public class UtilResource {
     public static ArrayList<Bitmap> spritePlayer;
     public static ArrayList<Bitmap> spritePlayerBoost;
     public static ArrayList<Bitmap> spriteEnemy;
-
+    public static Bitmap shieldHitEnemy;
 
 }
