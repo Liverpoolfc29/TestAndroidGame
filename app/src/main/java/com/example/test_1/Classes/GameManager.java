@@ -20,6 +20,7 @@ public class GameManager {
     private int passedDistance;
     private int currentSpeedPlayer;
     private int currentShieldsPlayer;
+    public static boolean gameOver;
     GeneratorBackground generatorBackground;
     GeneratorEnemy generatorEnemy;
     MainPlayer mainPlayer;
@@ -34,6 +35,7 @@ public class GameManager {
         mainPlayer = new MainPlayer(coreFW, maxScreenX, maxScreenY, minScreenY);
         generatorBackground = new GeneratorBackground(sceneWidth, sceneHeight, minScreenY);
         generatorEnemy = new GeneratorEnemy(sceneWidth, sceneHeight, minScreenY);
+        gameOver = false;
     }
 
     public void update() {
