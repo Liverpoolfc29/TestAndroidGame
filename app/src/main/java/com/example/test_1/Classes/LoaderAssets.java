@@ -21,7 +21,6 @@ public class LoaderAssets {
 
     private void loadOther(GraphicsFW graphicsFW) {
         UtilResource.shieldHitEnemy = graphicsFW.newSprite(UtilResource.textureAtlas, 0, 128, 64, 64);
-
     }
 
     private void loadSpriteEnemy(GraphicsFW graphicsFW) {
@@ -50,6 +49,7 @@ public class LoaderAssets {
          */
         UtilResource.spritePlayer = new ArrayList<>();
         UtilResource.spritePlayerBoost = new ArrayList<>();
+        UtilResource.spriteExplosionPlayer = new ArrayList<>();
 
         UtilResource.spritePlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 0, 0, 64, 64));
         UtilResource.spritePlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 64, 0, 64, 64));
@@ -60,6 +60,10 @@ public class LoaderAssets {
         UtilResource.spritePlayerBoost.add(graphicsFW.newSprite(UtilResource.textureAtlas, 64, 64, 64, 64));
         UtilResource.spritePlayerBoost.add(graphicsFW.newSprite(UtilResource.textureAtlas, 128, 64, 64, 64));
         UtilResource.spritePlayerBoost.add(graphicsFW.newSprite(UtilResource.textureAtlas, 192, 64, 64, 64));
+
+        UtilResource.spriteExplosionPlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 256, 256, 64, 64));
+        UtilResource.spriteExplosionPlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 320, 256, 64, 64));
+        UtilResource.spriteExplosionPlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 384, 256, 64, 64));
     }
 
 }
