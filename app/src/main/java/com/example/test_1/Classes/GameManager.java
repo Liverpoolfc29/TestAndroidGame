@@ -26,6 +26,10 @@ public class GameManager {
     MainPlayer mainPlayer;
     HUD hud;
 
+    public int getPassedDistance() {
+        return passedDistance;
+    }
+
     public GameManager(CoreFW coreFW, int sceneWidth, int sceneHeight) {
         hud = new HUD(coreFW);
         this.maxScreenX = sceneWidth;
