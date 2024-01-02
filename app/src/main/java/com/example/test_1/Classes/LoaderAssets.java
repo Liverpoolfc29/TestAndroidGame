@@ -64,6 +64,7 @@ public class LoaderAssets {
         UtilResource.spriteExplosionPlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 256, 256, 64, 64));
         UtilResource.spriteExplosionPlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 320, 256, 64, 64));
         UtilResource.spriteExplosionPlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 384, 256, 64, 64));
+        UtilResource.spriteExplosionPlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas, 448, 256, 64, 64));
     }
 
 }

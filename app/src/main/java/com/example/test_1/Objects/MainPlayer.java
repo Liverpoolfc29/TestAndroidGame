@@ -73,6 +73,7 @@ public class MainPlayer extends ObjectFW {
                 UtilResource.spritePlayerBoost.get(1),
                 UtilResource.spritePlayerBoost.get(2),
                 UtilResource.spritePlayerBoost.get(3));
+
         animExplosionPlayer = new AnimationFW(speed, UtilResource.spriteExplosionPlayer.get(0),
                 UtilResource.spriteExplosionPlayer.get(1),
                 UtilResource.spriteExplosionPlayer.get(2),
