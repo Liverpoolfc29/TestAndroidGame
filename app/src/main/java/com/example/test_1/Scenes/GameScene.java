@@ -87,11 +87,22 @@ public class GameScene extends SceneFW {
 
     private void drawingStateGameOver() {
         graphicsFW.clearScene(Color.BLACK);
-        graphicsFW.drawText("Game Over", 250, 300, Color.WHITE, 60, null);
+        graphicsFW.drawText(coreFW.getString(R.string.txt_gameScene_stateGameOver_gameOver), 250, 300, Color.WHITE, 60, null);
+        graphicsFW.drawText(coreFW.getString(R.string.txt_gameScene_stateGameOver_restart), 250, 360, Color.WHITE, 30, null);
+        graphicsFW.drawText(coreFW.getString(R.string.txt_gameScene_stateGameOver_exit), 250, 420, Color.WHITE, 30, null);
+        graphicsFW.drawText(coreFW.getString(R.string.txt_gameScene_stateGameOver_distance) + " : " + gameManager.getPassedDistance(), 250, 200, Color.WHITE, 30, null);
     }
 
     private void updateStateGameOver() {
-
+    /*
+    Когда игра в сцене конца игры ставим слушатель на нажатие на экран, и дальше по нажатию смотрим что выбрал пользователь
+    */
+        if (coreFW.getTouchListeneerFW().getTouchUp(250, 360, 200, 35)) {
+            coreFW.setSceneFW(new GameScene(coreFW));
+        }
+        if (coreFW.getTouchListeneerFW().getTouchUp(250, 420, 200, 35)) {
+            coreFW.setSceneFW(new MainManuScene(coreFW));
+        }
     }
 
     private void drawingStatePause() {
