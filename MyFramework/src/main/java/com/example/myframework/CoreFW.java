@@ -10,7 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 /*
- класс ядро который все собирает и передает данные всем
+        класс ядро который все собирает и передает данные всем
+    пояснения как масштабировать приложение под разные размеры экрана в уроке 14.
  */
 public class CoreFW extends AppCompatActivity {
 

@@ -9,7 +9,9 @@ import android.graphics.Typeface;
 
 import java.io.IOException;
 import java.io.InputStream;
-
+/*
+    пояснения как масштабировать приложение под разные размеры экрана в уроке 14.
+ */
 public class GraphicsFW {
 
     // для работы с файлами

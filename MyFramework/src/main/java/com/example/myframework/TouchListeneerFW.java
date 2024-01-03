@@ -2,7 +2,9 @@ package com.example.myframework;
 
 import android.view.MotionEvent;
 import android.view.View;
-
+/*
+    пояснения как масштабировать приложение под разные размеры экрана в уроке 14.
+ */
 public class TouchListeneerFW implements View.OnTouchListener {
 
     float touchX;
@@ -26,6 +28,7 @@ public class TouchListeneerFW implements View.OnTouchListener {
     @Override
     public boolean onTouch(View view, MotionEvent event) {
         /*
+        в этом методе есть масштабирование под размер любого экрана с помощью умножения на коэфициент. детально об этой сложной теме в уроке 14.
          принимает компонент view и событие, нам это событие надо обработать, нужно понять что за событие, отжал пользователь палец или наоборот нажал.
          И при этом надо понимать в каком месте
         */
