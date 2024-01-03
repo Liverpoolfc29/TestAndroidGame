@@ -22,6 +22,9 @@ public class MainManuScene extends SceneFW {
         if (coreFW.getTouchListeneerFW().getTouchUp(20, 300, 100, 50)) {
             coreFW.setSceneFW(new GameScene(coreFW));
         }
+        if (coreFW.getTouchListeneerFW().getTouchUp(20, 400, 100, 50)) {
+            coreFW.setSceneFW(new TopDistance(coreFW));
+        }
 
     }
 

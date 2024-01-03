@@ -6,6 +6,7 @@ import com.example.myframework.CoreFW;
 import com.example.myframework.SceneFW;
 import com.example.test_1.Classes.GameManager;
 import com.example.test_1.R;
+import com.example.test_1.Utillits.SettingsGame;
 
 public class GameScene extends SceneFW {
 
@@ -97,6 +98,7 @@ public class GameScene extends SceneFW {
     /*
     Когда игра в сцене конца игры ставим слушатель на нажатие на экран, и дальше по нажатию смотрим что выбрал пользователь
     */
+        SettingsGame.addDistance(gameManager.getPassedDistance());
         if (coreFW.getTouchListeneerFW().getTouchUp(250, 360, 200, 35)) {
             coreFW.setSceneFW(new GameScene(coreFW));
         }
