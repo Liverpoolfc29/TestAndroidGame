@@ -1,5 +1,6 @@
 package com.example.myframework;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -17,7 +18,6 @@ public class CoreFW extends AppCompatActivity {
 
     private final float FRAME_BUFFER_WIDTH = 800;
     private final float FRAME_BUFFER_HEIGHT = 600;
-
     private LoopFW loopFW;
     private GraphicsFW graphicsFW;
     private TouchListeneerFW touchListeneerFW;
@@ -27,9 +27,13 @@ public class CoreFW extends AppCompatActivity {
     private SceneFW sceneFW;
     private float sceneWidth;
     private float sceneHeight;
-
     private boolean stateOnPause;
     private boolean stateOnResume;
+    /*
+        SharedPreferences - Класс для работы с настройками, считыванием и сохранением настроек.
+     */
+    private SharedPreferences sharedPreferences;
+    private final String SETTINGS = "Settings";
 
     /*
     Так как мы наследуемся от основоного класса AppCompatActivity нам надо создать (должен быть) класс onCreate.
@@ -37,6 +41,10 @@ public class CoreFW extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*
+        MODE_PRIVATE - создаст папку в файлаг игры доступ к которой может получить только наше приложение.
+         */
+        sharedPreferences = getSharedPreferences(SETTINGS, MODE_PRIVATE);
         /*
          запрещаем андроиду переодить в спящий режим пока запущено приложене
          */
@@ -131,6 +139,10 @@ public class CoreFW extends AppCompatActivity {
          новая сцена
          */
         return sceneFW;
+    }
+
+    public SharedPreferences getSharedPreferences() {
+        return sharedPreferences;
     }
 
 }
