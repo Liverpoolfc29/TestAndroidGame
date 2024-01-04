@@ -7,12 +7,13 @@ import com.example.myframework.SceneFW;
 import com.example.test_1.Classes.GameManager;
 import com.example.test_1.R;
 import com.example.test_1.Utillits.SettingsGame;
+import com.example.test_1.Utillits.UtilResource;
 
 public class GameScene extends SceneFW {
 
     enum GameState {
         /*
-          состояния игры (игра в режиме паузы, п процессе самой игры, подготовки и окончания игры.)
+            состояния игры (игра в режиме паузы, п процессе самой игры, подготовки и окончания игры.)
          */
         READY, RUNNING, PAUSE, GAMEOVER
     }
@@ -23,10 +24,11 @@ public class GameScene extends SceneFW {
     public GameScene(CoreFW coreFW) {
         super(coreFW);
         /*
-        при запуске игровой сцены будет запускаться режим подготовки с вопросом к игроку готов ли он начать игру.
+            при запуске игровой сцены будет запускаться режим подготовки с вопросом к игроку готов ли он начать игру.
         */
         gameState = GameState.READY;
         gameManager = new GameManager(coreFW, sceneWidth, sceneHeight);
+        UtilResource.gameMusic.play(true, 1f);
     }
 
     @Override
@@ -73,7 +75,7 @@ public class GameScene extends SceneFW {
 
     @Override
     public void pause() {
-
+        UtilResource.gameMusic.stop();
     }
 
     @Override
@@ -83,7 +85,7 @@ public class GameScene extends SceneFW {
 
     @Override
     public void dispose() {
-
+        UtilResource.gameMusic.dispose();
     }
 
     private void drawingStateGameOver() {
@@ -96,7 +98,7 @@ public class GameScene extends SceneFW {
 
     private void updateStateGameOver() {
     /*
-    Когда игра в сцене конца игры ставим слушатель на нажатие на экран, и дальше по нажатию смотрим что выбрал пользователь
+        Когда игра в сцене конца игры ставим слушатель на нажатие на экран, и дальше по нажатию смотрим что выбрал пользователь
     */
         SettingsGame.addDistance(gameManager.getPassedDistance());
         if (coreFW.getTouchListeneerFW().getTouchUp(250, 360, 200, 35)) {
