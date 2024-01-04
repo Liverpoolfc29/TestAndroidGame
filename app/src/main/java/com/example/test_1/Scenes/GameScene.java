@@ -80,7 +80,7 @@ public class GameScene extends SceneFW {
 
     @Override
     public void resume() {
-
+        UtilResource.gameMusic.play(true, 1f);
     }
 
     @Override
