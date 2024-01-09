@@ -21,6 +21,7 @@ public class CoreFW extends AppCompatActivity {
     private LoopFW loopFW;
     private GraphicsFW graphicsFW;
     private TouchListeneerFW touchListeneerFW;
+    private AudioFW audioFW;
     private Display display;
     private Point sizeDisplay;
     private Bitmap frameBuffer;
@@ -49,20 +50,17 @@ public class CoreFW extends AppCompatActivity {
          запрещаем андроиду переодить в спящий режим пока запущено приложене
          */
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
         /*
          как только приложение запустилось нужно получить размер экрана
          */
         sizeDisplay = new Point();
         display = getWindowManager().getDefaultDisplay();
         display.getSize(sizeDisplay);
-
         /*
          определяем фрейм буфер. Инициализируем битмапом создавая новый битмап. Наш фрейм буфер будет равен новой картинке, но
          при этом наша картинка будет иметь объявленные выше ширину и высоту экрана
         */
         frameBuffer = Bitmap.createBitmap((int) FRAME_BUFFER_WIDTH, (int) FRAME_BUFFER_HEIGHT, Bitmap.Config.ARGB_8888);
-
         /*
          получаем ширину и высоту нашей сцены. Есть фреймбуфер определенной высоты иширины, и есть ширина и высота сцены которая будет расчитываться следующим образом :
          - берем нашу константу FRAME_BUFFER_WIDTH и делим на полученную ширину смартфона который использует приложение. И так же высоту.
@@ -70,6 +68,7 @@ public class CoreFW extends AppCompatActivity {
         sceneWidth = FRAME_BUFFER_WIDTH / sizeDisplay.x;
         sceneHeight = FRAME_BUFFER_HEIGHT / sizeDisplay.y;
 
+        audioFW = new AudioFW(this);
         loopFW = new LoopFW(this, frameBuffer);
         /*
          конструктор графики принимает АссертМенеджер (тот менеджер который мы передали с основного класса аппКомпактАктивити и фреймБуферГейм)
@@ -143,6 +142,10 @@ public class CoreFW extends AppCompatActivity {
 
     public SharedPreferences getSharedPreferences() {
         return sharedPreferences;
+    }
+
+    public AudioFW getAudioFW() {
+        return audioFW;
     }
 
 }
