@@ -3,6 +3,7 @@ package com.example.test_1.Utillits;
 import android.graphics.Bitmap;
 
 import com.example.myframework.MusicFW;
+import com.example.myframework.SoundFW;
 
 import java.util.ArrayList;
 
@@ -15,5 +16,8 @@ public class UtilResource {
     public static Bitmap shieldHitEnemy;
     public static ArrayList<Bitmap> spriteExplosionPlayer;
     public static MusicFW gameMusic;
+    public static SoundFW hit;
+    public static SoundFW explode;
+    public static SoundFW touch;
 
 }
