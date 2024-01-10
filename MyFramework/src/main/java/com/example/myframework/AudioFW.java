@@ -45,6 +45,9 @@ public class AudioFW {
     }
 
     public SoundFW newSound(String fileName) {
+        /*
+            Загружаем музыку
+         */
         AssetFileDescriptor assetFileDescriptor = null;
         try {
             assetFileDescriptor = assetManager.openFd(fileName);

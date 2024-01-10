@@ -28,7 +28,7 @@ public class GameScene extends SceneFW {
         */
         gameState = GameState.READY;
         gameManager = new GameManager(coreFW, sceneWidth, sceneHeight);
-        UtilResource.gameMusic.play(true, 1f);
+        UtilResource.gameMusic.play(true, 0.5f);
     }
 
     @Override
@@ -80,11 +80,14 @@ public class GameScene extends SceneFW {
 
     @Override
     public void resume() {
-        UtilResource.gameMusic.play(true, 1f);
+        UtilResource.gameMusic.play(true, 0.5f);
     }
 
     @Override
     public void dispose() {
+        UtilResource.explode.dispose();
+        UtilResource.hit.dispose();
+        UtilResource.touch.dispose();
         UtilResource.gameMusic.dispose();
     }
 

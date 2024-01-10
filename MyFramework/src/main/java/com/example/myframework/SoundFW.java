@@ -21,6 +21,9 @@ public class SoundFW {
     }
 
     public void dispose() {
+        /*
+            удаление
+         */
         soundPool.unload(sound);
     }
 
