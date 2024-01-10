@@ -52,7 +52,7 @@ public class AudioFW {
         try {
             assetFileDescriptor = assetManager.openFd(fileName);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         int sound = soundPool.load(assetFileDescriptor, 0);
         return new SoundFW(sound, soundPool);

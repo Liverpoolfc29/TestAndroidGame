@@ -175,7 +175,7 @@ public class MainPlayer extends ObjectFW {
     public void hitEnemy() {
         shieldsPlayer--;
         if (shieldsPlayer < 0) {
-            UtilResource.explode.play(1); // когда закончились жизни запускаем музыку
+            UtilResource.explode.play(1); // когда закончились жизни запускаем музыку убийства
             isGameOver = true;
             timerOnGameOver.startTimer();
         }
