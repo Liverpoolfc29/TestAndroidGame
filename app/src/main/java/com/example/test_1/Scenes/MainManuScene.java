@@ -21,12 +21,12 @@ public class MainManuScene extends SceneFW {
          туда сцену создавая новую сцену и передавая туда наше ядро.
         */
         if (coreFW.getTouchListeneerFW().getTouchUp(20, 300, 100, 50)) {
+            UtilResource.touch.play(2); // запускам звук при нажатии
             coreFW.setSceneFW(new GameScene(coreFW));
-            UtilResource.touch.play(1); // запускам звук при нажатии
         }
         if (coreFW.getTouchListeneerFW().getTouchUp(20, 400, 100, 50)) {
+            UtilResource.touch.play(2);
             coreFW.setSceneFW(new TopDistance(coreFW));
-            UtilResource.touch.play(1);
         }
 
     }
