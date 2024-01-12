@@ -35,10 +35,10 @@ public class MainPlayer extends ObjectFW {
     private int shieldsPlayer;
     boolean hitEnemy;
     boolean isGameOver;
-    boolean shieldsOn;
+    public static boolean isShieldsOn;
 
     public MainPlayer(CoreFW coreFW, int maxScreenX, int maxScreenY, int minScreenY) {
-        shieldsOn = false;
+        isShieldsOn = false;
         /*
             обозначим место появления и начальную скорость.
          */
@@ -136,12 +136,12 @@ public class MainPlayer extends ObjectFW {
     Делаем переключатели между видами анимациями с броней без итд
  */
         if (boosting) {
-            if (shieldsOn) {
+            if (isShieldsOn) {
                 animPlayerShieldsOnBoost.runAnimation();
             } else {
                 animMainPlayerBoost.runAnimation();
             }
-        } else if (shieldsOn) {
+        } else if (isShieldsOn) {
             animPlayerShieldsOn.runAnimation();
         } else {
             animMainPlayer.runAnimation();
@@ -170,7 +170,13 @@ public class MainPlayer extends ObjectFW {
         if (!isGameOver) {
             if (!hitEnemy) {
                 if (boosting) {
-                    animMainPlayerBoost.drawingAnimation(graphicsFW, x, y);
+                    if (isShieldsOn) {
+                        animPlayerShieldsOnBoost.drawingAnimation(graphicsFW, x, y);
+                    } else {
+                        animMainPlayerBoost.drawingAnimation(graphicsFW, x, y);
+                    }
+                } else if (isShieldsOn) {
+                    animPlayerShieldsOn.drawingAnimation(graphicsFW, x, y);
                 } else {
                     animMainPlayer.drawingAnimation(graphicsFW, x, y);
                 }
@@ -199,14 +205,20 @@ public class MainPlayer extends ObjectFW {
     }
 
     public void hitEnemy() {
-        shieldsPlayer--;
-        if (shieldsPlayer < 0) {
-            UtilResource.explode.play(1); // когда закончились жизни запускаем музыку убийства
-            isGameOver = true;
-            timerOnGameOver.startTimer();
+        if (!isShieldsOn) {
+            shieldsPlayer--;
+            if (shieldsPlayer < 0) {
+                UtilResource.explode.play(1); // когда закончились жизни запускаем музыку убийства
+                isGameOver = true;
+                timerOnGameOver.startTimer();
+            }
+            hitEnemy = true;
+            timerOnShieldHit.startTimer();
         }
-        hitEnemy = true;
-        timerOnShieldHit.startTimer();
+    }
+
+    public static boolean isShieldsOn() {
+        return isShieldsOn;
     }
 
 }
