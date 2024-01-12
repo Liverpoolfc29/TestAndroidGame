@@ -27,20 +27,24 @@ public class MainPlayer extends ObjectFW {
      */
     AnimationFW animMainPlayerBoost;
     AnimationFW animExplosionPlayer;
+    AnimationFW animPlayerShieldsOn;
+    AnimationFW animPlayerShieldsOnBoost;
     UtilTimerDelay timerOnShieldHit;
     UtilTimerDelay timerOnGameOver;
     boolean boosting;
     private int shieldsPlayer;
     boolean hitEnemy;
     boolean isGameOver;
+    boolean shieldsOn;
 
     public MainPlayer(CoreFW coreFW, int maxScreenX, int maxScreenY, int minScreenY) {
+        shieldsOn = false;
         /*
             обозначим место появления и начальную скорость.
          */
         x = 20;
         y = 200;
-        speed = 3;
+        speed = GameManager.SPEED_ANIMATION;
         shieldsPlayer = 3;
         boosting = false;
         hitEnemy = false;
@@ -59,6 +63,10 @@ public class MainPlayer extends ObjectFW {
          */
         this.maxScreenY = maxScreenY - UtilResource.spritePlayer.get(0).getHeight();
         this.minScreenY = minScreenY;
+        initAnimation();
+    }
+
+    private void initAnimation() {
         /*
             загрузили 4 спрайта из нашего масива  картинок с анимацией игрока
          */
@@ -78,6 +86,16 @@ public class MainPlayer extends ObjectFW {
                 UtilResource.spriteExplosionPlayer.get(1),
                 UtilResource.spriteExplosionPlayer.get(2),
                 UtilResource.spriteExplosionPlayer.get(3));
+
+        animPlayerShieldsOn = new AnimationFW(speed, UtilResource.spritePlayerShieldsOn.get(0),
+                UtilResource.spritePlayerShieldsOn.get(1),
+                UtilResource.spritePlayerShieldsOn.get(2),
+                UtilResource.spritePlayerShieldsOn.get(3));
+
+        animPlayerShieldsOnBoost = new AnimationFW(speed, UtilResource.spritePlayerShieldsOnBoost.get(0),
+                UtilResource.spritePlayerShieldsOnBoost.get(1),
+                UtilResource.spritePlayerShieldsOnBoost.get(2),
+                UtilResource.spritePlayerShieldsOnBoost.get(3));
     }
 
     public void update() {
@@ -106,7 +124,7 @@ public class MainPlayer extends ObjectFW {
 
         y -= speed + GRAVITY;
         /*
-        проверка вылетов за экран
+            проверка вылетов за экран
          */
         if (y < minScreenY) {
             y = minScreenY;
@@ -114,9 +132,17 @@ public class MainPlayer extends ObjectFW {
         if (y > maxScreenY) {
             y = maxScreenY;
         }
-
+        /*
+    Делаем переключатели между видами анимациями с броней без итд
+ */
         if (boosting) {
-            animMainPlayerBoost.runAnimation();
+            if (shieldsOn) {
+                animPlayerShieldsOnBoost.runAnimation();
+            } else {
+                animMainPlayerBoost.runAnimation();
+            }
+        } else if (shieldsOn) {
+            animPlayerShieldsOn.runAnimation();
         } else {
             animMainPlayer.runAnimation();
         }
@@ -182,4 +208,5 @@ public class MainPlayer extends ObjectFW {
         hitEnemy = true;
         timerOnShieldHit.startTimer();
     }
+
 }

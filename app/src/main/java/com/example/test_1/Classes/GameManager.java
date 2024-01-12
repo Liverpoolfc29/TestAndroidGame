@@ -14,6 +14,7 @@ import com.example.test_1.Utillits.UtilResource;
  */
 public class GameManager {
 
+    public final static double SPEED_ANIMATION = 3;
     private int maxScreenY;
     private int maxScreenX;
     private int minScreenY;

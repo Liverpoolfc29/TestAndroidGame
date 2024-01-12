@@ -20,7 +20,7 @@ public abstract class ObjectFW {
     protected int x;
     protected int y;
 
-    protected int speed;
+    protected double speed;
 
     protected Rect hitBox;
     protected double radius;
