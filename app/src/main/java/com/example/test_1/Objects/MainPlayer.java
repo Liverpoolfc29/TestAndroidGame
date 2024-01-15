@@ -14,7 +14,7 @@ import com.example.myframework.AnimationFW;
     Каждый обьект и наш игрок должен знать габариты экрана (максимальную высоту и ширину) что бы не вылетать за его пределы.
  */
 public class MainPlayer extends ObjectFW {
-    final int GRAVITY = -3;
+    final int GRAVITY = -4;
     final int MAX_SPEED = 15;
     final int MIN_SPEED = 1;
     CoreFW coreFW;
@@ -27,20 +27,25 @@ public class MainPlayer extends ObjectFW {
      */
     AnimationFW animMainPlayerBoost;
     AnimationFW animExplosionPlayer;
+    AnimationFW animPlayerShieldsOn;
+    AnimationFW animPlayerShieldsOnBoost;
     UtilTimerDelay timerOnShieldHit;
     UtilTimerDelay timerOnGameOver;
+    UtilTimerDelay timerShieldsOn;
     boolean boosting;
     private int shieldsPlayer;
     boolean hitEnemy;
     boolean isGameOver;
+    protected static boolean shieldsOn;
 
     public MainPlayer(CoreFW coreFW, int maxScreenX, int maxScreenY, int minScreenY) {
+        shieldsOn = false;
         /*
             обозначим место появления и начальную скорость.
          */
         x = 20;
         y = 200;
-        speed = 3;
+        speed = GameManager.SPEED_ANIMATION;
         shieldsPlayer = 3;
         boosting = false;
         hitEnemy = false;
@@ -52,6 +57,7 @@ public class MainPlayer extends ObjectFW {
         radius = (double) UtilResource.spritePlayer.get(0).getHeight() / 4;
         timerOnShieldHit = new UtilTimerDelay();
         timerOnGameOver = new UtilTimerDelay();
+        timerShieldsOn = new UtilTimerDelay();
         this.coreFW = coreFW;
         this.maxScreenX = maxScreenX;
         /*
@@ -59,6 +65,10 @@ public class MainPlayer extends ObjectFW {
          */
         this.maxScreenY = maxScreenY - UtilResource.spritePlayer.get(0).getHeight();
         this.minScreenY = minScreenY;
+        initAnimation();
+    }
+
+    private void initAnimation() {
         /*
             загрузили 4 спрайта из нашего масива  картинок с анимацией игрока
          */
@@ -78,6 +88,16 @@ public class MainPlayer extends ObjectFW {
                 UtilResource.spriteExplosionPlayer.get(1),
                 UtilResource.spriteExplosionPlayer.get(2),
                 UtilResource.spriteExplosionPlayer.get(3));
+
+        animPlayerShieldsOn = new AnimationFW(speed, UtilResource.spritePlayerShieldsOn.get(0),
+                UtilResource.spritePlayerShieldsOn.get(1),
+                UtilResource.spritePlayerShieldsOn.get(2),
+                UtilResource.spritePlayerShieldsOn.get(3));
+
+        animPlayerShieldsOnBoost = new AnimationFW(speed, UtilResource.spritePlayerShieldsOnBoost.get(0),
+                UtilResource.spritePlayerShieldsOnBoost.get(1),
+                UtilResource.spritePlayerShieldsOnBoost.get(2),
+                UtilResource.spritePlayerShieldsOnBoost.get(3));
     }
 
     public void update() {
@@ -106,7 +126,7 @@ public class MainPlayer extends ObjectFW {
 
         y -= speed + GRAVITY;
         /*
-        проверка вылетов за экран
+            проверка вылетов за экран
          */
         if (y < minScreenY) {
             y = minScreenY;
@@ -115,8 +135,20 @@ public class MainPlayer extends ObjectFW {
             y = maxScreenY;
         }
 
+        if (timerShieldsOn.timerDelay(5)) {
+            shieldsOn = false;
+        }
+        /*
+    Делаем переключатели между видами анимациями с броней без итд
+        */
         if (boosting) {
-            animMainPlayerBoost.runAnimation();
+            if (shieldsOn) {
+                animPlayerShieldsOnBoost.runAnimation();
+            } else {
+                animMainPlayerBoost.runAnimation();
+            }
+        } else if (shieldsOn) {
+            animPlayerShieldsOn.runAnimation();
         } else {
             animMainPlayer.runAnimation();
         }
@@ -144,7 +176,13 @@ public class MainPlayer extends ObjectFW {
         if (!isGameOver) {
             if (!hitEnemy) {
                 if (boosting) {
-                    animMainPlayerBoost.drawingAnimation(graphicsFW, x, y);
+                    if (shieldsOn) {
+                        animPlayerShieldsOnBoost.drawingAnimation(graphicsFW, x, y);
+                    } else {
+                        animMainPlayerBoost.drawingAnimation(graphicsFW, x, y);
+                    }
+                } else if (shieldsOn) {
+                    animPlayerShieldsOn.drawingAnimation(graphicsFW, x, y);
                 } else {
                     animMainPlayer.drawingAnimation(graphicsFW, x, y);
                 }
@@ -173,13 +211,25 @@ public class MainPlayer extends ObjectFW {
     }
 
     public void hitEnemy() {
-        shieldsPlayer--;
-        if (shieldsPlayer < 0) {
-            UtilResource.explode.play(1); // когда закончились жизни запускаем музыку убийства
-            isGameOver = true;
-            timerOnGameOver.startTimer();
+        if (!shieldsOn) {
+            shieldsPlayer--;
+            if (shieldsPlayer < 0) {
+                UtilResource.explode.play(1); // когда закончились жизни запускаем музыку убийства
+                isGameOver = true;
+                timerOnGameOver.startTimer();
+            }
+            hitEnemy = true;
+            timerOnShieldHit.startTimer();
         }
-        hitEnemy = true;
-        timerOnShieldHit.startTimer();
     }
+
+    public static boolean isShieldsOn() {
+        return shieldsOn;
+    }
+
+    public void hitProtector() {
+        shieldsOn = true;
+        timerShieldsOn.startTimer();
+    }
+
 }

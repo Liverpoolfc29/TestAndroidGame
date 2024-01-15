@@ -13,15 +13,11 @@ public abstract class ObjectFW {
      */
    protected int maxScreenX;
     protected int maxScreenY;
-
     protected int minScreenX;
     protected int minScreenY;
-
     protected int x;
     protected int y;
-
-    protected int speed;
-
+    protected double speed;
     protected Rect hitBox;
     protected double radius;
 
@@ -73,7 +69,7 @@ public abstract class ObjectFW {
         this.y = y;
     }
 
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
