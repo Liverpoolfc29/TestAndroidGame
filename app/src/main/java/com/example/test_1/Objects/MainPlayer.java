@@ -31,14 +31,15 @@ public class MainPlayer extends ObjectFW {
     AnimationFW animPlayerShieldsOnBoost;
     UtilTimerDelay timerOnShieldHit;
     UtilTimerDelay timerOnGameOver;
+    UtilTimerDelay timerShieldsOn;
     boolean boosting;
     private int shieldsPlayer;
     boolean hitEnemy;
     boolean isGameOver;
-    public static boolean isShieldsOn;
+    protected static boolean shieldsOn;
 
     public MainPlayer(CoreFW coreFW, int maxScreenX, int maxScreenY, int minScreenY) {
-        isShieldsOn = false;
+        shieldsOn = false;
         /*
             обозначим место появления и начальную скорость.
          */
@@ -56,6 +57,7 @@ public class MainPlayer extends ObjectFW {
         radius = (double) UtilResource.spritePlayer.get(0).getHeight() / 4;
         timerOnShieldHit = new UtilTimerDelay();
         timerOnGameOver = new UtilTimerDelay();
+        timerShieldsOn = new UtilTimerDelay();
         this.coreFW = coreFW;
         this.maxScreenX = maxScreenX;
         /*
@@ -132,16 +134,20 @@ public class MainPlayer extends ObjectFW {
         if (y > maxScreenY) {
             y = maxScreenY;
         }
+
+        if (timerShieldsOn.timerDelay(5)) {
+            shieldsOn = false;
+        }
         /*
     Делаем переключатели между видами анимациями с броней без итд
- */
+        */
         if (boosting) {
-            if (isShieldsOn) {
+            if (shieldsOn) {
                 animPlayerShieldsOnBoost.runAnimation();
             } else {
                 animMainPlayerBoost.runAnimation();
             }
-        } else if (isShieldsOn) {
+        } else if (shieldsOn) {
             animPlayerShieldsOn.runAnimation();
         } else {
             animMainPlayer.runAnimation();
@@ -170,12 +176,12 @@ public class MainPlayer extends ObjectFW {
         if (!isGameOver) {
             if (!hitEnemy) {
                 if (boosting) {
-                    if (isShieldsOn) {
+                    if (shieldsOn) {
                         animPlayerShieldsOnBoost.drawingAnimation(graphicsFW, x, y);
                     } else {
                         animMainPlayerBoost.drawingAnimation(graphicsFW, x, y);
                     }
-                } else if (isShieldsOn) {
+                } else if (shieldsOn) {
                     animPlayerShieldsOn.drawingAnimation(graphicsFW, x, y);
                 } else {
                     animMainPlayer.drawingAnimation(graphicsFW, x, y);
@@ -205,7 +211,7 @@ public class MainPlayer extends ObjectFW {
     }
 
     public void hitEnemy() {
-        if (!isShieldsOn) {
+        if (!shieldsOn) {
             shieldsPlayer--;
             if (shieldsPlayer < 0) {
                 UtilResource.explode.play(1); // когда закончились жизни запускаем музыку убийства
@@ -218,7 +224,12 @@ public class MainPlayer extends ObjectFW {
     }
 
     public static boolean isShieldsOn() {
-        return isShieldsOn;
+        return shieldsOn;
+    }
+
+    public void hitProtector() {
+        shieldsOn = true;
+        timerShieldsOn.startTimer();
     }
 
 }

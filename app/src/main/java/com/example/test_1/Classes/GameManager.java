@@ -5,6 +5,7 @@ import com.example.myframework.CoreFW;
 import com.example.myframework.GraphicsFW;
 import com.example.test_1.Generators.GeneratorBackground;
 import com.example.test_1.Generators.GeneratorEnemy;
+import com.example.test_1.Generators.GeneratorGifts;
 import com.example.test_1.Objects.HUD;
 import com.example.test_1.Objects.MainPlayer;
 import com.example.test_1.Utillits.UtilResource;
@@ -25,6 +26,7 @@ public class GameManager {
     public static boolean gameOver;
     GeneratorBackground generatorBackground;
     GeneratorEnemy generatorEnemy;
+    GeneratorGifts generatorGifts;
     MainPlayer mainPlayer;
     HUD hud;
 
@@ -41,6 +43,7 @@ public class GameManager {
         mainPlayer = new MainPlayer(coreFW, maxScreenX, maxScreenY, minScreenY);
         generatorBackground = new GeneratorBackground(sceneWidth, sceneHeight, minScreenY);
         generatorEnemy = new GeneratorEnemy(sceneWidth, sceneHeight, minScreenY);
+        generatorGifts = new GeneratorGifts(sceneWidth, sceneHeight, minScreenY);
         gameOver = false;
     }
 
@@ -48,6 +51,7 @@ public class GameManager {
         generatorBackground.updateStar(mainPlayer.getSpeedPlayer());
         mainPlayer.update();
         generatorEnemy.update(mainPlayer.getSpeedPlayer());
+        generatorGifts.update(mainPlayer.getSpeedPlayer());
         /*
             пройденную дитстанция считаем от скорости движения героя (умножаем на 60 для красивого отображения не 1.2.3 а 10 20 30)
             другие данные береж похожим образом
@@ -68,6 +72,14 @@ public class GameManager {
                 generatorEnemy.hitPlayer(generatorEnemy.enemyArrayList.get(i));
             }
         }
+        if (CollisionDetect.collisionDetect(mainPlayer, generatorGifts.getProtector())) {
+            hitPlayerWithProtector();
+        }
+    }
+
+    private void hitPlayerWithProtector() {
+        mainPlayer.hitProtector();
+        generatorGifts.hitProtectorWithPlayer();
     }
 
     public void drawing(CoreFW coreFW, GraphicsFW graphicsFW) {
@@ -75,6 +87,7 @@ public class GameManager {
         generatorBackground.drawingStar(graphicsFW);
         generatorEnemy.drawing(graphicsFW);
         hud.drawing(graphicsFW);
+        generatorGifts.drawing(graphicsFW);
     }
 
 }
