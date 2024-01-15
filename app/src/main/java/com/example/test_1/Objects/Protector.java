@@ -6,7 +6,9 @@ import com.example.myframework.AnimationFW;
 import com.example.myframework.GraphicsFW;
 import com.example.myframework.ObjectFW;
 import com.example.myframework.Utilits.UtilRandomFW;
+import com.example.test_1.Classes.GameManager;
 import com.example.test_1.Utillits.UtilResource;
+
 /*
     Класс для отрисовки и генерации протектора на экране, пофвился прошел по траэктории и все
  */
@@ -31,11 +33,16 @@ public class Protector extends ObjectFW {
         hitBox = new Rect(x, y,
                 UtilResource.spriteProtector.get(0).getWidth(),
                 UtilResource.spriteProtector.get(0).getHeight());
+        animProtector = new AnimationFW(GameManager.SPEED_ANIMATION,
+                UtilResource.spriteProtector.get(0),
+                UtilResource.spriteProtector.get(1),
+                UtilResource.spriteProtector.get(2),
+                UtilResource.spriteProtector.get(3));
     }
 
     public void update(double speedPlayer) {
-            x -= speed;
-            x -= speedPlayer;
+        x -= speed;
+        x -= speedPlayer;
 
         if (x < minScreenX) {
             y = UtilRandomFW.getGap(minScreenY, maxScreenY);

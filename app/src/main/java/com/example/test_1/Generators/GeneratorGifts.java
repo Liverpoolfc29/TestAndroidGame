@@ -24,6 +24,9 @@ public class GeneratorGifts {
     }
 
     public void update(double speedPlayer) {
+        /*
+            тут надо добавить дополнительно рызных услови1 появления подарков
+         */
         if (timerProtector.timerDelay(8) && (!MainPlayer.isShieldsOn())) {
             protector.update(speedPlayer);
             if (protector.getX() < minScreenX) {
