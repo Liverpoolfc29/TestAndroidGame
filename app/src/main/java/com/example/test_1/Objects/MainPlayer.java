@@ -14,7 +14,7 @@ import com.example.myframework.AnimationFW;
     Каждый обьект и наш игрок должен знать габариты экрана (максимальную высоту и ширину) что бы не вылетать за его пределы.
  */
 public class MainPlayer extends ObjectFW {
-    final int GRAVITY = -3;
+    final int GRAVITY = -4;
     final int MAX_SPEED = 15;
     final int MIN_SPEED = 1;
     CoreFW coreFW;
