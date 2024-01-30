@@ -14,31 +14,36 @@ import com.example.myframework.AnimationFW;
     Каждый обьект и наш игрок должен знать габариты экрана (максимальную высоту и ширину) что бы не вылетать за его пределы.
  */
 public class MainPlayer extends ObjectFW {
-    final int GRAVITY = -4;
-    final int MAX_SPEED = 15;
-    final int MIN_SPEED = 1;
-    CoreFW coreFW;
+    private final int GRAVITY = -4;
+    private final int MAX_SPEED = 15;
+    private final int MIN_SPEED = 1;
+    private CoreFW coreFW;
     /*
         для анимации игрока в обычном состоянии
      */
-    AnimationFW animMainPlayer;
+    private AnimationFW animMainPlayer;
     /*
         для анимации игрока в режиме ускорения
      */
-    AnimationFW animMainPlayerBoost;
-    AnimationFW animExplosionPlayer;
-    AnimationFW animPlayerShieldsOn;
-    AnimationFW animPlayerShieldsOnBoost;
-    UtilTimerDelay timerOnShieldHit;
-    UtilTimerDelay timerOnGameOver;
-    UtilTimerDelay timerShieldsOn;
-    boolean boosting;
+    private AnimationFW animMainPlayerBoost;
+    private AnimationFW animExplosionPlayer;
+    private AnimationFW animPlayerShieldsOn;
+    private AnimationFW animPlayerShieldsOnBoost;
+    private UtilTimerDelay timerOnShieldHit;
+    private UtilTimerDelay timerOnGameOver;
+    private UtilTimerDelay timerShieldsOn;
+    private boolean boosting;
     private int shieldsPlayer;
-    boolean hitEnemy;
-    boolean isGameOver;
+    private boolean hitEnemy;
+    private boolean isGameOver;
     protected static boolean shieldsOn;
 
     public MainPlayer(CoreFW coreFW, int maxScreenX, int maxScreenY, int minScreenY) {
+        init(coreFW, maxScreenX, maxScreenY, minScreenY);
+        initAnimation();
+    }
+
+    private void init(CoreFW coreFW, int maxScreenX, int maxScreenY, int minScreenY) {
         shieldsOn = false;
         /*
             обозначим место появления и начальную скорость.
@@ -65,7 +70,6 @@ public class MainPlayer extends ObjectFW {
          */
         this.maxScreenY = maxScreenY - UtilResource.spritePlayer.get(0).getHeight();
         this.minScreenY = minScreenY;
-        initAnimation();
     }
 
     private void initAnimation() {
@@ -110,13 +114,26 @@ public class MainPlayer extends ObjectFW {
         if (coreFW.getTouchListeneerFW().getTouchUp(0, maxScreenY, maxScreenX, maxScreenY)) {
             stopBoosting();
         }
+        if (timerShieldsOn.timerDelay(5)) {
+            shieldsOn = false;
+        }
 
+        updateBoosting();
+
+        hitBox = new Rect(x, y,
+                UtilResource.spritePlayer.get(0).getWidth(),
+                UtilResource.spritePlayer.get(0).getHeight());
+        if (isGameOver) {
+            animExplosionPlayer.runAnimation();
+        }
+    }
+
+    private void updateBoosting() {
         if (boosting) {
             speed += 1;
         } else {
             speed -= 3;
         }
-
         if (speed > MAX_SPEED) {
             speed = MAX_SPEED;
         }
@@ -134,12 +151,8 @@ public class MainPlayer extends ObjectFW {
         if (y > maxScreenY) {
             y = maxScreenY;
         }
-
-        if (timerShieldsOn.timerDelay(5)) {
-            shieldsOn = false;
-        }
         /*
-    Делаем переключатели между видами анимациями с броней без итд
+            Делаем переключатели между видами анимациями с броней без итд
         */
         if (boosting) {
             if (shieldsOn) {
@@ -151,13 +164,6 @@ public class MainPlayer extends ObjectFW {
             animPlayerShieldsOn.runAnimation();
         } else {
             animMainPlayer.runAnimation();
-        }
-
-        hitBox = new Rect(x, y,
-                UtilResource.spritePlayer.get(0).getWidth(),
-                UtilResource.spritePlayer.get(0).getHeight());
-        if (isGameOver) {
-            animExplosionPlayer.runAnimation();
         }
     }
 

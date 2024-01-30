@@ -19,26 +19,25 @@ public class GameManager {
     private int maxScreenY;
     private int maxScreenX;
     private int minScreenY;
-    private int minScreenX;
+
     private int passedDistance;
     private int currentSpeedPlayer;
     private int currentShieldsPlayer;
     public static boolean gameOver;
-    GeneratorBackground generatorBackground;
-    GeneratorEnemy generatorEnemy;
-    GeneratorGifts generatorGifts;
-    MainPlayer mainPlayer;
-    HUD hud;
-
-    public int getPassedDistance() {
-        return passedDistance;
-    }
+    private GeneratorBackground generatorBackground;
+    private GeneratorEnemy generatorEnemy;
+    private GeneratorGifts generatorGifts;
+    private MainPlayer mainPlayer;
+    private HUD hud;
 
     public GameManager(CoreFW coreFW, int sceneWidth, int sceneHeight) {
+        init(coreFW, sceneWidth,sceneHeight);
+    }
+
+    private void init(CoreFW coreFW, int sceneWidth, int sceneHeight) {
         hud = new HUD(coreFW);
         this.maxScreenX = sceneWidth;
         this.maxScreenY = sceneHeight;
-        minScreenX = 0;
         minScreenY = hud.getHEIGHT_HUD();
         mainPlayer = new MainPlayer(coreFW, maxScreenX, maxScreenY, minScreenY);
         generatorBackground = new GeneratorBackground(sceneWidth, sceneHeight, minScreenY);
@@ -61,15 +60,14 @@ public class GameManager {
         currentShieldsPlayer = mainPlayer.getShieldPlayer();
         hud.update(passedDistance, currentSpeedPlayer, currentShieldsPlayer);
         checkHit();
-
     }
 
     private void checkHit() {
-        for (int i = 0; i < generatorEnemy.enemyArrayList.size(); i++) {
-            if (CollisionDetect.collisionDetect(mainPlayer, generatorEnemy.enemyArrayList.get(i))) {
+        for (int i = 0; i < generatorEnemy.getEnemyArrayList().size(); i++) {
+            if (CollisionDetect.collisionDetect(mainPlayer, generatorEnemy.getEnemyArrayList().get(i))) {
                 UtilResource.hit.play(1); // запускаем звук при столкновении
                 mainPlayer.hitEnemy();
-                generatorEnemy.hitPlayer(generatorEnemy.enemyArrayList.get(i));
+                generatorEnemy.hitPlayer(generatorEnemy.getEnemyArrayList().get(i));
             }
         }
         if (CollisionDetect.collisionDetect(mainPlayer, generatorGifts.getProtector())) {
@@ -82,12 +80,16 @@ public class GameManager {
         generatorGifts.hitProtectorWithPlayer();
     }
 
-    public void drawing(CoreFW coreFW, GraphicsFW graphicsFW) {
+    public void drawing(GraphicsFW graphicsFW) {
         mainPlayer.drawing(graphicsFW);
         generatorBackground.drawingStar(graphicsFW);
         generatorEnemy.drawing(graphicsFW);
         hud.drawing(graphicsFW);
         generatorGifts.drawing(graphicsFW);
+    }
+
+    public int getPassedDistance() {
+        return passedDistance;
     }
 
 }

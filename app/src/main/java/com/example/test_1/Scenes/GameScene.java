@@ -123,7 +123,7 @@ public class GameScene extends SceneFW {
     private void drawingStateRunning() {
         graphicsFW.clearScene(Color.BLACK);
         //graphicsFW.drawText("Сцена игры", 250, 300, Color.WHITE, 60, null);
-        gameManager.drawing(coreFW, graphicsFW);
+        gameManager.drawing(graphicsFW);
     }
 
     private void updateStateRunning() {

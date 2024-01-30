@@ -10,22 +10,14 @@ import com.example.test_1.Utillits.UtilResource;
 
 public class Enemy extends ObjectFW {
 
-    AnimationFW animEnemy;
+    private AnimationFW animEnemy;
 
     public Enemy(int maxScreenX, int maxScreenY, int minScreenY, int enemyType) {
-        this.maxScreenX = maxScreenX;
-        /*
-        максимальное значение минус высота,что бы астероиды не летели ниже экрана.
-         */
-        this.maxScreenY = maxScreenY - UtilResource.spriteEnemy.get(0).getHeight();
-        this.minScreenY = minScreenY;
-        this.minScreenX = 0;
-        /*
-        Устанавливаем первоначальное положение астероидам на экране
-         */
-        x = maxScreenX;
-        y = UtilRandomFW.getGap(minScreenY, maxScreenY);
-        radius = UtilResource.spriteEnemy.get(0).getWidth() / 2;
+        init(maxScreenX, maxScreenY, minScreenY);
+        initTypeEnemy(enemyType);
+    }
+
+    private void initTypeEnemy(int enemyType) {
         switch (enemyType) {
             case 1:
                 speed = UtilRandomFW.getGap(1, 6);
@@ -39,6 +31,22 @@ public class Enemy extends ObjectFW {
                 speed = UtilRandomFW.getGap(4, 9);
                 break;
         }
+    }
+
+    private void init(int maxScreenX, int maxScreenY, int minScreenY) {
+        this.maxScreenX = maxScreenX;
+        /*
+        максимальное значение минус высота,что бы астероиды не летели ниже экрана.
+         */
+        this.maxScreenY = maxScreenY - UtilResource.spriteEnemy.get(0).getHeight();
+        this.minScreenY = minScreenY;
+        this.minScreenX = 0;
+        /*
+        Устанавливаем первоначальное положение астероидам на экране
+         */
+        x = maxScreenX;
+        y = UtilRandomFW.getGap(minScreenY, maxScreenY);
+        radius = UtilResource.spriteEnemy.get(0).getWidth() / 2;
     }
 
     public void update(double speedPlayer) {

@@ -14,9 +14,13 @@ import com.example.test_1.Utillits.UtilResource;
  */
 public class Protector extends ObjectFW {
 
-    AnimationFW animProtector;
+    private AnimationFW animProtector;
 
     public Protector(int maxScreenX, int maxScreenY, int minScreenY) {
+        init(maxScreenX, maxScreenY, minScreenY);
+    }
+
+    private void init(int maxScreenX, int maxScreenY, int minScreenY) {
         this.maxScreenX = maxScreenX;
         /*
         максимальное значение минус высота,что бы астероиды не летели ниже экрана.
@@ -25,7 +29,7 @@ public class Protector extends ObjectFW {
         this.minScreenY = minScreenY;
         this.minScreenX = 0;
         /*
-        Устанавливаем первоначальное положение астероидам на экране
+            Устанавливаем первоначальное положение астероидам на экране
          */
         x = maxScreenX;
         y = UtilRandomFW.getGap(minScreenY, maxScreenY);
@@ -48,7 +52,6 @@ public class Protector extends ObjectFW {
             y = UtilRandomFW.getGap(minScreenY, maxScreenY);
         }
         animProtector.runAnimation();
-
         hitBox = new Rect(x, y,
                 UtilResource.spriteEnemy.get(0).getWidth(),
                 UtilResource.spriteEnemy.get(0).getHeight());
@@ -57,5 +60,4 @@ public class Protector extends ObjectFW {
     public void drawing(GraphicsFW graphicsFW) {
         animProtector.drawingAnimation(graphicsFW, x, y);
     }
-
 }

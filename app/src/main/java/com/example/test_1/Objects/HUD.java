@@ -14,7 +14,7 @@ public class HUD {
     private int passedDistance;
     private int currentSpeedPlayer;
     private int currentShieldsPlayer;
-    CoreFW coreFW;
+    private CoreFW coreFW;
 
     public HUD(CoreFW coreFW) {
         this.coreFW = coreFW;

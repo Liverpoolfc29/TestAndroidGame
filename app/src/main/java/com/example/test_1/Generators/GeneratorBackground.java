@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class GeneratorBackground {
 
     int starsPeak = 50;
-    public ArrayList<Star> starArrayList = new ArrayList<>(starsPeak);
+    private ArrayList<Star> starArrayList = new ArrayList<>(starsPeak);
 
     public GeneratorBackground(int sceneWidth, int sceneHeight, int minScreenY) {
         /*
