@@ -15,26 +15,15 @@ import androidx.appcompat.app.AppCompatActivity;
     пояснения как масштабировать приложение под разные размеры экрана в уроке 14.
  */
 public class CoreFW extends AppCompatActivity {
-
-    private final float FRAME_BUFFER_WIDTH = 800;
-    private final float FRAME_BUFFER_HEIGHT = 600;
     private LoopFW loopFW;
     private GraphicsFW graphicsFW;
     private TouchListeneerFW touchListeneerFW;
     private AudioFW audioFW;
-    private Display display;
-    private Point sizeDisplay;
-    private Bitmap frameBuffer;
     private SceneFW sceneFW;
-    private float sceneWidth;
-    private float sceneHeight;
-    private boolean stateOnPause;
-    private boolean stateOnResume;
     /*
         SharedPreferences - Класс для работы с настройками, считыванием и сохранением настроек.
      */
     private SharedPreferences sharedPreferences;
-    private final String SETTINGS = "Settings";
 
     /*
     Так как мы наследуемся от основоного класса AppCompatActivity нам надо создать (должен быть) класс onCreate.
@@ -45,6 +34,7 @@ public class CoreFW extends AppCompatActivity {
         /*
         MODE_PRIVATE - создаст папку в файлаг игры доступ к которой может получить только наше приложение.
          */
+        String SETTINGS = "Settings";
         sharedPreferences = getSharedPreferences(SETTINGS, MODE_PRIVATE);
         /*
          запрещаем андроиду переодить в спящий режим пока запущено приложене
@@ -53,20 +43,22 @@ public class CoreFW extends AppCompatActivity {
         /*
          как только приложение запустилось нужно получить размер экрана
          */
-        sizeDisplay = new Point();
-        display = getWindowManager().getDefaultDisplay();
+        Point sizeDisplay = new Point();
+        Display display = getWindowManager().getDefaultDisplay();
         display.getSize(sizeDisplay);
         /*
          определяем фрейм буфер. Инициализируем битмапом создавая новый битмап. Наш фрейм буфер будет равен новой картинке, но
          при этом наша картинка будет иметь объявленные выше ширину и высоту экрана
         */
-        frameBuffer = Bitmap.createBitmap((int) FRAME_BUFFER_WIDTH, (int) FRAME_BUFFER_HEIGHT, Bitmap.Config.ARGB_8888);
+        float FRAME_BUFFER_WIDTH = 800;
+        float FRAME_BUFFER_HEIGHT = 600;
+        Bitmap frameBuffer = Bitmap.createBitmap((int) FRAME_BUFFER_WIDTH, (int) FRAME_BUFFER_HEIGHT, Bitmap.Config.ARGB_8888);
         /*
          получаем ширину и высоту нашей сцены. Есть фреймбуфер определенной высоты иширины, и есть ширина и высота сцены которая будет расчитываться следующим образом :
          - берем нашу константу FRAME_BUFFER_WIDTH и делим на полученную ширину смартфона который использует приложение. И так же высоту.
         */
-        sceneWidth = FRAME_BUFFER_WIDTH / sizeDisplay.x;
-        sceneHeight = FRAME_BUFFER_HEIGHT / sizeDisplay.y;
+        float sceneWidth = FRAME_BUFFER_WIDTH / sizeDisplay.x;
+        float sceneHeight = FRAME_BUFFER_HEIGHT / sizeDisplay.y;
 
         audioFW = new AudioFW(this);
         loopFW = new LoopFW(this, frameBuffer);
@@ -77,9 +69,6 @@ public class CoreFW extends AppCompatActivity {
         touchListeneerFW = new TouchListeneerFW(loopFW, sceneWidth, sceneHeight);
 
         sceneFW = getStartScene();
-        stateOnPause = false;
-        stateOnResume = false;
-
         setContentView(loopFW);
     }
 
@@ -97,7 +86,6 @@ public class CoreFW extends AppCompatActivity {
         super.onPause();
         sceneFW.pause();
         loopFW.stopGame();
-        stateOnPause = true;
 
         if (isFinishing()) {
             sceneFW.dispose();

@@ -22,10 +22,12 @@ public class GraphicsFW {
     private Canvas canvasGame;
     // для работы с графикой
     private Paint paintGame;
-    // для текстур
-    private Bitmap textureGame;
 
     public GraphicsFW(AssetManager assetManagerGame, Bitmap frameBufferGame) {
+        init(assetManagerGame, frameBufferGame);
+    }
+
+    private void init(AssetManager assetManagerGame, Bitmap frameBufferGame) {
         this.assetManagerGame = assetManagerGame;
         this.frameBufferGame = frameBufferGame;
         // передаем туда фреймБуфер, не рисуем на самом холсте канвас.
@@ -71,7 +73,8 @@ public class GraphicsFW {
 
     public Bitmap newTexture(String fileName) {
         InputStream inputStream = null;
-
+        // для текстур
+        Bitmap textureGame;
         try {
             inputStream = assetManagerGame.open(fileName);
             // в текстуру передаем поток с файла

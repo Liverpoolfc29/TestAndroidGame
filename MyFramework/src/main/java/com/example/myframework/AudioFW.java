@@ -11,8 +11,8 @@ import android.os.Build;
 import java.io.IOException;
 
 public class AudioFW {
-    AssetManager assetManager;
-    SoundPool soundPool;
+    private final AssetManager assetManager;
+    private SoundPool soundPool;
 
     public AudioFW(Activity activity) {
         /*
@@ -20,6 +20,10 @@ public class AudioFW {
          */
         activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         assetManager = activity.getAssets();
+        versionSDK();
+    }
+
+    private void versionSDK() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             /*
                 версии кода для разные версий андроида
@@ -35,9 +39,8 @@ public class AudioFW {
     }
 
     public MusicFW newMusic(String filename) {
-        AssetFileDescriptor assetFileDescriptor = null;
         try {
-            assetFileDescriptor = assetManager.openFd(filename);
+            AssetFileDescriptor assetFileDescriptor = assetManager.openFd(filename);
             return new MusicFW(assetFileDescriptor);
         } catch (IOException e) {
             throw new RuntimeException("Не возможно загрузить музыку" + e);
