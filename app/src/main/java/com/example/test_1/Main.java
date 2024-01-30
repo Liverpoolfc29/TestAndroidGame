@@ -15,16 +15,4 @@ public class Main extends CoreFW {
         return new MainManuScene(this);
     }
 
-
-    /*
-    было раньше прир наследовании от апп компакт активити
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        LoopFW loopFW = new LoopFW();
-        loopFW.stopGame();
-    }
-
-     */
 }

@@ -15,11 +15,11 @@ public class GameScene extends SceneFW {
         /*
             состояния игры (игра в режиме паузы, п процессе самой игры, подготовки и окончания игры.)
          */
-        READY, RUNNING, PAUSE, GAMEOVER
+        READY, RUNNING, PAUSE, GAME_STATE
     }
 
-    GameState gameState;
-    GameManager gameManager;
+    private GameState gameState;
+    private GameManager gameManager;
 
     public GameScene(CoreFW coreFW) {
         super(coreFW);
@@ -46,7 +46,7 @@ public class GameScene extends SceneFW {
         if (gameState == GameState.PAUSE) {
             updateStatePause();
         }
-        if (gameState == GameState.GAMEOVER) {
+        if (gameState == GameState.GAME_STATE) {
             updateStateGameOver();
         }
     }
@@ -68,7 +68,7 @@ public class GameScene extends SceneFW {
         if (gameState == GameState.PAUSE) {
             drawingStatePause();
         }
-        if (gameState == GameState.GAMEOVER) {
+        if (gameState == GameState.GAME_STATE) {
             drawingStateGameOver();
         }
     }
@@ -129,7 +129,7 @@ public class GameScene extends SceneFW {
     private void updateStateRunning() {
         gameManager.update();
         if (GameManager.gameOver) {
-            gameState = GameState.GAMEOVER;
+            gameState = GameState.GAME_STATE;
         }
     }
 

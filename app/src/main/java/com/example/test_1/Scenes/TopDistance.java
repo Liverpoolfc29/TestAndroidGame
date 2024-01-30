@@ -9,12 +9,12 @@ import com.example.test_1.Utillits.SettingsGame;
 
 public class TopDistance extends SceneFW {
 
-    String[] numbers = new String[5];
+    private String[] numbers = new String[5];
 
-    public TopDistance(CoreFW coreFW) {
+    protected TopDistance(CoreFW coreFW) {
         super(coreFW);
         for (int i = 0; i < 5; i++) {
-            this.numbers[i] = " " + (i + 1) + " " + SettingsGame.distance[i];
+            this.numbers[i] = " " + (i + 1) + " " + SettingsGame.getDistance()[i];
         }
     }
 
