@@ -7,7 +7,7 @@ import com.example.myframework.SoundFW;
 
 import java.util.ArrayList;
 
-public class UtilResource {
+public class ResourceGame {
 
     public static Bitmap textureAtlas;
     public static ArrayList<Bitmap> spritePlayer;

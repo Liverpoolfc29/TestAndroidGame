@@ -5,7 +5,7 @@ import android.graphics.Color;
 import com.example.myframework.CoreFW;
 import com.example.myframework.SceneFW;
 import com.example.test_1.R;
-import com.example.test_1.Utillits.UtilResource;
+import com.example.test_1.Utillits.ResourceGame;
 
 public class MainManuScene extends SceneFW {
 
@@ -21,12 +21,12 @@ public class MainManuScene extends SceneFW {
          туда сцену создавая новую сцену и передавая туда наше ядро.
         */
         if (coreFW.getTouchListeneerFW().getTouchUp(20, 300, 100, 50)) {
-            UtilResource.touch.play(2); // запускам звук при нажатии
+            ResourceGame.touch.play(2); // запускам звук при нажатии
             coreFW.setSceneFW(new GameScene(coreFW));
         }
         if (coreFW.getTouchListeneerFW().getTouchUp(20, 400, 100, 50)) {
-            UtilResource.touch.play(2);
-            coreFW.setSceneFW(new TopDistance(coreFW));
+            ResourceGame.touch.play(2);
+            coreFW.setSceneFW(new TopDistanceScene(coreFW));
         }
 
     }

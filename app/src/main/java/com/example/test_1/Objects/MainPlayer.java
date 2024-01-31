@@ -7,7 +7,7 @@ import com.example.myframework.GraphicsFW;
 import com.example.myframework.ObjectFW;
 import com.example.myframework.Utilits.UtilTimerDelay;
 import com.example.test_1.Classes.GameManager;
-import com.example.test_1.Utillits.UtilResource;
+import com.example.test_1.Utillits.ResourceGame;
 import com.example.myframework.AnimationFW;
 
 /*
@@ -59,7 +59,7 @@ public class MainPlayer extends ObjectFW {
             вычисляем радиус фигурки, размер фигурки 64 на 64 пикселя, радиус нужен от ее центра координат в середине фигурки, значит берем половину ее
             размера 64\2 и получаем радиус от центра 32
         */
-        radius = (double) UtilResource.spritePlayer.get(0).getHeight() / 4;
+        radius = (double) ResourceGame.spritePlayer.get(0).getHeight() / 4;
         timerOnShieldHit = new UtilTimerDelay();
         timerOnGameOver = new UtilTimerDelay();
         timerShieldsOn = new UtilTimerDelay();
@@ -68,7 +68,7 @@ public class MainPlayer extends ObjectFW {
         /*
             у картинки левый верхний угол точка отсчета поэтому нужно подрезать ораничение на размер картинкии (-64)
          */
-        this.maxScreenY = maxScreenY - UtilResource.spritePlayer.get(0).getHeight();
+        this.maxScreenY = maxScreenY - ResourceGame.spritePlayer.get(0).getHeight();
         this.minScreenY = minScreenY;
     }
 
@@ -76,32 +76,32 @@ public class MainPlayer extends ObjectFW {
         /*
             загрузили 4 спрайта из нашего масива  картинок с анимацией игрока
          */
-        animMainPlayer = new AnimationFW(speed, UtilResource.spritePlayer.get(0),
-                UtilResource.spritePlayer.get(1),
-                UtilResource.spritePlayer.get(2),
-                UtilResource.spritePlayer.get(3));
+        animMainPlayer = new AnimationFW(speed, ResourceGame.spritePlayer.get(0),
+                ResourceGame.spritePlayer.get(1),
+                ResourceGame.spritePlayer.get(2),
+                ResourceGame.spritePlayer.get(3));
         /*
             создаем новую анимацию для игрока в режиме ускорения (подгружаем другие картинки для этого)
         */
-        animMainPlayerBoost = new AnimationFW(speed, UtilResource.spritePlayerBoost.get(0),
-                UtilResource.spritePlayerBoost.get(1),
-                UtilResource.spritePlayerBoost.get(2),
-                UtilResource.spritePlayerBoost.get(3));
+        animMainPlayerBoost = new AnimationFW(speed, ResourceGame.spritePlayerBoost.get(0),
+                ResourceGame.spritePlayerBoost.get(1),
+                ResourceGame.spritePlayerBoost.get(2),
+                ResourceGame.spritePlayerBoost.get(3));
 
-        animExplosionPlayer = new AnimationFW(speed, UtilResource.spriteExplosionPlayer.get(0),
-                UtilResource.spriteExplosionPlayer.get(1),
-                UtilResource.spriteExplosionPlayer.get(2),
-                UtilResource.spriteExplosionPlayer.get(3));
+        animExplosionPlayer = new AnimationFW(speed, ResourceGame.spriteExplosionPlayer.get(0),
+                ResourceGame.spriteExplosionPlayer.get(1),
+                ResourceGame.spriteExplosionPlayer.get(2),
+                ResourceGame.spriteExplosionPlayer.get(3));
 
-        animPlayerShieldsOn = new AnimationFW(speed, UtilResource.spritePlayerShieldsOn.get(0),
-                UtilResource.spritePlayerShieldsOn.get(1),
-                UtilResource.spritePlayerShieldsOn.get(2),
-                UtilResource.spritePlayerShieldsOn.get(3));
+        animPlayerShieldsOn = new AnimationFW(speed, ResourceGame.spritePlayerShieldsOn.get(0),
+                ResourceGame.spritePlayerShieldsOn.get(1),
+                ResourceGame.spritePlayerShieldsOn.get(2),
+                ResourceGame.spritePlayerShieldsOn.get(3));
 
-        animPlayerShieldsOnBoost = new AnimationFW(speed, UtilResource.spritePlayerShieldsOnBoost.get(0),
-                UtilResource.spritePlayerShieldsOnBoost.get(1),
-                UtilResource.spritePlayerShieldsOnBoost.get(2),
-                UtilResource.spritePlayerShieldsOnBoost.get(3));
+        animPlayerShieldsOnBoost = new AnimationFW(speed, ResourceGame.spritePlayerShieldsOnBoost.get(0),
+                ResourceGame.spritePlayerShieldsOnBoost.get(1),
+                ResourceGame.spritePlayerShieldsOnBoost.get(2),
+                ResourceGame.spritePlayerShieldsOnBoost.get(3));
     }
 
     public void update() {
@@ -119,8 +119,8 @@ public class MainPlayer extends ObjectFW {
         }
         updateBoosting();
         hitBox = new Rect(x, y,
-                UtilResource.spritePlayer.get(0).getWidth(),
-                UtilResource.spritePlayer.get(0).getHeight());
+                ResourceGame.spritePlayer.get(0).getWidth(),
+                ResourceGame.spritePlayer.get(0).getHeight());
         if (isGameOver) {
             animExplosionPlayer.runAnimation();
         }
@@ -191,7 +191,7 @@ public class MainPlayer extends ObjectFW {
                     animMainPlayer.drawingAnimation(graphicsFW, x, y);
                 }
             } else {
-                graphicsFW.drawTexture(UtilResource.shieldHitEnemy, x, y);
+                graphicsFW.drawTexture(ResourceGame.shieldHitEnemy, x, y);
                 if (timerOnShieldHit.timerDelay(0.2)) {
                     hitEnemy = false;
                 } else {
@@ -218,7 +218,7 @@ public class MainPlayer extends ObjectFW {
         if (!shieldsOn) {
             shieldsPlayer--;
             if (shieldsPlayer < 0) {
-                UtilResource.explode.play(1); // когда закончились жизни запускаем музыку убийства
+                ResourceGame.explode.play(1); // когда закончились жизни запускаем музыку убийства
                 isGameOver = true;
                 timerOnGameOver.startTimer();
             }

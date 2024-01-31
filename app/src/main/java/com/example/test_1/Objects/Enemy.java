@@ -6,7 +6,7 @@ import com.example.myframework.AnimationFW;
 import com.example.myframework.GraphicsFW;
 import com.example.myframework.ObjectFW;
 import com.example.myframework.Utilits.UtilRandomFW;
-import com.example.test_1.Utillits.UtilResource;
+import com.example.test_1.Utillits.ResourceGame;
 
 public class Enemy extends ObjectFW {
 
@@ -22,10 +22,10 @@ public class Enemy extends ObjectFW {
             case 1:
                 speed = UtilRandomFW.getGap(1, 6);
                 animEnemy = new AnimationFW(3,
-                        UtilResource.spriteEnemy.get(0),
-                        UtilResource.spriteEnemy.get(1),
-                        UtilResource.spriteEnemy.get(2),
-                        UtilResource.spriteEnemy.get(3));
+                        ResourceGame.spriteEnemy.get(0),
+                        ResourceGame.spriteEnemy.get(1),
+                        ResourceGame.spriteEnemy.get(2),
+                        ResourceGame.spriteEnemy.get(3));
                 break;
             case 2:
                 speed = UtilRandomFW.getGap(4, 9);
@@ -38,7 +38,7 @@ public class Enemy extends ObjectFW {
         /*
         максимальное значение минус высота,что бы астероиды не летели ниже экрана.
          */
-        this.maxScreenY = maxScreenY - UtilResource.spriteEnemy.get(0).getHeight();
+        this.maxScreenY = maxScreenY - ResourceGame.spriteEnemy.get(0).getHeight();
         this.minScreenY = minScreenY;
         this.minScreenX = 0;
         /*
@@ -46,7 +46,7 @@ public class Enemy extends ObjectFW {
          */
         x = maxScreenX;
         y = UtilRandomFW.getGap(minScreenY, maxScreenY);
-        radius = UtilResource.spriteEnemy.get(0).getWidth() / 2;
+        radius = ResourceGame.spriteEnemy.get(0).getWidth() / 2;
     }
 
     public void update(double speedPlayer) {
@@ -58,8 +58,8 @@ public class Enemy extends ObjectFW {
         }
         animEnemy.runAnimation();
         hitBox = new Rect(x, y,
-                UtilResource.spriteEnemy.get(0).getWidth(),
-                UtilResource.spriteEnemy.get(0).getHeight());
+                ResourceGame.spriteEnemy.get(0).getWidth(),
+                ResourceGame.spriteEnemy.get(0).getHeight());
     }
 
     public void drawing(GraphicsFW graphicsFW) {

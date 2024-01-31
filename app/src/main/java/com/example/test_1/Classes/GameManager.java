@@ -8,7 +8,7 @@ import com.example.test_1.Generators.GeneratorEnemy;
 import com.example.test_1.Generators.GeneratorGifts;
 import com.example.test_1.Objects.HUD;
 import com.example.test_1.Objects.MainPlayer;
-import com.example.test_1.Utillits.UtilResource;
+import com.example.test_1.Utillits.ResourceGame;
 
 /*
     Класс управления всеми обьектами, считает удары, сблюдает колизии итд
@@ -69,7 +69,7 @@ public class GameManager {
     private void checkHit() {
         for (int i = 0; i < generatorEnemy.getEnemyArrayList().size(); i++) {
             if (CollisionDetect.collisionDetect(mainPlayer, generatorEnemy.getEnemyArrayList().get(i))) {
-                UtilResource.hit.play(1); // запускаем звук при столкновении
+                ResourceGame.hit.play(1); // запускаем звук при столкновении
                 mainPlayer.hitEnemy();
                 generatorEnemy.hitPlayer(generatorEnemy.getEnemyArrayList().get(i));
             }

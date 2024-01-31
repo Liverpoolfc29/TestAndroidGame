@@ -7,7 +7,7 @@ import com.example.myframework.GraphicsFW;
 import com.example.myframework.ObjectFW;
 import com.example.myframework.Utilits.UtilRandomFW;
 import com.example.test_1.Classes.GameManager;
-import com.example.test_1.Utillits.UtilResource;
+import com.example.test_1.Utillits.ResourceGame;
 
 /*
     Класс для отрисовки и генерации протектора на экране, пофвился прошел по траэктории и все
@@ -25,7 +25,7 @@ public class Protector extends ObjectFW {
         /*
         максимальное значение минус высота,что бы астероиды не летели ниже экрана.
          */
-        this.maxScreenY = maxScreenY - UtilResource.spriteProtector.get(0).getHeight();
+        this.maxScreenY = maxScreenY - ResourceGame.spriteProtector.get(0).getHeight();
         this.minScreenY = minScreenY;
         this.minScreenX = 0;
         /*
@@ -33,15 +33,15 @@ public class Protector extends ObjectFW {
          */
         x = maxScreenX;
         y = UtilRandomFW.getGap(minScreenY, maxScreenY);
-        radius = UtilResource.spritePlayer.get(0).getWidth() / 2;
+        radius = ResourceGame.spritePlayer.get(0).getWidth() / 2;
         hitBox = new Rect(x, y,
-                UtilResource.spriteProtector.get(0).getWidth(),
-                UtilResource.spriteProtector.get(0).getHeight());
+                ResourceGame.spriteProtector.get(0).getWidth(),
+                ResourceGame.spriteProtector.get(0).getHeight());
         animProtector = new AnimationFW(GameManager.SPEED_ANIMATION,
-                UtilResource.spriteProtector.get(0),
-                UtilResource.spriteProtector.get(1),
-                UtilResource.spriteProtector.get(2),
-                UtilResource.spriteProtector.get(3));
+                ResourceGame.spriteProtector.get(0),
+                ResourceGame.spriteProtector.get(1),
+                ResourceGame.spriteProtector.get(2),
+                ResourceGame.spriteProtector.get(3));
     }
 
     public void update(double speedPlayer) {
@@ -53,8 +53,8 @@ public class Protector extends ObjectFW {
         }
         animProtector.runAnimation();
         hitBox = new Rect(x, y,
-                UtilResource.spriteEnemy.get(0).getWidth(),
-                UtilResource.spriteEnemy.get(0).getHeight());
+                ResourceGame.spriteEnemy.get(0).getWidth(),
+                ResourceGame.spriteEnemy.get(0).getHeight());
     }
 
     public void drawing(GraphicsFW graphicsFW) {

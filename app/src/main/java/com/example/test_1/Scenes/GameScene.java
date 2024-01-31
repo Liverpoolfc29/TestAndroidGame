@@ -7,10 +7,9 @@ import com.example.myframework.SceneFW;
 import com.example.test_1.Classes.GameManager;
 import com.example.test_1.R;
 import com.example.test_1.Utillits.SettingsGame;
-import com.example.test_1.Utillits.UtilResource;
+import com.example.test_1.Utillits.ResourceGame;
 
 public class GameScene extends SceneFW {
-
     enum GameState {
         /*
             состояния игры (игра в режиме паузы, п процессе самой игры, подготовки и окончания игры.)
@@ -28,7 +27,7 @@ public class GameScene extends SceneFW {
         */
         gameState = GameState.READY;
         gameManager = new GameManager(coreFW, sceneWidth, sceneHeight);
-        UtilResource.gameMusic.play(true, 0.5f);
+        ResourceGame.gameMusic.play(true, 0.5f);
     }
 
     @Override
@@ -75,20 +74,20 @@ public class GameScene extends SceneFW {
 
     @Override
     public void pause() {
-        UtilResource.gameMusic.stop();
+        ResourceGame.gameMusic.stop();
     }
 
     @Override
     public void resume() {
-        UtilResource.gameMusic.play(true, 0.5f);
+        ResourceGame.gameMusic.play(true, 0.5f);
     }
 
     @Override
     public void dispose() {
-        UtilResource.explode.dispose();
-        UtilResource.hit.dispose();
-        UtilResource.touch.dispose();
-        UtilResource.gameMusic.dispose();
+        ResourceGame.explode.dispose();
+        ResourceGame.hit.dispose();
+        ResourceGame.touch.dispose();
+        ResourceGame.gameMusic.dispose();
     }
 
     private void drawingStateGameOver() {
@@ -122,7 +121,6 @@ public class GameScene extends SceneFW {
 
     private void drawingStateRunning() {
         graphicsFW.clearScene(Color.BLACK);
-        //graphicsFW.drawText("Сцена игры", 250, 300, Color.WHITE, 60, null);
         gameManager.drawing(graphicsFW);
     }
 

@@ -7,11 +7,11 @@ import com.example.myframework.SceneFW;
 import com.example.test_1.R;
 import com.example.test_1.Utillits.SettingsGame;
 
-public class TopDistance extends SceneFW {
+public class TopDistanceScene extends SceneFW {
 
     private String[] numbers = new String[5];
 
-    protected TopDistance(CoreFW coreFW) {
+    protected TopDistanceScene(CoreFW coreFW) {
         super(coreFW);
         for (int i = 0; i < 5; i++) {
             this.numbers[i] = " " + (i + 1) + " " + SettingsGame.getDistance()[i];
