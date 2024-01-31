@@ -57,7 +57,6 @@ public class Enemy extends ObjectFW {
             y = UtilRandomFW.getGap(minScreenY, maxScreenY);
         }
         animEnemy.runAnimation();
-
         hitBox = new Rect(x, y,
                 UtilResource.spriteEnemy.get(0).getWidth(),
                 UtilResource.spriteEnemy.get(0).getHeight());

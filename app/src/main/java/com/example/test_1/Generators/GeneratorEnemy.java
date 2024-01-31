@@ -14,6 +14,10 @@ public class GeneratorEnemy {
 
 
     public GeneratorEnemy(int sceneWidth, int sceneHeight, int minScreenY) {
+        init(sceneWidth, sceneHeight, minScreenY);
+    }
+
+    private void init(int sceneWidth, int sceneHeight, int minScreenY) {
         this.maxScreenX = sceneWidth;
         this.maxScreenY = sceneHeight;
         this.minScreenY = minScreenY;

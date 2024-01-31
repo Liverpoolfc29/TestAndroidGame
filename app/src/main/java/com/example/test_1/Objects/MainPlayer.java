@@ -117,9 +117,7 @@ public class MainPlayer extends ObjectFW {
         if (timerShieldsOn.timerDelay(5)) {
             shieldsOn = false;
         }
-
         updateBoosting();
-
         hitBox = new Rect(x, y,
                 UtilResource.spritePlayer.get(0).getWidth(),
                 UtilResource.spritePlayer.get(0).getHeight());

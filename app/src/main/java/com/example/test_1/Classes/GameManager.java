@@ -47,10 +47,7 @@ public class GameManager {
     }
 
     public void update() {
-        generatorBackground.updateStar(mainPlayer.getSpeedPlayer());
-        mainPlayer.update();
-        generatorEnemy.update(mainPlayer.getSpeedPlayer());
-        generatorGifts.update(mainPlayer.getSpeedPlayer());
+        updateObjects();
         /*
             пройденную дитстанция считаем от скорости движения героя (умножаем на 60 для красивого отображения не 1.2.3 а 10 20 30)
             другие данные береж похожим образом
@@ -58,8 +55,15 @@ public class GameManager {
         passedDistance += mainPlayer.getSpeedPlayer();
         currentSpeedPlayer = (int) mainPlayer.getSpeedPlayer() * 60;
         currentShieldsPlayer = mainPlayer.getShieldPlayer();
-        hud.update(passedDistance, currentSpeedPlayer, currentShieldsPlayer);
         checkHit();
+    }
+
+    private void updateObjects() {
+        hud.update(passedDistance, currentSpeedPlayer, currentShieldsPlayer);
+        generatorBackground.updateStar(mainPlayer.getSpeedPlayer());
+        mainPlayer.update();
+        generatorEnemy.update(mainPlayer.getSpeedPlayer());
+        generatorGifts.update(mainPlayer.getSpeedPlayer());
     }
 
     private void checkHit() {
