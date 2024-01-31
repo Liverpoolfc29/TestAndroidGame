@@ -8,7 +8,7 @@ import android.view.SurfaceView;
 
 import java.util.Date;
 
-public class LoopFW extends SurfaceView implements Runnable {
+public class LoopGameFW extends SurfaceView implements Runnable {
 
     private final float FPS = 60;
     private final float SECOND = 1000000000;
@@ -16,25 +16,24 @@ public class LoopFW extends SurfaceView implements Runnable {
 
     private boolean running = false;
 
-    Thread gameThread = null;
-
-    CoreFW coreFW;
-    Bitmap frameBuffer;
-    SurfaceHolder surfaceHolder;
+    private Thread gameThread = null;
+    private CoreGameFW coreGameFW;
+    private Bitmap frameBuffer;
+    private SurfaceHolder surfaceHolder;
     // то на чем будем рисовать
-    Canvas canvas;
+    private Canvas canvas;
     // покажет граници нашего конваса
-    Rect rect;
+    private Rect rect;
 
     // temp
-    float updates = 0;
-    float drawing = 0;
-    long timer = 0;
+    private float updates = 0;
+    private float drawing = 0;
+    private long timer = 0;
 
-    public LoopFW(CoreFW coreFW, Bitmap frameBuffer) {
-        super(coreFW);
+    public LoopGameFW(CoreGameFW coreGameFW, Bitmap frameBuffer) {
+        super(coreGameFW);
         this.frameBuffer = frameBuffer;
-        this.coreFW = coreFW;
+        this.coreGameFW = coreGameFW;
         this.surfaceHolder = getHolder();
         rect = new Rect();
         canvas = new Canvas();
@@ -42,12 +41,10 @@ public class LoopFW extends SurfaceView implements Runnable {
 
     @Override
     public void run() {
-
         float lastTime = System.nanoTime();
         float delta = 0;
 
         timer = System.currentTimeMillis();
-
 
         while (running) {
             float nowTime = System.nanoTime();
@@ -67,13 +64,12 @@ public class LoopFW extends SurfaceView implements Runnable {
                 timer += 1000;
             }
         }
-
     }
 
     private void updateGame() {
         // этот метод повторяется 60  раз в секунду
         updates++;
-        coreFW.getCurrentScene().upDate();
+        coreGameFW.getCurrentScene().upDate();
     }
 
     private void drawingGame() {
@@ -85,7 +81,7 @@ public class LoopFW extends SurfaceView implements Runnable {
             canvas.getClipBounds(rect);
             canvas.drawBitmap(frameBuffer, null, rect, null); // передаем фреймбуфер что бы растянуть на весь экран. Что бы описать границы канваса передаем рект.
             // на канвасе нарисовали фреймбуфер и перед тем как вывести его делаем :
-            coreFW.getCurrentScene().drawing();
+            coreGameFW.getCurrentScene().drawing();
             surfaceHolder.unlockCanvasAndPost(canvas); // передаем канвас на экран смартфона
         }
     }
@@ -101,7 +97,6 @@ public class LoopFW extends SurfaceView implements Runnable {
 
 
     public void stopGame() {
-
         if (!running) {
             return;
         }

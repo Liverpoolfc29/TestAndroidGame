@@ -1,4 +1,6 @@
-package com.example.myframework;
+package com.example.myframework.Utilits;
+
+import com.example.myframework.ObjectGameFW;
 
 public class CollisionDetect {
     static double object1X;
@@ -11,7 +13,7 @@ public class CollisionDetect {
     static double dy;
     static double distanceObject;
 
-    public static boolean collisionDetect(ObjectFW object1, ObjectFW object2) {
+    public static boolean collisionDetect(ObjectGameFW object1, ObjectGameFW object2) {
         /*
             Получаем координаты обьектов (их центральные точки) и  потом получаем от точек радиусы и потом
             делаем проверку на столкновение с помощью растояния между обьектами, если дистанция меньше

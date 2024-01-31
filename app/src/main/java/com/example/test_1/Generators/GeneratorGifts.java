@@ -1,19 +1,23 @@
 package com.example.test_1.Generators;
 
-import com.example.myframework.GraphicsFW;
+import com.example.myframework.GraphicsGameFW;
 import com.example.myframework.Utilits.UtilTimerDelay;
 import com.example.test_1.Objects.MainPlayer;
 import com.example.test_1.Objects.Protector;
 
 public class GeneratorGifts {
-    Protector protector;
-    UtilTimerDelay timerProtector;
+    private Protector protector;
+    private UtilTimerDelay timerProtector;
     private int maxScreenY;
     private int maxScreenX;
     private int minScreenY;
     private int minScreenX;
 
     public GeneratorGifts(int sceneWidth, int sceneHeight, int minScreenY) {
+        init(sceneWidth, sceneHeight, minScreenY);
+    }
+
+    private void init(int sceneWidth, int sceneHeight, int minScreenY) {
         this.maxScreenX = sceneWidth;
         this.maxScreenY = sceneHeight;
         this.minScreenY = minScreenY;
@@ -37,8 +41,8 @@ public class GeneratorGifts {
         }
     }
 
-    public void drawing(GraphicsFW graphicsFW) {
-        protector.drawing(graphicsFW);
+    public void drawing(GraphicsGameFW graphicsGameFW) {
+        protector.drawing(graphicsGameFW);
     }
 
     public Protector getProtector() {

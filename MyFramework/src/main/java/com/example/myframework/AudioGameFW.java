@@ -10,20 +10,29 @@ import android.os.Build;
 
 import java.io.IOException;
 
-public class AudioFW {
-    AssetManager assetManager;
-    SoundPool soundPool;
+public class AudioGameFW {
+    private final AssetManager assetManager;
+    private SoundPool soundPool;
 
-    public AudioFW(Activity activity) {
+    public AudioGameFW(Activity activity) {
         /*
             C помощью этого метода можем напрямую обращаться к Активити и управлять громкостью
          */
         activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         assetManager = activity.getAssets();
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_GAME)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+        soundPool = new SoundPool.Builder().setAudioAttributes(audioAttributes).build();
+        //versionSDK();
+    }
+
+    private void versionSDK() {
+        /*
+            версии кода для разные версий андроида
+         */
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            /*
-                версии кода для разные версий андроида
-             */
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_GAME)
                     .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
@@ -34,17 +43,16 @@ public class AudioFW {
         }
     }
 
-    public MusicFW newMusic(String filename) {
-        AssetFileDescriptor assetFileDescriptor = null;
+    public MusicGameFW newMusic(String filename) {
         try {
-            assetFileDescriptor = assetManager.openFd(filename);
-            return new MusicFW(assetFileDescriptor);
+            AssetFileDescriptor assetFileDescriptor = assetManager.openFd(filename);
+            return new MusicGameFW(assetFileDescriptor);
         } catch (IOException e) {
             throw new RuntimeException("Не возможно загрузить музыку" + e);
         }
     }
 
-    public SoundFW newSound(String fileName) {
+    public SoundGameFW newSound(String fileName) {
         /*
             Загружаем музыку
          */
@@ -55,7 +63,7 @@ public class AudioFW {
             e.printStackTrace();
         }
         int sound = soundPool.load(assetFileDescriptor, 0);
-        return new SoundFW(sound, soundPool);
+        return new SoundGameFW(sound, soundPool);
     }
 
 }

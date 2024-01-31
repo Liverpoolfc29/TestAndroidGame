@@ -4,11 +4,11 @@ import android.media.SoundPool;
 /*
     Класс для работы со звуками
  */
-public class SoundFW {
-    int sound;
-    SoundPool soundPool;
+public class SoundGameFW {
+    private int sound;
+    private SoundPool soundPool;
 
-    public SoundFW(int sound, SoundPool soundPool) {
+    public SoundGameFW(int sound, SoundPool soundPool) {
         this.sound = sound;
         this.soundPool = soundPool;
     }

@@ -2,33 +2,32 @@ package com.example.test_1.Scenes;
 
 import android.graphics.Color;
 
-import com.example.myframework.CoreFW;
-import com.example.myframework.SceneFW;
+import com.example.myframework.CoreGameFW;
+import com.example.myframework.SceneGameFW;
 import com.example.test_1.Classes.GameManager;
 import com.example.test_1.R;
 import com.example.test_1.Utillits.SettingsGame;
-import com.example.test_1.Utillits.UtilResource;
+import com.example.test_1.Utillits.ResourceGame;
 
-public class GameScene extends SceneFW {
-
+public class GameSceneGame extends SceneGameFW {
     enum GameState {
         /*
             состояния игры (игра в режиме паузы, п процессе самой игры, подготовки и окончания игры.)
          */
-        READY, RUNNING, PAUSE, GAMEOVER
+        READY, RUNNING, PAUSE, GAME_STATE
     }
 
-    GameState gameState;
-    GameManager gameManager;
+    private GameState gameState;
+    private GameManager gameManager;
 
-    public GameScene(CoreFW coreFW) {
-        super(coreFW);
+    public GameSceneGame(CoreGameFW coreGameFW) {
+        super(coreGameFW);
         /*
             при запуске игровой сцены будет запускаться режим подготовки с вопросом к игроку готов ли он начать игру.
         */
         gameState = GameState.READY;
-        gameManager = new GameManager(coreFW, sceneWidth, sceneHeight);
-        UtilResource.gameMusic.play(true, 0.5f);
+        gameManager = new GameManager(coreGameFW, sceneWidth, sceneHeight);
+        ResourceGame.gameMusic.play(true, 0.5f);
     }
 
     @Override
@@ -46,7 +45,7 @@ public class GameScene extends SceneFW {
         if (gameState == GameState.PAUSE) {
             updateStatePause();
         }
-        if (gameState == GameState.GAMEOVER) {
+        if (gameState == GameState.GAME_STATE) {
             updateStateGameOver();
         }
     }
@@ -57,7 +56,7 @@ public class GameScene extends SceneFW {
          Метод рисования выполняется 60 раз в сек.
          Исходя из того в каком состоянии находится игра будет запускаться нужный метод для отрисовки.
         */
-        graphicsFW.clearScene(Color.BLACK);
+        graphicsGameFW.clearScene(Color.BLACK);
 
         if (gameState == GameState.READY) {
             drawingStateReady();
@@ -68,35 +67,35 @@ public class GameScene extends SceneFW {
         if (gameState == GameState.PAUSE) {
             drawingStatePause();
         }
-        if (gameState == GameState.GAMEOVER) {
+        if (gameState == GameState.GAME_STATE) {
             drawingStateGameOver();
         }
     }
 
     @Override
     public void pause() {
-        UtilResource.gameMusic.stop();
+        ResourceGame.gameMusic.stop();
     }
 
     @Override
     public void resume() {
-        UtilResource.gameMusic.play(true, 0.5f);
+        ResourceGame.gameMusic.play(true, 0.5f);
     }
 
     @Override
     public void dispose() {
-        UtilResource.explode.dispose();
-        UtilResource.hit.dispose();
-        UtilResource.touch.dispose();
-        UtilResource.gameMusic.dispose();
+        ResourceGame.explode.dispose();
+        ResourceGame.hit.dispose();
+        ResourceGame.touch.dispose();
+        ResourceGame.gameMusic.dispose();
     }
 
     private void drawingStateGameOver() {
-        graphicsFW.clearScene(Color.BLACK);
-        graphicsFW.drawText(coreFW.getString(R.string.txt_gameScene_stateGameOver_gameOver), 250, 300, Color.WHITE, 60, null);
-        graphicsFW.drawText(coreFW.getString(R.string.txt_gameScene_stateGameOver_restart), 250, 360, Color.WHITE, 30, null);
-        graphicsFW.drawText(coreFW.getString(R.string.txt_gameScene_stateGameOver_exit), 250, 420, Color.WHITE, 30, null);
-        graphicsFW.drawText(coreFW.getString(R.string.txt_gameScene_stateGameOver_distance) + " : " + gameManager.getPassedDistance(), 250, 200, Color.WHITE, 30, null);
+        graphicsGameFW.clearScene(Color.BLACK);
+        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_gameScene_stateGameOver_gameOver), 250, 300, Color.WHITE, 60, null);
+        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_gameScene_stateGameOver_restart), 250, 360, Color.WHITE, 30, null);
+        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_gameScene_stateGameOver_exit), 250, 420, Color.WHITE, 30, null);
+        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_gameScene_stateGameOver_distance) + " : " + gameManager.getPassedDistance(), 250, 200, Color.WHITE, 30, null);
     }
 
     private void updateStateGameOver() {
@@ -104,11 +103,11 @@ public class GameScene extends SceneFW {
         Когда игра в сцене конца игры ставим слушатель на нажатие на экран, и дальше по нажатию смотрим что выбрал пользователь
     */
         SettingsGame.addDistance(gameManager.getPassedDistance());
-        if (coreFW.getTouchListeneerFW().getTouchUp(250, 360, 200, 35)) {
-            coreFW.setSceneFW(new GameScene(coreFW));
+        if (coreGameFW.getTouchListenerFW().getTouchUp(250, 360, 200, 35)) {
+            coreGameFW.setSceneFW(new GameSceneGame(coreGameFW));
         }
-        if (coreFW.getTouchListeneerFW().getTouchUp(250, 420, 200, 35)) {
-            coreFW.setSceneFW(new MainManuScene(coreFW));
+        if (coreGameFW.getTouchListenerFW().getTouchUp(250, 420, 200, 35)) {
+            coreGameFW.setSceneFW(new MainManuSceneGame(coreGameFW));
         }
     }
 
@@ -121,21 +120,20 @@ public class GameScene extends SceneFW {
     }
 
     private void drawingStateRunning() {
-        graphicsFW.clearScene(Color.BLACK);
-        //graphicsFW.drawText("Сцена игры", 250, 300, Color.WHITE, 60, null);
-        gameManager.drawing(coreFW, graphicsFW);
+        graphicsGameFW.clearScene(Color.BLACK);
+        gameManager.drawing(graphicsGameFW);
     }
 
     private void updateStateRunning() {
         gameManager.update();
         if (GameManager.gameOver) {
-            gameState = GameState.GAMEOVER;
+            gameState = GameState.GAME_STATE;
         }
     }
 
     private void drawingStateReady() {
-        graphicsFW.clearScene(Color.GREEN);
-        graphicsFW.drawText(coreFW.getString(R.string.txt_gameScene_stateReady_ready), 250, 300, Color.WHITE, 60, null);
+        graphicsGameFW.clearScene(Color.GREEN);
+        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_gameScene_stateReady_ready), 250, 300, Color.WHITE, 60, null);
     }
 
     private void updateStateReady() {
@@ -144,7 +142,7 @@ public class GameScene extends SceneFW {
          этого и указываем в границах слушателя нажатий весь экран а не конкретную область.
          и если подтверждение было переводим игру в следущее состояние.
         */
-        if (coreFW.getTouchListeneerFW().getTouchUp(0, sceneHeight, sceneWidth, sceneHeight)) {
+        if (coreGameFW.getTouchListenerFW().getTouchUp(0, sceneHeight, sceneWidth, sceneHeight)) {
             gameState = GameState.RUNNING;
         }
     }

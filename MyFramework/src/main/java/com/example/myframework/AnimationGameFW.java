@@ -8,19 +8,23 @@ import android.graphics.Bitmap;
     Изначально вся анимация будет начинаться с первого спрайта.
     frames = 4; - кол кадров.
  */
-public class AnimationFW {
-    double speedAnimation;
-    int delayIndex;
-    int countFrames;
-    int frames;
+public class AnimationGameFW {
+    private double speedAnimation;
+    private int delayIndex;
+    private int countFrames;
+    private int frames;
 
-    Bitmap sprite;
-    Bitmap sprite1;
-    Bitmap sprite2;
-    Bitmap sprite3;
-    Bitmap sprite4;
+    private Bitmap sprite;
+    private Bitmap sprite1;
+    private Bitmap sprite2;
+    private Bitmap sprite3;
+    private Bitmap sprite4;
 
-    public AnimationFW(double speedAnimation, Bitmap sprite1, Bitmap sprite2, Bitmap sprite3, Bitmap sprite4) {
+    public AnimationGameFW(double speedAnimation, Bitmap sprite1, Bitmap sprite2, Bitmap sprite3, Bitmap sprite4) {
+        init(speedAnimation, sprite1, sprite2, sprite3, sprite4);
+    }
+
+    private void init(double speedAnimation, Bitmap sprite1, Bitmap sprite2, Bitmap sprite3, Bitmap sprite4) {
         sprite = sprite1;
         this.sprite1 = sprite1;
         this.sprite2 = sprite2;
@@ -60,8 +64,8 @@ public class AnimationFW {
         }
     }
 
-    public void drawingAnimation(GraphicsFW graphicsFW, int x, int y) {
-        graphicsFW.drawTexture(sprite, x, y);
+    public void drawingAnimation(GraphicsGameFW graphicsGameFW, int x, int y) {
+        graphicsGameFW.drawTexture(sprite, x, y);
     }
 
 }

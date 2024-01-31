@@ -8,12 +8,12 @@ import java.io.IOException;
 /*
     класс для работы с музыкой
  */
-public class MusicFW implements MediaPlayer.OnCompletionListener {
+public class MusicGameFW implements MediaPlayer.OnCompletionListener {
 
-    MediaPlayer mediaPlayer;
-    boolean isPrepared = false;
+    private MediaPlayer mediaPlayer;
+    private boolean isPrepared;
 
-    public MusicFW(AssetFileDescriptor assetFileDescriptor) {
+    public MusicGameFW(AssetFileDescriptor assetFileDescriptor) {
         mediaPlayer = new MediaPlayer();
         try {
             mediaPlayer.setDataSource(assetFileDescriptor.getFileDescriptor(), assetFileDescriptor.getStartOffset(), assetFileDescriptor.getLength());
