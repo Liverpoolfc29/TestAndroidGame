@@ -12,7 +12,7 @@ import java.io.InputStream;
 /*
     пояснения как масштабировать приложение под разные размеры экрана в уроке 14.
  */
-public class GraphicsFW {
+public class GraphicsGameFW {
 
     // для работы с файлами
     private AssetManager assetManagerGame;
@@ -23,7 +23,7 @@ public class GraphicsFW {
     // для работы с графикой
     private Paint paintGame;
 
-    public GraphicsFW(AssetManager assetManagerGame, Bitmap frameBufferGame) {
+    public GraphicsGameFW(AssetManager assetManagerGame, Bitmap frameBufferGame) {
         init(assetManagerGame, frameBufferGame);
     }
 

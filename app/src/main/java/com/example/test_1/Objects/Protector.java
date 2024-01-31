@@ -2,9 +2,9 @@ package com.example.test_1.Objects;
 
 import android.graphics.Rect;
 
-import com.example.myframework.AnimationFW;
-import com.example.myframework.GraphicsFW;
-import com.example.myframework.ObjectFW;
+import com.example.myframework.AnimationGameFW;
+import com.example.myframework.GraphicsGameFW;
+import com.example.myframework.ObjectGameFW;
 import com.example.myframework.Utilits.UtilRandomFW;
 import com.example.test_1.Classes.GameManager;
 import com.example.test_1.Utillits.ResourceGame;
@@ -12,9 +12,9 @@ import com.example.test_1.Utillits.ResourceGame;
 /*
     Класс для отрисовки и генерации протектора на экране, пофвился прошел по траэктории и все
  */
-public class Protector extends ObjectFW {
+public class Protector extends ObjectGameFW {
 
-    private AnimationFW animProtector;
+    private AnimationGameFW animProtector;
 
     public Protector(int maxScreenX, int maxScreenY, int minScreenY) {
         init(maxScreenX, maxScreenY, minScreenY);
@@ -37,7 +37,7 @@ public class Protector extends ObjectFW {
         hitBox = new Rect(x, y,
                 ResourceGame.spriteProtector.get(0).getWidth(),
                 ResourceGame.spriteProtector.get(0).getHeight());
-        animProtector = new AnimationFW(GameManager.SPEED_ANIMATION,
+        animProtector = new AnimationGameFW(GameManager.SPEED_ANIMATION,
                 ResourceGame.spriteProtector.get(0),
                 ResourceGame.spriteProtector.get(1),
                 ResourceGame.spriteProtector.get(2),
@@ -57,7 +57,7 @@ public class Protector extends ObjectFW {
                 ResourceGame.spriteEnemy.get(0).getHeight());
     }
 
-    public void drawing(GraphicsFW graphicsFW) {
-        animProtector.drawingAnimation(graphicsFW, x, y);
+    public void drawing(GraphicsGameFW graphicsGameFW) {
+        animProtector.drawingAnimation(graphicsGameFW, x, y);
     }
 }

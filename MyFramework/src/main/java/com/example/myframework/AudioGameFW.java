@@ -10,11 +10,11 @@ import android.os.Build;
 
 import java.io.IOException;
 
-public class AudioFW {
+public class AudioGameFW {
     private final AssetManager assetManager;
     private SoundPool soundPool;
 
-    public AudioFW(Activity activity) {
+    public AudioGameFW(Activity activity) {
         /*
             C помощью этого метода можем напрямую обращаться к Активити и управлять громкостью
          */
@@ -43,16 +43,16 @@ public class AudioFW {
         }
     }
 
-    public MusicFW newMusic(String filename) {
+    public MusicGameFW newMusic(String filename) {
         try {
             AssetFileDescriptor assetFileDescriptor = assetManager.openFd(filename);
-            return new MusicFW(assetFileDescriptor);
+            return new MusicGameFW(assetFileDescriptor);
         } catch (IOException e) {
             throw new RuntimeException("Не возможно загрузить музыку" + e);
         }
     }
 
-    public SoundFW newSound(String fileName) {
+    public SoundGameFW newSound(String fileName) {
         /*
             Загружаем музыку
          */
@@ -63,7 +63,7 @@ public class AudioFW {
             e.printStackTrace();
         }
         int sound = soundPool.load(assetFileDescriptor, 0);
-        return new SoundFW(sound, soundPool);
+        return new SoundGameFW(sound, soundPool);
     }
 
 }

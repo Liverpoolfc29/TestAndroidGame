@@ -2,15 +2,15 @@ package com.example.test_1.Objects;
 
 import android.graphics.Rect;
 
-import com.example.myframework.AnimationFW;
-import com.example.myframework.GraphicsFW;
-import com.example.myframework.ObjectFW;
+import com.example.myframework.AnimationGameFW;
+import com.example.myframework.GraphicsGameFW;
+import com.example.myframework.ObjectGameFW;
 import com.example.myframework.Utilits.UtilRandomFW;
 import com.example.test_1.Utillits.ResourceGame;
 
-public class Enemy extends ObjectFW {
+public class Enemy extends ObjectGameFW {
 
-    private AnimationFW animEnemy;
+    private AnimationGameFW animEnemy;
 
     public Enemy(int maxScreenX, int maxScreenY, int minScreenY, int enemyType) {
         init(maxScreenX, maxScreenY, minScreenY);
@@ -21,7 +21,7 @@ public class Enemy extends ObjectFW {
         switch (enemyType) {
             case 1:
                 speed = UtilRandomFW.getGap(1, 6);
-                animEnemy = new AnimationFW(3,
+                animEnemy = new AnimationGameFW(3,
                         ResourceGame.spriteEnemy.get(0),
                         ResourceGame.spriteEnemy.get(1),
                         ResourceGame.spriteEnemy.get(2),
@@ -62,8 +62,8 @@ public class Enemy extends ObjectFW {
                 ResourceGame.spriteEnemy.get(0).getHeight());
     }
 
-    public void drawing(GraphicsFW graphicsFW) {
-        animEnemy.drawingAnimation(graphicsFW, x, y);
+    public void drawing(GraphicsGameFW graphicsGameFW) {
+        animEnemy.drawingAnimation(graphicsGameFW, x, y);
     }
 
 }

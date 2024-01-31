@@ -1,8 +1,8 @@
 package com.example.test_1.Classes;
 
-import com.example.myframework.CollisionDetect;
-import com.example.myframework.CoreFW;
-import com.example.myframework.GraphicsFW;
+import com.example.myframework.Utilits.CollisionDetect;
+import com.example.myframework.CoreGameFW;
+import com.example.myframework.GraphicsGameFW;
 import com.example.test_1.Generators.GeneratorBackground;
 import com.example.test_1.Generators.GeneratorEnemy;
 import com.example.test_1.Generators.GeneratorGifts;
@@ -30,16 +30,16 @@ public class GameManager {
     private MainPlayer mainPlayer;
     private HUD hud;
 
-    public GameManager(CoreFW coreFW, int sceneWidth, int sceneHeight) {
-        init(coreFW, sceneWidth,sceneHeight);
+    public GameManager(CoreGameFW coreGameFW, int sceneWidth, int sceneHeight) {
+        init(coreGameFW, sceneWidth,sceneHeight);
     }
 
-    private void init(CoreFW coreFW, int sceneWidth, int sceneHeight) {
-        hud = new HUD(coreFW);
+    private void init(CoreGameFW coreGameFW, int sceneWidth, int sceneHeight) {
+        hud = new HUD(coreGameFW);
         this.maxScreenX = sceneWidth;
         this.maxScreenY = sceneHeight;
         minScreenY = hud.getHEIGHT_HUD();
-        mainPlayer = new MainPlayer(coreFW, maxScreenX, maxScreenY, minScreenY);
+        mainPlayer = new MainPlayer(coreGameFW, maxScreenX, maxScreenY, minScreenY);
         generatorBackground = new GeneratorBackground(sceneWidth, sceneHeight, minScreenY);
         generatorEnemy = new GeneratorEnemy(sceneWidth, sceneHeight, minScreenY);
         generatorGifts = new GeneratorGifts(sceneWidth, sceneHeight, minScreenY);
@@ -84,12 +84,12 @@ public class GameManager {
         generatorGifts.hitProtectorWithPlayer();
     }
 
-    public void drawing(GraphicsFW graphicsFW) {
-        mainPlayer.drawing(graphicsFW);
-        generatorBackground.drawingStar(graphicsFW);
-        generatorEnemy.drawing(graphicsFW);
-        hud.drawing(graphicsFW);
-        generatorGifts.drawing(graphicsFW);
+    public void drawing(GraphicsGameFW graphicsGameFW) {
+        mainPlayer.drawing(graphicsGameFW);
+        generatorBackground.drawingStar(graphicsGameFW);
+        generatorEnemy.drawing(graphicsGameFW);
+        hud.drawing(graphicsGameFW);
+        generatorGifts.drawing(graphicsGameFW);
     }
 
     public int getPassedDistance() {

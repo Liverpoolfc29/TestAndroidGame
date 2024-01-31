@@ -1,9 +1,9 @@
 package com.example.test_1.Objects;
 
-import com.example.myframework.ObjectFW;
+import com.example.myframework.ObjectGameFW;
 import com.example.myframework.Utilits.UtilRandomFW;
 
-public class Star extends ObjectFW {
+public class Star extends ObjectGameFW {
 
     public Star(int sceneWidth, int sceneHeight, int minScreenY) {
         init(sceneWidth, sceneHeight, minScreenY);

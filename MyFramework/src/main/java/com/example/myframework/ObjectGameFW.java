@@ -2,7 +2,7 @@ package com.example.myframework;
 
 import android.graphics.Rect;
 
-public abstract class ObjectFW {
+public abstract class ObjectGameFW {
 
     /**
      * обьекты должны знать:

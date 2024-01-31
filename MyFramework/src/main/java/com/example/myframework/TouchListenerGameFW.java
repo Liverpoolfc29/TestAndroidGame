@@ -5,7 +5,7 @@ import android.view.View;
 /*
     пояснения как масштабировать приложение под разные размеры экрана в уроке 14.
  */
-public class TouchListenerFW implements View.OnTouchListener {
+public class TouchListenerGameFW implements View.OnTouchListener {
 
     private float touchX;
     private float touchY;
@@ -16,7 +16,7 @@ public class TouchListenerFW implements View.OnTouchListener {
     private float sceneWidth;
     private float sceneHeight;
 
-    public TouchListenerFW(View view, float sceneWidth, float sceneHeight) {
+    public TouchListenerGameFW(View view, float sceneWidth, float sceneHeight) {
         /*
         подключаем слушатель события у нашему view.
          */

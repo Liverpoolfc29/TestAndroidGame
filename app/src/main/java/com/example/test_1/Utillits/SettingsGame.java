@@ -2,7 +2,7 @@ package com.example.test_1.Utillits;
 
 import android.content.SharedPreferences;
 
-import com.example.myframework.CoreFW;
+import com.example.myframework.CoreGameFW;
 
 /*
     класс где будем хранит результаты
@@ -10,8 +10,8 @@ import com.example.myframework.CoreFW;
 public class SettingsGame {
     private static int[] distance = {9999, 5555, 4444, 3333, 1111};
 
-    public static void saveSettings(CoreFW coreFW) {
-        SharedPreferences.Editor editor = coreFW.getSharedPreferences().edit();
+    public static void saveSettings(CoreGameFW coreGameFW) {
+        SharedPreferences.Editor editor = coreGameFW.getSharedPreferences().edit();
         editor.clear();
         for (int i = 0; i < 5; i++) {
             editor.putInt("passedDistance" + i, distance[i]);
@@ -19,9 +19,9 @@ public class SettingsGame {
         editor.apply();
     }
 
-    public static void loadSettings(CoreFW coreFW) {
+    public static void loadSettings(CoreGameFW coreGameFW) {
         for (int i = 0; i < 5; i++) {
-            distance[i] = coreFW.getSharedPreferences().getInt("passedDistance" + i, distance[i]);
+            distance[i] = coreGameFW.getSharedPreferences().getInt("passedDistance" + i, distance[i]);
         }
     }
 

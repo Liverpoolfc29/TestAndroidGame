@@ -1,6 +1,6 @@
 package com.example.test_1.Generators;
 
-import com.example.myframework.GraphicsFW;
+import com.example.myframework.GraphicsGameFW;
 import com.example.myframework.Utilits.UtilTimerDelay;
 import com.example.test_1.Objects.MainPlayer;
 import com.example.test_1.Objects.Protector;
@@ -41,8 +41,8 @@ public class GeneratorGifts {
         }
     }
 
-    public void drawing(GraphicsFW graphicsFW) {
-        protector.drawing(graphicsFW);
+    public void drawing(GraphicsGameFW graphicsGameFW) {
+        protector.drawing(graphicsGameFW);
     }
 
     public Protector getProtector() {

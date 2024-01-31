@@ -2,33 +2,33 @@ package com.example.test_1.Objects;
 
 import android.graphics.Rect;
 
-import com.example.myframework.CoreFW;
-import com.example.myframework.GraphicsFW;
-import com.example.myframework.ObjectFW;
+import com.example.myframework.CoreGameFW;
+import com.example.myframework.GraphicsGameFW;
+import com.example.myframework.ObjectGameFW;
 import com.example.myframework.Utilits.UtilTimerDelay;
 import com.example.test_1.Classes.GameManager;
 import com.example.test_1.Utillits.ResourceGame;
-import com.example.myframework.AnimationFW;
+import com.example.myframework.AnimationGameFW;
 
 /*
     Каждый обьект и наш игрок должен знать габариты экрана (максимальную высоту и ширину) что бы не вылетать за его пределы.
  */
-public class MainPlayer extends ObjectFW {
+public class MainPlayer extends ObjectGameFW {
     private final int GRAVITY = -4;
     private final int MAX_SPEED = 15;
     private final int MIN_SPEED = 1;
-    private CoreFW coreFW;
+    private CoreGameFW coreGameFW;
     /*
         для анимации игрока в обычном состоянии
      */
-    private AnimationFW animMainPlayer;
+    private AnimationGameFW animMainPlayer;
     /*
         для анимации игрока в режиме ускорения
      */
-    private AnimationFW animMainPlayerBoost;
-    private AnimationFW animExplosionPlayer;
-    private AnimationFW animPlayerShieldsOn;
-    private AnimationFW animPlayerShieldsOnBoost;
+    private AnimationGameFW animMainPlayerBoost;
+    private AnimationGameFW animExplosionPlayer;
+    private AnimationGameFW animPlayerShieldsOn;
+    private AnimationGameFW animPlayerShieldsOnBoost;
     private UtilTimerDelay timerOnShieldHit;
     private UtilTimerDelay timerOnGameOver;
     private UtilTimerDelay timerShieldsOn;
@@ -36,14 +36,14 @@ public class MainPlayer extends ObjectFW {
     private int shieldsPlayer;
     private boolean hitEnemy;
     private boolean isGameOver;
-    protected static boolean shieldsOn;
+    private static boolean shieldsOn;
 
-    public MainPlayer(CoreFW coreFW, int maxScreenX, int maxScreenY, int minScreenY) {
-        init(coreFW, maxScreenX, maxScreenY, minScreenY);
+    public MainPlayer(CoreGameFW coreGameFW, int maxScreenX, int maxScreenY, int minScreenY) {
+        init(coreGameFW, maxScreenX, maxScreenY, minScreenY);
         initAnimation();
     }
 
-    private void init(CoreFW coreFW, int maxScreenX, int maxScreenY, int minScreenY) {
+    private void init(CoreGameFW coreGameFW, int maxScreenX, int maxScreenY, int minScreenY) {
         shieldsOn = false;
         /*
             обозначим место появления и начальную скорость.
@@ -63,7 +63,7 @@ public class MainPlayer extends ObjectFW {
         timerOnShieldHit = new UtilTimerDelay();
         timerOnGameOver = new UtilTimerDelay();
         timerShieldsOn = new UtilTimerDelay();
-        this.coreFW = coreFW;
+        this.coreGameFW = coreGameFW;
         this.maxScreenX = maxScreenX;
         /*
             у картинки левый верхний угол точка отсчета поэтому нужно подрезать ораничение на размер картинкии (-64)
@@ -76,29 +76,29 @@ public class MainPlayer extends ObjectFW {
         /*
             загрузили 4 спрайта из нашего масива  картинок с анимацией игрока
          */
-        animMainPlayer = new AnimationFW(speed, ResourceGame.spritePlayer.get(0),
+        animMainPlayer = new AnimationGameFW(speed, ResourceGame.spritePlayer.get(0),
                 ResourceGame.spritePlayer.get(1),
                 ResourceGame.spritePlayer.get(2),
                 ResourceGame.spritePlayer.get(3));
         /*
             создаем новую анимацию для игрока в режиме ускорения (подгружаем другие картинки для этого)
         */
-        animMainPlayerBoost = new AnimationFW(speed, ResourceGame.spritePlayerBoost.get(0),
+        animMainPlayerBoost = new AnimationGameFW(speed, ResourceGame.spritePlayerBoost.get(0),
                 ResourceGame.spritePlayerBoost.get(1),
                 ResourceGame.spritePlayerBoost.get(2),
                 ResourceGame.spritePlayerBoost.get(3));
 
-        animExplosionPlayer = new AnimationFW(speed, ResourceGame.spriteExplosionPlayer.get(0),
+        animExplosionPlayer = new AnimationGameFW(speed, ResourceGame.spriteExplosionPlayer.get(0),
                 ResourceGame.spriteExplosionPlayer.get(1),
                 ResourceGame.spriteExplosionPlayer.get(2),
                 ResourceGame.spriteExplosionPlayer.get(3));
 
-        animPlayerShieldsOn = new AnimationFW(speed, ResourceGame.spritePlayerShieldsOn.get(0),
+        animPlayerShieldsOn = new AnimationGameFW(speed, ResourceGame.spritePlayerShieldsOn.get(0),
                 ResourceGame.spritePlayerShieldsOn.get(1),
                 ResourceGame.spritePlayerShieldsOn.get(2),
                 ResourceGame.spritePlayerShieldsOn.get(3));
 
-        animPlayerShieldsOnBoost = new AnimationFW(speed, ResourceGame.spritePlayerShieldsOnBoost.get(0),
+        animPlayerShieldsOnBoost = new AnimationGameFW(speed, ResourceGame.spritePlayerShieldsOnBoost.get(0),
                 ResourceGame.spritePlayerShieldsOnBoost.get(1),
                 ResourceGame.spritePlayerShieldsOnBoost.get(2),
                 ResourceGame.spritePlayerShieldsOnBoost.get(3));
@@ -108,10 +108,10 @@ public class MainPlayer extends ObjectFW {
         /*
             проверяем на нажатие. Если нажал на любую область экрана включаем буст, если отпустил выключаем. (в параметры метода передаем весь размер экрана)
          */
-        if (coreFW.getTouchListeneerFW().getTouchDown(0, maxScreenY, maxScreenX, maxScreenY)) {
+        if (coreGameFW.getTouchListenerFW().getTouchDown(0, maxScreenY, maxScreenX, maxScreenY)) {
             startBoosting();
         }
-        if (coreFW.getTouchListeneerFW().getTouchUp(0, maxScreenY, maxScreenX, maxScreenY)) {
+        if (coreGameFW.getTouchListenerFW().getTouchUp(0, maxScreenY, maxScreenX, maxScreenY)) {
             stopBoosting();
         }
         if (timerShieldsOn.timerDelay(5)) {
@@ -173,7 +173,7 @@ public class MainPlayer extends ObjectFW {
         boosting = true;
     }
 
-    public void drawing(GraphicsFW graphicsFW) {
+    public void drawing(GraphicsGameFW graphicsGameFW) {
         /*
             делаем переключение анимации и обычного игрока на игрока в ускорее с помощью бул переменной
          */
@@ -181,17 +181,17 @@ public class MainPlayer extends ObjectFW {
             if (!hitEnemy) {
                 if (boosting) {
                     if (shieldsOn) {
-                        animPlayerShieldsOnBoost.drawingAnimation(graphicsFW, x, y);
+                        animPlayerShieldsOnBoost.drawingAnimation(graphicsGameFW, x, y);
                     } else {
-                        animMainPlayerBoost.drawingAnimation(graphicsFW, x, y);
+                        animMainPlayerBoost.drawingAnimation(graphicsGameFW, x, y);
                     }
                 } else if (shieldsOn) {
-                    animPlayerShieldsOn.drawingAnimation(graphicsFW, x, y);
+                    animPlayerShieldsOn.drawingAnimation(graphicsGameFW, x, y);
                 } else {
-                    animMainPlayer.drawingAnimation(graphicsFW, x, y);
+                    animMainPlayer.drawingAnimation(graphicsGameFW, x, y);
                 }
             } else {
-                graphicsFW.drawTexture(ResourceGame.shieldHitEnemy, x, y);
+                graphicsGameFW.drawTexture(ResourceGame.shieldHitEnemy, x, y);
                 if (timerOnShieldHit.timerDelay(0.2)) {
                     hitEnemy = false;
                 } else {
@@ -199,7 +199,7 @@ public class MainPlayer extends ObjectFW {
                 }
             }
         } else {
-            animExplosionPlayer.drawingAnimation(graphicsFW, x, y);
+            animExplosionPlayer.drawingAnimation(graphicsGameFW, x, y);
             if (timerOnGameOver.timerDelay(0.5)) {
                 GameManager.gameOver = true;
             }

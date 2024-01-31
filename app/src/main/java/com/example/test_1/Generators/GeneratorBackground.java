@@ -2,7 +2,7 @@ package com.example.test_1.Generators;
 
 import android.graphics.Color;
 
-import com.example.myframework.GraphicsFW;
+import com.example.myframework.GraphicsGameFW;
 import com.example.test_1.Objects.Star;
 
 import java.util.ArrayList;
@@ -30,13 +30,13 @@ public class GeneratorBackground {
         }
     }
 
-    public void drawingStar(GraphicsFW graphicsFW) {
+    public void drawingStar(GraphicsGameFW graphicsGameFW) {
         /*
          отрисовываем звездочки, берем по одной и рисуем ее на той координате которая у нее была задана в момент ее создания,
          по высоте и ширине.
         */
         for (int i = 0; i < starArrayList.size(); i++) {
-            graphicsFW.drawPixel(starArrayList.get(i).getX(), starArrayList.get(i).getY(), Color.WHITE);
+            graphicsGameFW.drawPixel(starArrayList.get(i).getX(), starArrayList.get(i).getY(), Color.WHITE);
         }
     }
 

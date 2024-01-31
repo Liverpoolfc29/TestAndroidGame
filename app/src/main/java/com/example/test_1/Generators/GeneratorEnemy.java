@@ -1,6 +1,6 @@
 package com.example.test_1.Generators;
 
-import com.example.myframework.GraphicsFW;
+import com.example.myframework.GraphicsGameFW;
 import com.example.test_1.Objects.Enemy;
 
 import java.util.ArrayList;
@@ -39,9 +39,9 @@ public class GeneratorEnemy {
         }
     }
 
-    public void drawing(GraphicsFW graphicsFW) {
+    public void drawing(GraphicsGameFW graphicsGameFW) {
         for (int i = 0; i < enemyArrayList.size(); i++) {
-            enemyArrayList.get(i).drawing(graphicsFW);
+            enemyArrayList.get(i).drawing(graphicsGameFW);
         }
     }
 
