@@ -10,22 +10,22 @@ public abstract class SceneGameFW {
     // прием графики
     protected GraphicsGameFW graphicsGameFW;
 
-    public SceneGameFW(CoreGameFW coreGameFW) {
+    protected SceneGameFW(CoreGameFW coreGameFW) {
         this.coreGameFW = coreGameFW;
         sceneWidth = coreGameFW.getGraphicsFW().getWightFrameBuffer();
         sceneHeight = coreGameFW.getGraphicsFW().getHeightFrameBuffer();
         graphicsGameFW = coreGameFW.getGraphicsFW();
     }
 
-    public abstract void upDate();
+    protected abstract void upDate();
 
-    public abstract void drawing();
+    protected abstract void drawing();
 
-    public abstract void pause();
+    protected abstract void pause();
 
-    public abstract void resume();
+    protected abstract void resume();
 
-    public abstract void dispose();
+    protected abstract void dispose();
 
 
 }

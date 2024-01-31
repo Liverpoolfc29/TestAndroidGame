@@ -6,7 +6,6 @@ import android.view.View;
     пояснения как масштабировать приложение под разные размеры экрана в уроке 14.
  */
 public class TouchListenerGameFW implements View.OnTouchListener {
-
     private float touchX;
     private float touchY;
 
@@ -18,7 +17,7 @@ public class TouchListenerGameFW implements View.OnTouchListener {
 
     public TouchListenerGameFW(View view, float sceneWidth, float sceneHeight) {
         /*
-        подключаем слушатель события у нашему view.
+            подключаем слушатель события у нашему view.
          */
         view.setOnTouchListener(this);
         this.sceneWidth = sceneWidth;
@@ -28,7 +27,7 @@ public class TouchListenerGameFW implements View.OnTouchListener {
     @Override
     public boolean onTouch(View view, MotionEvent event) {
         /*
-        в этом методе есть масштабирование под размер любого экрана с помощью умножения на коэфициент. детально об этой сложной теме в уроке 14.
+            в этом методе есть масштабирование под размер любого экрана с помощью умножения на коэфициент. детально об этой сложной теме в уроке 14.
          принимает компонент view и событие, нам это событие надо обработать, нужно понять что за событие, отжал пользователь палец или наоборот нажал.
          И при этом надо понимать в каком месте
         */
@@ -36,7 +35,7 @@ public class TouchListenerGameFW implements View.OnTouchListener {
             isTouchDown = false;
             isTouchUp = false;
             /*
-             event.getAction() - возвращает именно событие по нажатию. И проверяем, если это событие было нажатие пользователем тогда записываем в каких координатах
+                event.getAction() - возвращает именно событие по нажатию. И проверяем, если это событие было нажатие пользователем тогда записываем в каких координатах
              пользователь нажал, и повторяем процесс на событие отжатия пальца.
             */
             switch (event.getAction()) {
@@ -59,12 +58,12 @@ public class TouchListenerGameFW implements View.OnTouchListener {
 
     public boolean getTouchUp(int x, int y, int touchWidth, int touchHeight) {
         /*
-         данный метод проверяет было ли нажатие в данной области. Принимает координату по иксу игрику и величину нашей области.
+            данный метод проверяет было ли нажатие в данной области. Принимает координату по иксу игрику и величину нашей области.
          */
         if (isTouchUp) {
             if (touchX >= x && touchX <= x + touchWidth - 1 && touchY <= y && touchY >= y - (touchHeight - 1)) {
                 /*
-                 если данное условие соблюдено, это значит что пользователь нажал именно на ту область которую мы переали как параметр в этот метод.
+                    если данное условие соблюдено, это значит что пользователь нажал именно на ту область которую мы переали как параметр в этот метод.
                  */
                 isTouchUp = false;
                 return true;
@@ -75,7 +74,7 @@ public class TouchListenerGameFW implements View.OnTouchListener {
 
     public boolean getTouchDown(int x, int y, int touchWidth, int touchHeight) {
         /*
-         такой же метод для нажатия
+            такой же метод для нажатия
          */
         if (isTouchDown) {
             if (touchX >= x && touchX <= x + touchWidth - 1 && touchY <= y && touchY >= y - (touchHeight - 1)) {
