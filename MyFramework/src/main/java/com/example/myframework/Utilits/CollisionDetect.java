@@ -3,15 +3,15 @@ package com.example.myframework.Utilits;
 import com.example.myframework.ObjectGameFW;
 
 public class CollisionDetect {
-    static double object1X;
-    static double object1Y;
-    static double object2X;
-    static double object2Y;
-    static double radiusObject1;
-    static double radiusObject2;
-    static double dx;
-    static double dy;
-    static double distanceObject;
+    private static double object1X;
+    private static double object1Y;
+    private static double object2X;
+    private static double object2Y;
+    private static double radiusObject1;
+    private static double radiusObject2;
+    private static double dx;
+    private static double dy;
+    private static double distanceObject;
 
     public static boolean collisionDetect(ObjectGameFW object1, ObjectGameFW object2) {
         /*
