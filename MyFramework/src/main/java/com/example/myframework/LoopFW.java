@@ -16,20 +16,19 @@ public class LoopFW extends SurfaceView implements Runnable {
 
     private boolean running = false;
 
-    Thread gameThread = null;
-
-    CoreFW coreFW;
-    Bitmap frameBuffer;
-    SurfaceHolder surfaceHolder;
+    private Thread gameThread = null;
+    private CoreFW coreFW;
+    private Bitmap frameBuffer;
+    private SurfaceHolder surfaceHolder;
     // то на чем будем рисовать
-    Canvas canvas;
+    private Canvas canvas;
     // покажет граници нашего конваса
-    Rect rect;
+    private Rect rect;
 
     // temp
-    float updates = 0;
-    float drawing = 0;
-    long timer = 0;
+    private float updates = 0;
+    private float drawing = 0;
+    private long timer = 0;
 
     public LoopFW(CoreFW coreFW, Bitmap frameBuffer) {
         super(coreFW);
@@ -42,12 +41,10 @@ public class LoopFW extends SurfaceView implements Runnable {
 
     @Override
     public void run() {
-
         float lastTime = System.nanoTime();
         float delta = 0;
 
         timer = System.currentTimeMillis();
-
 
         while (running) {
             float nowTime = System.nanoTime();
@@ -67,7 +64,6 @@ public class LoopFW extends SurfaceView implements Runnable {
                 timer += 1000;
             }
         }
-
     }
 
     private void updateGame() {
@@ -101,7 +97,6 @@ public class LoopFW extends SurfaceView implements Runnable {
 
 
     public void stopGame() {
-
         if (!running) {
             return;
         }

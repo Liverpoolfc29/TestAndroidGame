@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CoreFW extends AppCompatActivity {
     private LoopFW loopFW;
     private GraphicsFW graphicsFW;
-    private TouchListeneerFW touchListeneerFW;
+    private TouchListenerFW touchListenerFW;
     private AudioFW audioFW;
     private SceneFW sceneFW;
     /*
@@ -66,7 +66,7 @@ public class CoreFW extends AppCompatActivity {
          конструктор графики принимает АссертМенеджер (тот менеджер который мы передали с основного класса аппКомпактАктивити и фреймБуферГейм)
          */
         graphicsFW = new GraphicsFW(getAssets(), frameBuffer);
-        touchListeneerFW = new TouchListeneerFW(loopFW, sceneWidth, sceneHeight);
+        touchListenerFW = new TouchListenerFW(loopFW, sceneWidth, sceneHeight);
 
         sceneFW = getStartScene();
         setContentView(loopFW);
@@ -96,8 +96,8 @@ public class CoreFW extends AppCompatActivity {
         return graphicsFW;
     }
 
-    public TouchListeneerFW getTouchListeneerFW() {
-        return touchListeneerFW;
+    public TouchListenerFW getTouchListeneerFW() {
+        return touchListenerFW;
     }
 
     public void setSceneFW(SceneFW sceneFW) {
