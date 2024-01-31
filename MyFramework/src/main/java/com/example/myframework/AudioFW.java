@@ -20,14 +20,19 @@ public class AudioFW {
          */
         activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         assetManager = activity.getAssets();
-        versionSDK();
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_GAME)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+        soundPool = new SoundPool.Builder().setAudioAttributes(audioAttributes).build();
+        //versionSDK();
     }
 
     private void versionSDK() {
+        /*
+            версии кода для разные версий андроида
+         */
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            /*
-                версии кода для разные версий андроида
-             */
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_GAME)
                     .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
