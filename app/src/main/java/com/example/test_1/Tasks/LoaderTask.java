@@ -1,25 +1,84 @@
-package com.example.test_1.Classes;
+package com.example.test_1.Tasks;
+
+import android.os.AsyncTask;
 
 import com.example.myframework.CoreGameFW;
 import com.example.myframework.GraphicsGameFW;
+import com.example.test_1.Interfaces.TaskCompleteListener;
+import com.example.test_1.Scenes.LoaderResourceScene;
 import com.example.test_1.Utillits.ResourceGame;
 
 import java.util.ArrayList;
 
-/*
-    Как только игра запустится, запустится лоадер и подгрузить все необходимые ресурсы заранее оперативную память.
-    Класс загрузчик картинок итд. (подгружает все нужно заранее как только запустилась игра)
+/**
+ * После запуска лоадера запустится мэтот класс и его метод, и все что в методе.
  */
-public class LoaderAssets {
+public class LoaderTask extends AsyncTask<Void, Integer, Void> {
 
-    public LoaderAssets(CoreGameFW coreGameFW, GraphicsGameFW graphicsGameFW) {
-        loadTexture(graphicsGameFW);
-        loadSpritePlayer(graphicsGameFW);
-        loadSpriteEnemy(graphicsGameFW);
-        loadOther(graphicsGameFW);
-        loadAudio(coreGameFW);
-        loadSpritePlayerShieldsOn(graphicsGameFW);
-        loadGifts(graphicsGameFW);
+    private CoreGameFW mCoreGameFW;
+    private TaskCompleteListener mTaskCompleteListener;
+
+    public LoaderTask(CoreGameFW coreGameFW, TaskCompleteListener taskCompleteListener) {
+        mCoreGameFW = coreGameFW;
+        mTaskCompleteListener = taskCompleteListener;
+    }
+
+    @Override
+    protected Void doInBackground(Void... voids) {
+        /**
+         Когда запускается поток, запускается этот метод который в себе запускает уепочку методов загрузки ресурсов
+         (исходный класс лоадер ассерт который был раньше можно удалить его функцию будет исполнять этот)
+         */
+        loaderAssets();
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void unused) {
+        /**
+         * Данный метод выполняется тогда когда задача полностью выполнилась
+         * (как только doInBackground выполнится полностью выполняется сразу этот)
+         */
+        super.onPostExecute(unused);
+        mTaskCompleteListener.onComplete();
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        /**
+         * Данный метод имеет доступ к Юай потоку и может обращатся через него в наш основной поток
+         */
+        super.onProgressUpdate(values);
+        LoaderResourceScene.setProgressLoader(values[0]);
+    }
+
+    private void loaderAssets() {
+        loadTexture(mCoreGameFW.getGraphicsFW());
+        publishProgress(100);
+        loadSpritePlayer(mCoreGameFW.getGraphicsFW());
+        publishProgress(300);
+        try {
+            /**
+             * остановка для демонстрации
+             */
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        loadSpriteEnemy(mCoreGameFW.getGraphicsFW());
+        publishProgress(500);
+        loadOther(mCoreGameFW.getGraphicsFW());
+        publishProgress(600);
+        loadAudio(mCoreGameFW);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        loadSpritePlayerShieldsOn(mCoreGameFW.getGraphicsFW());
+        publishProgress(700);
+        loadGifts(mCoreGameFW.getGraphicsFW());
+        publishProgress(800);
     }
 
     private void loadGifts(GraphicsGameFW graphicsGameFW) {
@@ -100,5 +159,4 @@ public class LoaderAssets {
         ResourceGame.spriteExplosionPlayer.add(graphicsGameFW.newSprite(ResourceGame.textureAtlas, 384, 256, 64, 64));
         ResourceGame.spriteExplosionPlayer.add(graphicsGameFW.newSprite(ResourceGame.textureAtlas, 448, 256, 64, 64));
     }
-
 }
