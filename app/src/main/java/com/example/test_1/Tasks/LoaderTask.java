@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import com.example.myframework.CoreGameFW;
 import com.example.myframework.GraphicsGameFW;
 import com.example.test_1.Interfaces.TaskCompleteListener;
+import com.example.test_1.Scenes.LoaderResourceScene;
 import com.example.test_1.Utillits.ResourceGame;
 
 import java.util.ArrayList;
@@ -42,14 +43,42 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
         mTaskCompleteListener.onComplete();
     }
 
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        /**
+         * Данный метод имеет доступ к Юай потоку и может обращатся через него в наш основной поток
+         */
+        super.onProgressUpdate(values);
+        LoaderResourceScene.setProgressLoader(values[0]);
+    }
+
     private void loaderAssets() {
         loadTexture(mCoreGameFW.getGraphicsFW());
+        publishProgress(100);
         loadSpritePlayer(mCoreGameFW.getGraphicsFW());
+        publishProgress(300);
+        try {
+            /**
+             * остановка для демонстрации
+             */
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         loadSpriteEnemy(mCoreGameFW.getGraphicsFW());
+        publishProgress(500);
         loadOther(mCoreGameFW.getGraphicsFW());
+        publishProgress(600);
         loadAudio(mCoreGameFW);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         loadSpritePlayerShieldsOn(mCoreGameFW.getGraphicsFW());
+        publishProgress(700);
         loadGifts(mCoreGameFW.getGraphicsFW());
+        publishProgress(800);
     }
 
     private void loadGifts(GraphicsGameFW graphicsGameFW) {
