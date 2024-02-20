@@ -9,7 +9,7 @@ import com.example.test_1.R;
 import com.example.test_1.Utillits.SettingsGame;
 import com.example.test_1.Utillits.ResourceGame;
 
-public class GameSceneGame extends SceneGameFW {
+public class GameScene extends SceneGameFW {
     enum GameState {
         /*
             состояния игры (игра в режиме паузы, п процессе самой игры, подготовки и окончания игры.)
@@ -20,7 +20,7 @@ public class GameSceneGame extends SceneGameFW {
     private GameState gameState;
     private GameManager gameManager;
 
-    public GameSceneGame(CoreGameFW coreGameFW) {
+    public GameScene(CoreGameFW coreGameFW) {
         super(coreGameFW);
         /*
             при запуске игровой сцены будет запускаться режим подготовки с вопросом к игроку готов ли он начать игру.
@@ -104,7 +104,7 @@ public class GameSceneGame extends SceneGameFW {
     */
         SettingsGame.addDistance(gameManager.getPassedDistance());
         if (coreGameFW.getTouchListenerFW().getTouchUp(250, 360, 200, 35)) {
-            coreGameFW.setSceneFW(new GameSceneGame(coreGameFW));
+            coreGameFW.setSceneFW(new GameScene(coreGameFW));
         }
         if (coreGameFW.getTouchListenerFW().getTouchUp(250, 420, 200, 35)) {
             coreGameFW.setSceneFW(new MainManuSceneGame(coreGameFW));

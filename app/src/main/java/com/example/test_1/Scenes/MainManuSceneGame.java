@@ -22,11 +22,16 @@ public class MainManuSceneGame extends SceneGameFW {
         */
         if (coreGameFW.getTouchListenerFW().getTouchUp(20, 300, 100, 50)) {
             ResourceGame.touch.play(2); // запускам звук при нажатии
-            coreGameFW.setSceneFW(new GameSceneGame(coreGameFW));
+            coreGameFW.setSceneFW(new GameScene(coreGameFW));
         }
         if (coreGameFW.getTouchListenerFW().getTouchUp(20, 400, 100, 50)) {
             ResourceGame.touch.play(2);
             coreGameFW.setSceneFW(new TopDistanceSceneGame(coreGameFW));
+        }
+
+        if (coreGameFW.getTouchListenerFW().getTouchUp(20, 350, 100, 50)) {
+            ResourceGame.touch.play(2);
+            coreGameFW.setSceneFW(new SettingsScene(coreGameFW));
         }
 
     }
