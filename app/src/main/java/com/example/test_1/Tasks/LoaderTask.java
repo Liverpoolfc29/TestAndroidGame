@@ -7,6 +7,7 @@ import com.example.myframework.GraphicsGameFW;
 import com.example.test_1.Interfaces.TaskCompleteListener;
 import com.example.test_1.Scenes.LoaderResourceScene;
 import com.example.test_1.Utillits.ResourceGame;
+import com.example.test_1.Utillits.SettingsGame;
 
 import java.util.ArrayList;
 
@@ -90,8 +91,8 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
     }
 
     private void loadSpritePlayerShieldsOn(GraphicsGameFW graphicsGameFW) {
-        /*
-            спрайты для включенной защиты
+        /**
+         спрайты для включенной защиты
          */
         ResourceGame.spritePlayerShieldsOn = new ArrayList<>();
         ResourceGame.spritePlayerShieldsOnBoost = new ArrayList<>();
@@ -115,11 +116,12 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
 
     private void loadOther(GraphicsGameFW graphicsGameFW) {
         ResourceGame.shieldHitEnemy = graphicsGameFW.newSprite(ResourceGame.textureAtlas, 0, 128, 64, 64);
+        SettingsGame.loadSettings(mCoreGameFW); // подгружаем настройки
     }
 
     private void loadSpriteEnemy(GraphicsGameFW graphicsGameFW) {
-        /*
-        Загружаем картинки для противника
+        /**
+         Загружаем картинки для противника
          */
         ResourceGame.spriteEnemy = new ArrayList<>();
         ResourceGame.spriteEnemy.add(graphicsGameFW.newSprite(ResourceGame.textureAtlas, 256, 0, 64, 64));
@@ -129,15 +131,15 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
     }
 
     private void loadTexture(GraphicsGameFW graphicsGameFW) {
-        /*
-            подгружаем файл из папки assert (атлас картинок).
+        /**
+         подгружаем файл из папки assert (атлас картинок).
          */
         ResourceGame.textureAtlas = graphicsGameFW.newTexture("texture_atlas.png");
     }
 
     private void loadSpritePlayer(GraphicsGameFW graphicsGameFW) {
-        /*
-        Нужно передавать координаты картинок из картинки(как бь вырезать их по размерам, размерами будут количество пикселей), начинаем с верхнего ула картинки координати 0.0
+        /**
+         Нужно передавать координаты картинок из картинки(как бь вырезать их по размерам, размерами будут количество пикселей), начинаем с верхнего ула картинки координати 0.0
          и идем вправо на 64 пиксела, такого размера рисуночек первый, и так далее. Таким образом вырезаем и добавляем в масив нужные нам картиночки из общей файла картинки.
          */
         ResourceGame.spritePlayer = new ArrayList<>();
