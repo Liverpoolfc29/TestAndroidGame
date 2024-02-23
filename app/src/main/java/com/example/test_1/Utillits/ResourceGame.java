@@ -1,6 +1,7 @@
 package com.example.test_1.Utillits;
 
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 
 import com.example.myframework.MusicGameFW;
 import com.example.myframework.SoundGameFW;
@@ -22,5 +23,7 @@ public class ResourceGame {
     public static SoundGameFW hit;
     public static SoundGameFW explode;
     public static SoundGameFW touch;
+    public static Typeface mainMenuFount;
+    public static Typeface mainMenuFount_1;
 
 }

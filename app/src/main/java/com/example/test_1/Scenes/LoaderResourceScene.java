@@ -7,6 +7,7 @@ import com.example.myframework.SceneGameFW;
 import com.example.test_1.Interfaces.TaskCompleteListener;
 import com.example.test_1.R;
 import com.example.test_1.Tasks.LoaderTask;
+import com.example.test_1.Utillits.ResourceGame;
 
 public class LoaderResourceScene extends SceneGameFW implements TaskCompleteListener {
 
@@ -27,7 +28,7 @@ public class LoaderResourceScene extends SceneGameFW implements TaskCompleteList
     @Override
     protected void drawing() {
         coreGameFW.getGraphicsFW().clearScene(Color.BLACK);
-        coreGameFW.getGraphicsFW().drawText(coreGameFW.getString(R.string.loading), 100, 100, Color.GREEN, 100, null);
+        coreGameFW.getGraphicsFW().drawText(coreGameFW.getString(R.string.loading), 100, 100, Color.GREEN, 100, ResourceGame.mainMenuFount);
         coreGameFW.getGraphicsFW().drawLine(0, 500, mProgressLoader, 500, Color.YELLOW);
     }
 
@@ -48,7 +49,7 @@ public class LoaderResourceScene extends SceneGameFW implements TaskCompleteList
 
     @Override
     public void onComplete() {
-        coreGameFW.setSceneFW(new MainManuSceneGame(coreGameFW));
+        coreGameFW.setSceneFW(new MainManuScene(coreGameFW));
     }
 
     public static int getProgressLoader() {

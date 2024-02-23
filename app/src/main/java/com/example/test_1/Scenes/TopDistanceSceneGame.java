@@ -24,7 +24,7 @@ public class TopDistanceSceneGame extends SceneGameFW {
             вешаем слушатель на нажатие, если нажмет на экран значит выходим из сцены
          */
         if (coreGameFW.getTouchListenerFW().getTouchUp(0, sceneHeight, sceneWidth, sceneHeight)) {
-            coreGameFW.setSceneFW(new MainManuSceneGame(coreGameFW));
+            coreGameFW.setSceneFW(new MainManuScene(coreGameFW));
         }
     }
 

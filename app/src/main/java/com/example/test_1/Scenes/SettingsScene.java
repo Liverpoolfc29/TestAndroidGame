@@ -16,7 +16,7 @@ public class SettingsScene extends SceneGameFW {
     protected void upDate() {
         if (coreGameFW.getIsPressedKeyBack()) {
             coreGameFW.setIsPressedKeyBack(false);
-            coreGameFW.setSceneFW(new MainManuSceneGame(coreGameFW));
+            coreGameFW.setSceneFW(new MainManuScene(coreGameFW));
         }
 
         if (coreGameFW.getTouchListenerFW().getTouchUp(450, 300 - 10, 80, 50)) {
