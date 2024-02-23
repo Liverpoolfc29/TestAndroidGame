@@ -48,7 +48,7 @@ public class LoaderResourceScene extends SceneGameFW implements TaskCompleteList
 
     @Override
     public void onComplete() {
-        coreGameFW.setSceneFW(new MainManuSceneGame(coreGameFW));
+        coreGameFW.setSceneFW(new MainManuScene(coreGameFW));
     }
 
     public static int getProgressLoader() {

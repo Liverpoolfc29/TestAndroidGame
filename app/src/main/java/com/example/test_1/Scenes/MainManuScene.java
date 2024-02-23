@@ -7,9 +7,9 @@ import com.example.myframework.SceneGameFW;
 import com.example.test_1.R;
 import com.example.test_1.Utillits.ResourceGame;
 
-public class MainManuSceneGame extends SceneGameFW {
+public class MainManuScene extends SceneGameFW {
 
-    public MainManuSceneGame(CoreGameFW coreGameFW) {
+    public MainManuScene(CoreGameFW coreGameFW) {
         super(coreGameFW);
     }
 

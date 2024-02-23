@@ -115,7 +115,7 @@ public class GameScene extends SceneGameFW {
             coreGameFW.setSceneFW(new GameScene(coreGameFW));
         }
         if (coreGameFW.getTouchListenerFW().getTouchUp(250, 420, 200, 35)) {
-            coreGameFW.setSceneFW(new MainManuSceneGame(coreGameFW));
+            coreGameFW.setSceneFW(new MainManuScene(coreGameFW));
         }
     }
 
