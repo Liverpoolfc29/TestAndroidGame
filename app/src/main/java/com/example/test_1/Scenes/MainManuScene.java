@@ -15,7 +15,7 @@ public class MainManuScene extends SceneGameFW {
 
     @Override
     public void upDate() {
-        /*
+        /**
          апдейтится 60 раз в секунду. На каждой итерации апдейта нужно проверять было ли нажатие на экран по таким то координатам.
          Для этого мы передаем координаты нашей надписи на экране и проверем если было нажатие, если было нажатие (нова игра), задаем новую сцену, и в передаем
          туда сцену создавая новую сцену и передавая туда наше ядро.
@@ -24,6 +24,7 @@ public class MainManuScene extends SceneGameFW {
             ResourceGame.touch.play(2); // запускам звук при нажатии
             coreGameFW.setSceneFW(new GameScene(coreGameFW));
         }
+
         if (coreGameFW.getTouchListenerFW().getTouchUp(20, 400, 100, 50)) {
             ResourceGame.touch.play(2);
             coreGameFW.setSceneFW(new TopDistanceSceneGame(coreGameFW));
@@ -34,21 +35,26 @@ public class MainManuScene extends SceneGameFW {
             coreGameFW.setSceneFW(new SettingsScene(coreGameFW));
         }
 
+        if (coreGameFW.getTouchListenerFW().getTouchUp(20, 450, 100, 50)) {
+            ResourceGame.touch.play(2);
+            coreGameFW.setSceneFW(new ExitScene(coreGameFW));
+        }
+
     }
 
     @Override
     public void drawing() {
         graphicsGameFW.clearScene(Color.BLACK);
-        /*
+        /**
          обращаемся к нашему файлу strings.xml. Каждая сцена работает с ядром и общараясь к ядру должны видеть их.
          B данном месте не важно какой размер экрана, мы все ресуем на фреймбуфер который всегда у нас размером 800 на 600.
          На каждой итерации Лупа фрейм буфер будет менятся и по идее масштабировать под экран смартфона на котором запущено приложение.
         */
-        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_mainManu_nameGame), 100, 100, Color.BLUE, 60, null);
-        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_mainManu_newGame), 20, 300, Color.BLUE, 40, null);
-        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_mainManu_settings), 20, 350, Color.BLUE, 40, null);
-        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_mainManu_results), 20, 400, Color.BLUE, 40, null);
-        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_mainManu_exitGame), 20, 450, Color.BLUE, 40, null);
+        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_mainManu_nameGame), 100, 100, Color.YELLOW, 60, ResourceGame.mainMenuFount_1);
+        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_mainManu_newGame), 20, 300, Color.BLUE, 40, ResourceGame.mainMenuFount);
+        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_mainManu_settings), 20, 350, Color.BLUE, 40, ResourceGame.mainMenuFount);
+        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_mainManu_results), 20, 400, Color.BLUE, 40, ResourceGame.mainMenuFount);
+        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_mainManu_exitGame), 20, 450, Color.BLUE, 40, ResourceGame.mainMenuFount);
     }
 
     @Override

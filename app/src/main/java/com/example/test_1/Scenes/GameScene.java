@@ -100,10 +100,10 @@ public class GameScene extends SceneGameFW {
 
     private void drawingStateGameOver() {
         graphicsGameFW.clearScene(Color.BLACK);
-        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_gameScene_stateGameOver_gameOver), 250, 300, Color.WHITE, 60, null);
-        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_gameScene_stateGameOver_restart), 250, 360, Color.WHITE, 30, null);
-        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_gameScene_stateGameOver_exit), 250, 420, Color.WHITE, 30, null);
-        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_gameScene_stateGameOver_distance) + " : " + gameManager.getPassedDistance(), 250, 200, Color.WHITE, 30, null);
+        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_gameScene_stateGameOver_gameOver), 250, 300, Color.WHITE, 60, ResourceGame.mainMenuFount_1);
+        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_gameScene_stateGameOver_restart), 250, 360, Color.WHITE, 30, ResourceGame.mainMenuFount_1);
+        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_gameScene_stateGameOver_exit), 250, 420, Color.WHITE, 30, ResourceGame.mainMenuFount_1);
+        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_gameScene_stateGameOver_distance) + " : " + gameManager.getPassedDistance(), 250, 200, Color.WHITE, 30, ResourceGame.mainMenuFount_1);
     }
 
     private void updateStateGameOver() {
@@ -120,7 +120,7 @@ public class GameScene extends SceneGameFW {
     }
 
     private void drawingStatePause() {
-        coreGameFW.getGraphicsFW().drawText("Pause", 200, 300, Color.YELLOW, 50, null);
+        coreGameFW.getGraphicsFW().drawText("Pause", 200, 300, Color.YELLOW, 50, ResourceGame.mainMenuFount);
     }
 
     private void updateStatePause() {
@@ -147,7 +147,7 @@ public class GameScene extends SceneGameFW {
 
     private void drawingStateReady() {
         graphicsGameFW.clearScene(Color.GREEN);
-        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_gameScene_stateReady_ready), 250, 300, Color.WHITE, 60, null);
+        graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_gameScene_stateReady_ready), 250, 300, Color.WHITE, 60, ResourceGame.mainMenuFount);
     }
 
     private void updateStateReady() {

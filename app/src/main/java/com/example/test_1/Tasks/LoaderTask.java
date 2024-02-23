@@ -1,10 +1,12 @@
 package com.example.test_1.Tasks;
 
 import android.os.AsyncTask;
+import android.os.Build;
 
 import com.example.myframework.CoreGameFW;
 import com.example.myframework.GraphicsGameFW;
 import com.example.test_1.Interfaces.TaskCompleteListener;
+import com.example.test_1.R;
 import com.example.test_1.Scenes.LoaderResourceScene;
 import com.example.test_1.Utillits.ResourceGame;
 import com.example.test_1.Utillits.SettingsGame;
@@ -117,6 +119,20 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
     private void loadOther(GraphicsGameFW graphicsGameFW) {
         ResourceGame.shieldHitEnemy = graphicsGameFW.newSprite(ResourceGame.textureAtlas, 0, 128, 64, 64);
         SettingsGame.loadSettings(mCoreGameFW); // подгружаем настройки
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            /**
+             * при зазрузке шрифта с гугла ставил выбор между способом зарузки, выше 16 API работает ниже нет.
+             */
+            ResourceGame.mainMenuFount = mCoreGameFW.getResources().getFont(R.font.permanent_marker);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            /**
+             * при зазрузке шрифта с гугла ставил выбор между способом зарузки, выше 16 API работает ниже нет.
+             */
+            ResourceGame.mainMenuFount_1 = mCoreGameFW.getResources().getFont(R.font.barriecito);
+        }
     }
 
     private void loadSpriteEnemy(GraphicsGameFW graphicsGameFW) {
