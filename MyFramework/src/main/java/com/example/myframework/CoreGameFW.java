@@ -65,7 +65,7 @@ public class CoreGameFW extends AppCompatActivity {
         frameBuffer = Bitmap.createBitmap((int) FRAME_BUFFER_WIDTH, (int) FRAME_BUFFER_HEIGHT, Bitmap.Config.ARGB_8888);
         /**
          *  получаем ширину и высоту нашей сцены. Есть фреймбуфер определенной высоты иширины, и есть ширина и высота сцены которая будет расчитываться следующим образом :
-         *- берем нашу константу FRAME_BUFFER_WIDTH и делим на полученную ширину смартфона который использует приложение. И так же высоту.
+         * берем нашу константу FRAME_BUFFER_WIDTH и делим на полученную ширину смартфона который использует приложение. И так же высоту.
          */
         float sceneWidth = FRAME_BUFFER_WIDTH / sizeDisplay.x;
         float sceneHeight = FRAME_BUFFER_HEIGHT / sizeDisplay.y;

@@ -3,6 +3,8 @@ package com.example.test_1.Tasks;
 import android.os.AsyncTask;
 import android.os.Build;
 
+import androidx.core.content.res.ResourcesCompat;
+
 import com.example.myframework.CoreGameFW;
 import com.example.myframework.GraphicsGameFW;
 import com.example.test_1.Interfaces.TaskCompleteListener;
@@ -125,13 +127,8 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
              * при зазрузке шрифта с гугла ставил выбор между способом зарузки, выше 16 API работает ниже нет.
              */
             ResourceGame.mainMenuFount = mCoreGameFW.getResources().getFont(R.font.permanent_marker);
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            /**
-             * при зазрузке шрифта с гугла ставил выбор между способом зарузки, выше 16 API работает ниже нет.
-             */
-            ResourceGame.mainMenuFount_1 = mCoreGameFW.getResources().getFont(R.font.barriecito);
+        } else {
+            ResourceGame.mainMenuFount = ResourcesCompat.getFont(mCoreGameFW.getApplicationContext(), R.font.permanent_marker);
         }
     }
 

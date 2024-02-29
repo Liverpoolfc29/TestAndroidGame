@@ -92,10 +92,13 @@ public class GameScene extends SceneGameFW {
 
     @Override
     public void dispose() {
+        /**
+         * Сделать дургое освобождение ресурсов!
         ResourceGame.explode.dispose();
         ResourceGame.hit.dispose();
         ResourceGame.touch.dispose();
         ResourceGame.gameMusic.dispose();
+         */
     }
 
     private void drawingStateGameOver() {

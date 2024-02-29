@@ -9,18 +9,26 @@ import android.graphics.Typeface;
 
 import java.io.IOException;
 import java.io.InputStream;
-/*
-    пояснения как масштабировать приложение под разные размеры экрана в уроке 14.
+
+/**
+ * пояснения как масштабировать приложение под разные размеры экрана в уроке 14.
  */
 public class GraphicsGameFW {
-
-    // для работы с файлами
+    /**
+     * для работы с файлами
+     */
     private AssetManager assetManagerGame;
-    // для работы сграфикой, будет подстраивать размеры графики под различные велиыины экранов.
+    /**
+     * для работы сграфикой, будет подстраивать размеры графики под различные велиыины экранов.
+     */
     private Bitmap frameBufferGame;
-    // для приема графики
+    /**
+     * для приема графики
+     */
     private Canvas canvasGame;
-    // для работы с графикой
+    /**
+     * для работы с графикой
+     */
     private Paint paintGame;
 
     public GraphicsGameFW(AssetManager assetManagerGame, Bitmap frameBufferGame) {
@@ -30,12 +38,16 @@ public class GraphicsGameFW {
     private void init(AssetManager assetManagerGame, Bitmap frameBufferGame) {
         this.assetManagerGame = assetManagerGame;
         this.frameBufferGame = frameBufferGame;
-        // передаем туда фреймБуфер, не рисуем на самом холсте канвас.
+        /**
+         * передаем туда фреймБуфер, не рисуем на самом холсте канвас.
+         */
         this.canvasGame = new Canvas(frameBufferGame);
         this.paintGame = new Paint();
     }
 
-    // для очистки т.е. закраски фреймбуфера данным цветом.
+    /**
+     * для очистки т.е. закраски фреймбуфера данным цветом.
+     */
     public void clearScene(int colorRGB) {
         canvasGame.drawRGB(colorRGB, colorRGB, colorRGB); // принимает три параметра R G B но мы передаем одинаковые значения что бы получить один цвет
     }
@@ -61,23 +73,31 @@ public class GraphicsGameFW {
         canvasGame.drawBitmap(textureGame, x, y, null);
     }
 
-    //получение ширины фреймбуфера
+    /**
+     * получение ширины фреймбуфера
+     */
     public int getWightFrameBuffer() {
         return frameBufferGame.getWidth();
     }
 
-    // высоты фреймбуфера
+    /**
+     * высоты фреймбуфера
+     */
     public int getHeightFrameBuffer() {
         return frameBufferGame.getHeight();
     }
 
     public Bitmap newTexture(String fileName) {
         InputStream inputStream = null;
-        // для текстур
+        /**
+         * для текстур
+         */
         Bitmap textureGame;
         try {
             inputStream = assetManagerGame.open(fileName);
-            // в текстуру передаем поток с файла
+            /**
+             * в текстуру передаем поток с файла
+             */
             textureGame = BitmapFactory.decodeStream(inputStream);
             if (textureGame == null) {
                 throw new RuntimeException("Невозможно загрузить файл " + fileName);
@@ -96,8 +116,8 @@ public class GraphicsGameFW {
     }
 
     public Bitmap newSprite(Bitmap textureAtlas, int x, int y, int widthSprite, int heightSprite) {
-        /*
-        принимаем атлас текстур, координаты, и по этим координатам мы получаем определенную картинку и возвращаем ее.
+        /**
+         * принимаем атлас текстур, координаты, и по этим координатам мы получаем определенную картинку и возвращаем ее.
          */
         Bitmap newSprite = Bitmap.createBitmap(textureAtlas, x, y, widthSprite, heightSprite);
         return newSprite;

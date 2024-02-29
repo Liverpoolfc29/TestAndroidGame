@@ -3,7 +3,7 @@ package com.example.test_1;
 import com.example.myframework.CoreGameFW;
 import com.example.myframework.SceneGameFW;
 import com.example.test_1.Scenes.LoaderResourceScene;
-/*
+/**
     Как только игра запустится, запустится лоадер и подгрузить все необходимые ресурсы заранее в оперативную память.
     И потом уже будет запускаться главная сцена.
  */

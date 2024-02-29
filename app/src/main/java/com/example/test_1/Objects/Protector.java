@@ -9,8 +9,8 @@ import com.example.myframework.Utilits.UtilRandomFW;
 import com.example.test_1.Classes.GameManager;
 import com.example.test_1.Utillits.ResourceGame;
 
-/*
-    Класс для отрисовки и генерации протектора на экране, пофвился прошел по траэктории и все
+/**
+ * Класс для отрисовки и генерации протектора на экране, пофвился прошел по траэктории и все
  */
 public class Protector extends ObjectGameFW {
 
@@ -22,14 +22,14 @@ public class Protector extends ObjectGameFW {
 
     private void init(int maxScreenX, int maxScreenY, int minScreenY) {
         this.maxScreenX = maxScreenX;
-        /*
-        максимальное значение минус высота,что бы астероиды не летели ниже экрана.
+        /**
+         * максимальное значение минус высота,что бы астероиды не летели ниже экрана.
          */
         this.maxScreenY = maxScreenY - ResourceGame.spriteProtector.get(0).getHeight();
         this.minScreenY = minScreenY;
         this.minScreenX = 0;
-        /*
-            Устанавливаем первоначальное положение астероидам на экране
+        /**
+         * Устанавливаем первоначальное положение астероидам на экране
          */
         x = maxScreenX;
         y = UtilRandomFW.getGap(minScreenY, maxScreenY);

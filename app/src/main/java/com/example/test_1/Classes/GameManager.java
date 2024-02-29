@@ -10,7 +10,7 @@ import com.example.test_1.Objects.HUD;
 import com.example.test_1.Objects.MainPlayer;
 import com.example.test_1.Utillits.ResourceGame;
 
-/*
+/**
     Класс управления всеми обьектами, считает удары, сблюдает колизии итд
  */
 public class GameManager {
@@ -48,7 +48,7 @@ public class GameManager {
 
     public void update() {
         updateObjects();
-        /*
+        /**
             пройденную дитстанция считаем от скорости движения героя (умножаем на 60 для красивого отображения не 1.2.3 а 10 20 30)
             другие данные береж похожим образом
          */

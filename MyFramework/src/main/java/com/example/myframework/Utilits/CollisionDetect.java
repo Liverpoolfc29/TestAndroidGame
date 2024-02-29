@@ -14,7 +14,7 @@ public class CollisionDetect {
     private static double distanceObject;
 
     public static boolean collisionDetect(ObjectGameFW object1, ObjectGameFW object2) {
-        /*
+        /**
             Получаем координаты обьектов (их центральные точки) и  потом получаем от точек радиусы и потом
             делаем проверку на столкновение с помощью растояния между обьектами, если дистанция меньше
             суммы двух радиусов значит столкновение.

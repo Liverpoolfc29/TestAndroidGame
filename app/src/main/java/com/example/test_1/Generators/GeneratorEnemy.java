@@ -46,7 +46,7 @@ public class GeneratorEnemy {
     }
 
     public void hitPlayer(Enemy enemy) {
-        /*
+        /**
            удаляем столкнувшийся обьект.
          */
         for (int i = 0; i < enemyArrayList.size(); i++) {

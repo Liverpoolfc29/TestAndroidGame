@@ -12,7 +12,7 @@ public class GeneratorBackground {
     private ArrayList<Star> starArrayList = new ArrayList<>(starsPeak);
 
     public GeneratorBackground(int sceneWidth, int sceneHeight, int minScreenY) {
-        /*
+        /**
          кол. вездочек.
          На каждой итерации пока 50 штук не появятся мы создаем звездочеки.
         */
@@ -24,14 +24,16 @@ public class GeneratorBackground {
     }
 
     public void updateStar(double speedPlayer) {
-        //Производим обновление каждой звезды в массиве
+        /**
+         * Производим обновление каждой звезды в массиве
+         */
         for (int i = 0; i < starArrayList.size(); i++) {
             starArrayList.get(i).updateStar(speedPlayer);
         }
     }
 
     public void drawingStar(GraphicsGameFW graphicsGameFW) {
-        /*
+        /**
          отрисовываем звездочки, берем по одной и рисуем ее на той координате которая у нее была задана в момент ее создания,
          по высоте и ширине.
         */

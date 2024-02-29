@@ -10,20 +10,20 @@ import com.example.test_1.Classes.GameManager;
 import com.example.test_1.Utillits.ResourceGame;
 import com.example.myframework.AnimationGameFW;
 
-/*
-    Каждый обьект и наш игрок должен знать габариты экрана (максимальную высоту и ширину) что бы не вылетать за его пределы.
+/**
+ * Каждый обьект и наш игрок должен знать габариты экрана (максимальную высоту и ширину) что бы не вылетать за его пределы.
  */
 public class MainPlayer extends ObjectGameFW {
     private final int GRAVITY = -4;
     private final int MAX_SPEED = 15;
     private final int MIN_SPEED = 1;
     private CoreGameFW coreGameFW;
-    /*
-        для анимации игрока в обычном состоянии
+    /**
+     * для анимации игрока в обычном состоянии
      */
     private AnimationGameFW animMainPlayer;
-    /*
-        для анимации игрока в режиме ускорения
+    /**
+     * для анимации игрока в режиме ускорения
      */
     private AnimationGameFW animMainPlayerBoost;
     private AnimationGameFW animExplosionPlayer;
@@ -45,8 +45,8 @@ public class MainPlayer extends ObjectGameFW {
 
     private void init(CoreGameFW coreGameFW, int maxScreenX, int maxScreenY, int minScreenY) {
         shieldsOn = false;
-        /*
-            обозначим место появления и начальную скорость.
+        /**
+         * обозначим место появления и начальную скорость.
          */
         x = 20;
         y = 200;
@@ -55,9 +55,9 @@ public class MainPlayer extends ObjectGameFW {
         boosting = false;
         hitEnemy = false;
         isGameOver = false;
-        /*
-            вычисляем радиус фигурки, размер фигурки 64 на 64 пикселя, радиус нужен от ее центра координат в середине фигурки, значит берем половину ее
-            размера 64\2 и получаем радиус от центра 32
+        /**
+         * вычисляем радиус фигурки, размер фигурки 64 на 64 пикселя, радиус нужен от ее центра координат в середине фигурки, значит берем половину ее
+         * размера 64\2 и получаем радиус от центра 32
         */
         radius = (double) ResourceGame.spritePlayer.get(0).getHeight() / 4;
         timerOnShieldHit = new UtilTimerDelay();
@@ -65,23 +65,23 @@ public class MainPlayer extends ObjectGameFW {
         timerShieldsOn = new UtilTimerDelay();
         this.coreGameFW = coreGameFW;
         this.maxScreenX = maxScreenX;
-        /*
-            у картинки левый верхний угол точка отсчета поэтому нужно подрезать ораничение на размер картинкии (-64)
+        /**
+         * у картинки левый верхний угол точка отсчета поэтому нужно подрезать ораничение на размер картинкии (-64)
          */
         this.maxScreenY = maxScreenY - ResourceGame.spritePlayer.get(0).getHeight();
         this.minScreenY = minScreenY;
     }
 
     private void initAnimation() {
-        /*
-            загрузили 4 спрайта из нашего масива  картинок с анимацией игрока
+        /**
+         * загрузили 4 спрайта из нашего масива  картинок с анимацией игрока
          */
         animMainPlayer = new AnimationGameFW(speed, ResourceGame.spritePlayer.get(0),
                 ResourceGame.spritePlayer.get(1),
                 ResourceGame.spritePlayer.get(2),
                 ResourceGame.spritePlayer.get(3));
-        /*
-            создаем новую анимацию для игрока в режиме ускорения (подгружаем другие картинки для этого)
+        /**
+         * создаем новую анимацию для игрока в режиме ускорения (подгружаем другие картинки для этого)
         */
         animMainPlayerBoost = new AnimationGameFW(speed, ResourceGame.spritePlayerBoost.get(0),
                 ResourceGame.spritePlayerBoost.get(1),
@@ -105,8 +105,8 @@ public class MainPlayer extends ObjectGameFW {
     }
 
     public void update() {
-        /*
-            проверяем на нажатие. Если нажал на любую область экрана включаем буст, если отпустил выключаем. (в параметры метода передаем весь размер экрана)
+        /**
+         * Проверяем на нажатие. Если нажал на любую область экрана включаем буст, если отпустил выключаем. (в параметры метода передаем весь размер экрана)
          */
         if (coreGameFW.getTouchListenerFW().getTouchDown(0, maxScreenY, maxScreenX, maxScreenY)) {
             startBoosting();
@@ -140,8 +140,8 @@ public class MainPlayer extends ObjectGameFW {
         }
 
         y -= speed + GRAVITY;
-        /*
-            проверка вылетов за экран
+        /**
+         * проверка вылетов за экран
          */
         if (y < minScreenY) {
             y = minScreenY;
@@ -149,8 +149,8 @@ public class MainPlayer extends ObjectGameFW {
         if (y > maxScreenY) {
             y = maxScreenY;
         }
-        /*
-            Делаем переключатели между видами анимациями с броней без итд
+        /**
+         * Делаем переключатели между видами анимациями с броней без итд
         */
         if (boosting) {
             if (shieldsOn) {
@@ -174,8 +174,8 @@ public class MainPlayer extends ObjectGameFW {
     }
 
     public void drawing(GraphicsGameFW graphicsGameFW) {
-        /*
-            делаем переключение анимации и обычного игрока на игрока в ускорее с помощью бул переменной
+        /**
+         * делаем переключение анимации и обычного игрока на игрока в ускорее с помощью бул переменной
          */
         if (!isGameOver) {
             if (!hitEnemy) {

@@ -35,14 +35,14 @@ public class Enemy extends ObjectGameFW {
 
     private void init(int maxScreenX, int maxScreenY, int minScreenY) {
         this.maxScreenX = maxScreenX;
-        /*
-        максимальное значение минус высота,что бы астероиды не летели ниже экрана.
+        /**
+         * максимальное значение минус высота,что бы астероиды не летели ниже экрана.
          */
         this.maxScreenY = maxScreenY - ResourceGame.spriteEnemy.get(0).getHeight();
         this.minScreenY = minScreenY;
         this.minScreenX = 0;
-        /*
-        Устанавливаем первоначальное положение астероидам на экране
+        /**
+         * Устанавливаем первоначальное положение астероидам на экране
          */
         x = maxScreenX;
         y = UtilRandomFW.getGap(minScreenY, maxScreenY);
