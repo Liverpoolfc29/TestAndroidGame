@@ -26,7 +26,7 @@ public class GeneratorEnemy {
 
     public void update(double speedPlayer) {
         if (enemyArrayList.size() < 3) {
-            addEnemy(3);
+            addEnemy(1);
         }
         for (int i = 0; i < enemyArrayList.size(); i++) {
             enemyArrayList.get(i).update(speedPlayer);
@@ -46,7 +46,7 @@ public class GeneratorEnemy {
     }
 
     public void hitPlayer(Enemy enemy) {
-        /*
+        /**
            удаляем столкнувшийся обьект.
          */
         for (int i = 0; i < enemyArrayList.size(); i++) {

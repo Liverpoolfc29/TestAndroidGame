@@ -2,18 +2,17 @@ package com.example.myframework;
 
 import android.graphics.Bitmap;
 
-/*
-                    _Фреймворк никак не зависит с игрой он просто принимает какие то параметры и выдает_
-          Класс принимает в конструктор скорость и 4 картинки и выдает анимацию этого.
-    Изначально вся анимация будет начинаться с первого спрайта.
-    frames = 4; - кол кадров.
+/**
+ *** Фреймворк никак не зависит с игрой он просто принимает какие то параметры и выдает
+ ** Класс принимает в конструктор скорость и 4 картинки и выдает анимацию этого.
+ * Изначально вся анимация будет начинаться с первого спрайта.
+ * frames = 4; - кол кадров.
  */
 public class AnimationGameFW {
     private double speedAnimation;
     private int delayIndex;
     private int countFrames;
     private int frames;
-
     private Bitmap sprite;
     private Bitmap sprite1;
     private Bitmap sprite2;
@@ -36,9 +35,6 @@ public class AnimationGameFW {
 
     public void runAnimation() {
         delayIndex++;
-        /*
-
-         */
         if (delayIndex > speedAnimation) {
             delayIndex = 0;
             nextFrame();

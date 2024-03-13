@@ -13,16 +13,18 @@ public class LoopGameFW extends SurfaceView implements Runnable {
     private final float FPS = 60;
     private final float SECOND = 1000000000;
     private final float UPDATE_TIME = SECOND / FPS;
-
     private boolean running = false;
-
     private Thread gameThread = null;
     private CoreGameFW coreGameFW;
     private Bitmap frameBuffer;
     private SurfaceHolder surfaceHolder;
-    // то на чем будем рисовать
+    /**
+     * то на чем будем рисовать
+     */
     private Canvas canvas;
-    // покажет граници нашего конваса
+    /**
+     * покажет граници нашего конваса
+     */
     private Rect rect;
 
     // temp
@@ -67,13 +69,17 @@ public class LoopGameFW extends SurfaceView implements Runnable {
     }
 
     private void updateGame() {
-        // этот метод повторяется 60  раз в секунду
+        /**
+         * этот метод повторяется 60  раз в секунду
+         */
         updates++;
         coreGameFW.getCurrentScene().upDate();
     }
 
     private void drawingGame() {
-        // этот метод повторяется 60  раз в секунду
+        /**
+         * этот метод повторяется 60  раз в секунду
+         */
         drawing++;
         if (surfaceHolder.getSurface().isValid()) {
             canvas = surfaceHolder.lockCanvas();
@@ -108,6 +114,5 @@ public class LoopGameFW extends SurfaceView implements Runnable {
             throw new RuntimeException(e);
         }
     }
-
 
 }

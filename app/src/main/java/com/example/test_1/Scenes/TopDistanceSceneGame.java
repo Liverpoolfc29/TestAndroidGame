@@ -20,8 +20,8 @@ public class TopDistanceSceneGame extends SceneGameFW {
 
     @Override
     public void upDate() {
-        /*
-            вешаем слушатель на нажатие, если нажмет на экран значит выходим из сцены
+        /**
+         * вешаем слушатель на нажатие, если нажмет на экран значит выходим из сцены
          */
         if (coreGameFW.getTouchListenerFW().getTouchUp(0, sceneHeight, sceneWidth, sceneHeight)) {
             coreGameFW.setSceneFW(new MainManuScene(coreGameFW));
@@ -30,8 +30,8 @@ public class TopDistanceSceneGame extends SceneGameFW {
 
     @Override
     public void drawing() {
-        /*
-            выводим на экран все результаты и надпись лучшие результаты результаты
+        /**
+         * выводим на экран все результаты и надпись лучшие результаты результаты
          */
         graphicsGameFW.drawText(coreGameFW.getString(R.string.txt_top_distance), 120, 200, Color.GREEN, 40, null);
         graphicsGameFW.drawText(String.valueOf(numbers[0]), 150, 250, Color.GREEN, 30, null);

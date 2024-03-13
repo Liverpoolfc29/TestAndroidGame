@@ -15,7 +15,7 @@ public class AudioGameFW {
     private SoundPool soundPool;
 
     public AudioGameFW(Activity activity) {
-        /*
+        /**
             C помощью этого метода можем напрямую обращаться к Активити и управлять громкостью
          */
         activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -29,7 +29,7 @@ public class AudioGameFW {
     }
 
     private void versionSDK() {
-        /*
+        /**
             версии кода для разные версий андроида
          */
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -53,7 +53,7 @@ public class AudioGameFW {
     }
 
     public SoundGameFW newSound(String fileName) {
-        /*
+        /**
             Загружаем музыку
          */
         AssetFileDescriptor assetFileDescriptor = null;

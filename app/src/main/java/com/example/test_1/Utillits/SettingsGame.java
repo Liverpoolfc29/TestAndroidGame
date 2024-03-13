@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 
 import com.example.myframework.CoreGameFW;
 
-/*
+/**
     класс где будем хранит результаты
  */
 public class SettingsGame {

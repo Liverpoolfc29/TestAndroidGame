@@ -6,8 +6,8 @@ import com.example.myframework.CoreGameFW;
 import com.example.myframework.GraphicsGameFW;
 import com.example.test_1.R;
 
-/*
-    Верхняя полоса экрана для отображение жизней игрока итд
+/**
+ * Верхняя полоса экрана для отображение жизней игрока итд
  */
 public class HUD {
     private final int HEIGHT_HUD = 50;

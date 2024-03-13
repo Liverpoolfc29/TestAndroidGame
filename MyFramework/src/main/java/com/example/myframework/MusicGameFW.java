@@ -5,7 +5,7 @@ import android.media.MediaPlayer;
 
 import java.io.IOException;
 
-/*
+/**
     класс для работы с музыкой
  */
 public class MusicGameFW implements MediaPlayer.OnCompletionListener {
@@ -22,7 +22,7 @@ public class MusicGameFW implements MediaPlayer.OnCompletionListener {
             throw new RuntimeException(e);
         }
         isPrepared = true;
-    /*
+    /**
         Вешаем слушатель на плеер
     */
         mediaPlayer.setOnCompletionListener(this);
@@ -30,7 +30,7 @@ public class MusicGameFW implements MediaPlayer.OnCompletionListener {
 
     public void play(boolean looping, float volume) {
         if (mediaPlayer.isPlaying()) {
-            /*
+            /**
                 Если играет второй раз запускать не нужно.
              */
             return;
