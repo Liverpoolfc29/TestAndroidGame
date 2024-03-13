@@ -82,7 +82,7 @@ public class MainPlayer extends ObjectGameFW {
                 ResourceGame.spritePlayer.get(3));
         /**
          * создаем новую анимацию для игрока в режиме ускорения (подгружаем другие картинки для этого)
-        */
+         */
         animMainPlayerBoost = new AnimationGameFW(speed, ResourceGame.spritePlayerBoost.get(0),
                 ResourceGame.spritePlayerBoost.get(1),
                 ResourceGame.spritePlayerBoost.get(2),
@@ -151,7 +151,7 @@ public class MainPlayer extends ObjectGameFW {
         }
         /**
          * Делаем переключатели между видами анимациями с броней без итд
-        */
+         */
         if (boosting) {
             if (shieldsOn) {
                 animPlayerShieldsOnBoost.runAnimation();
